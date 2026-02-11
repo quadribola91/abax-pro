@@ -1,24 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import HeroSection from "./components/HeroSection";
+import VisionMissionSection from "./components/VisionMissionSection";
+import ServicesSection from "./components/Services";
+import AboutSection from "./components/AboutSection";
+import About from "./pages/About";
+import ContactSection from "./components/ContactSection";
+import TeamSection from "./components/TeamSection";
+import WhyUs from "./components/WhyUs";
+import FooterSection from "./components/FooterSection";
+import Home from "./pages/Home";
+import TeamPage from "./pages/TeamPage";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      {/* Navbar appears on all pages */}
+      <Navbar />
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<ContactSection />} />
+        <Route path="/team" element={<TeamPage />} />
+      </Routes>
+
+      {/* Footer appears on all pages */}
+      <FooterSection />
+    </Router>
   );
 }
 
