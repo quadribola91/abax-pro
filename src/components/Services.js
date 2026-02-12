@@ -63,7 +63,7 @@ export default function ServicesSection() {
         </motion.h2>
 
         <motion.p
-          className="mt-4 text-gray-600 max-w-2xl mx-auto"
+          className="mt-4 text-gray-600 font-bold max-w-2xl mx-auto"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 2, delay: 0.3 }}

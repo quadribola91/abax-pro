@@ -3,21 +3,41 @@ import OurStory from "./OurStory";
 import OurPurpose from "./OurPurpose";
 import CoreValues from "./CoreValues";
 import CallToAction from "./CallToAction";
+import aboutBg from "../assets/heroimage2.jpg";
+import StoryPurposeSection from "./StoryPurposeSection";
 
 export default function AboutHero() {
   return (
     <>
-      <section className="bg-blue-900 text-white py-24 text-center">
-        <h1 className="text-4xl md:text-5xl font-bold mb-4">
-          About Abax Professional Services
-        </h1>
-        <p className="max-w-2xl mx-auto text-blue-100">
-          Built on integrity. Driven by excellence. Focused on long-term
-          partnerships.
-        </p>
+      {/* Hero Section */}
+      <section className="relative min-h-[60vh] md:min-h-[95vh] flex items-center justify-center text-center text-white overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <img
+            src={aboutBg}
+            alt="About Background"
+            className="w-full h-full object-cover object-center"
+          />
+        </div>
+
+        {/* Faint Overlay (controls darkness without killing image) */}
+        <div className="absolute inset-0 bg-blue-900/70"></div>
+
+        {/* Content */}
+        <div className="relative z-10 max-w-4xl px-6">
+          <h1 className="text-2xl md:text-2xl lg:text-4xl font-bold mb-6 leading-tight">
+            About Abax Professional Services
+          </h1>
+
+          <p className="text-lg md:text-xl text-blue-100">
+            Built on integrity. Driven by excellence. Focused on long-term
+            partnerships.
+          </p>
+        </div>
       </section>
-      <OurStory />
-      <OurPurpose />
+
+      {/* Other Sections */}
+      <StoryPurposeSection />
       <CoreValues />
       <CallToAction />
     </>

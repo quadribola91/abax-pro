@@ -44,7 +44,7 @@ export default function WhyUs() {
         <h2 className="text-3xl md:text-4xl font-bold text-center text-blue-900 mb-4">
           Why Abax Professional Services
         </h2>
-        <p className="text-center text-gray-700 mb-12 max-w-2xl mx-auto">
+        <p className="text-center text-gray-500 font-bold mb-12 max-w-2xl mx-auto">
           Experience the difference with our client-focused approach
         </p>
 

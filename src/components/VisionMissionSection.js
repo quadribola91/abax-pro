@@ -43,7 +43,7 @@ export default function VisionMissionSection() {
           <h2 className="text-3xl md:text-4xl font-bold text-blue-700">
             Our Vision & Mission
           </h2>
-          <p className="text-gray-600 mt-4">
+          <p className="text-gray-600 font-bold mt-4">
             Guiding principles for sustainable growth and excellence
           </p>
         </div>

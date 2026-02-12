@@ -38,7 +38,7 @@ She has served on corporate and institutional boards, including First City Monum
     role: "Senior Consultant Audit and Assurance",
     shortBio:
       "Multi-skilled Governance, Financial Accounts, and Audit professional with 30+ years experience in Nigeria and UK. Specializes in risk, compliance, and internal audit.",
-    image: "/images/team/babafunke.jpg",
+    image: img5,
   },
   {
     id: "fusi-akinkugbe",
@@ -46,7 +46,7 @@ She has served on corporate and institutional boards, including First City Monum
     role: "Senior Consultant Financial Services",
     shortBio:
       "Finance and assurance professional with nearly 40 years experience in consulting, corporate leadership, and professional services. Expertise in governance and organizational effectiveness.",
-    image: img4,
+    image: img3,
   },
   {
     id: "anthony-ebele",

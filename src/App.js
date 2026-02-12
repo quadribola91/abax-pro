@@ -12,13 +12,14 @@ import WhyUs from "./components/WhyUs";
 import FooterSection from "./components/FooterSection";
 import Home from "./pages/Home";
 import TeamPage from "./pages/TeamPage";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   return (
     <Router>
       {/* Navbar appears on all pages */}
       <Navbar />
-
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />

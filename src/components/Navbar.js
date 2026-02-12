@@ -4,23 +4,13 @@ import logo from "../assets/abax-ps-logo.png";
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [openDropdown, setOpenDropdown] = useState(null); // 'about' | 'services' | null
+  const [openDropdown, setOpenDropdown] = useState(null);
   const [scrolled, setScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState("home");
   const navigate = useNavigate();
 
-  // Handle scroll effects & scroll spy
   useEffect(() => {
     const onScroll = () => {
       setScrolled(window.scrollY > 80);
-
-      const sections = ["home", "about", "services", "team", "contact"];
-      let current = "home";
-      sections.forEach((id) => {
-        const el = document.getElementById(id);
-        if (el && el.getBoundingClientRect().top <= 120) current = id;
-      });
-      setActiveSection(current);
     };
 
     window.addEventListener("scroll", onScroll);
@@ -31,270 +21,219 @@ export default function Navbar() {
     setOpenDropdown((prev) => (prev === key ? null : key));
   };
 
-  const navLinkClasses = (section) =>
-    `${activeSection === section ? "font-semibold text-blue-700" : "font-normal text-gray-700"} px-3 py-2 rounded hover:text-blue-600`;
-
   return (
     <header
-      className={`fixed w-full z-50 transition-colors duration-300 ${
-        scrolled ? "bg-white shadow" : "bg-transparent"
+      className={`fixed w-full z-50 transition-all duration-500 ${
+        scrolled ? "bg-white shadow-lg" : "bg-transparent"
       }`}
     >
       <div className="container mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-3">
-          <img src={logo} alt="logo" className="h-12" />
-          <span
-            className={`font-bold ${scrolled ? "text-blue-700" : "text-white"}`}
-          >
-            Abax Professional Services
-          </span>
+          <img src={logo} alt="logo" className="h-16 w-auto" />
         </Link>
 
-        {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-6">
-          <NavLink to="/" className={navLinkClasses("home")}>
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex items-center gap-8 font-medium">
+          <NavLink to="/" className="hover:text-blue-600 transition">
             Home
           </NavLink>
 
-          {/* About Dropdown */}
-          <div
-            className="relative"
-            onMouseEnter={() => setOpenDropdown("about")}
-            onMouseLeave={() => setOpenDropdown(null)}
-          >
-            <button
-              onClick={() => toggleDropdown("about")}
-              className={`flex items-center gap-1 ${navLinkClasses("about")}`}
-              aria-expanded={openDropdown === "about"}
-            >
+          {/* About */}
+          <div className="relative group">
+            <button className="flex items-center gap-1 hover:text-blue-600 transition">
               About
-              <svg className="w-3 h-3" viewBox="0 0 20 20" fill="currentColor">
+              <svg
+                className="w-4 h-4 transition-transform duration-300 group-hover:rotate-180"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
                 <path d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" />
               </svg>
             </button>
-            {openDropdown === "about" && (
-              <ul className="absolute mt-2 bg-white rounded-lg shadow-lg py-2 w-44">
-                <li>
-                  <a
-                    href="/about"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      navigate("/about");
-                      setOpenDropdown(null);
-                    }}
-                    className="block px-4 py-2 hover:bg-gray-50"
-                  >
-                    About Us
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/team"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      navigate("/team");
-                      setOpenDropdown(null);
-                    }}
-                    className="block px-4 py-2 hover:bg-gray-50"
-                  >
-                    Our Team
-                  </a>
-                </li>
-              </ul>
-            )}
+
+            <div className="absolute left-0 mt-3 w-48 bg-white shadow-xl rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+              <Link to="/about" className="block px-4 py-2 hover:bg-gray-50">
+                About Us
+              </Link>
+              <Link to="/team" className="block px-4 py-2 hover:bg-gray-50">
+                Our Team
+              </Link>
+            </div>
           </div>
 
-          {/* Services Dropdown */}
-          <div
-            className="relative"
-            onMouseEnter={() => setOpenDropdown("services")}
-            onMouseLeave={() => setOpenDropdown(null)}
-          >
-            <button
-              onClick={() => toggleDropdown("services")}
-              className={`flex items-center gap-1 ${navLinkClasses("services")}`}
-              aria-expanded={openDropdown === "services"}
-            >
+          {/* Services */}
+          <div className="relative group">
+            <button className="flex items-center gap-1 hover:text-blue-600 transition">
               Services
-              <svg className="w-3 h-3" viewBox="0 0 20 20" fill="currentColor">
+              <svg
+                className="w-4 h-4 transition-transform duration-300 group-hover:rotate-180"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
                 <path d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" />
               </svg>
             </button>
-            {openDropdown === "services" && (
-              <ul className="absolute mt-2 bg-white rounded-lg shadow-lg py-2 w-56">
-                <li>
-                  <a
-                    href="/services/audit"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      navigate("/services/audit");
-                      setOpenDropdown(null);
-                    }}
-                    className="block px-4 py-2 hover:bg-gray-50"
-                  >
-                    Audit & Assurance
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/services/accountancy"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      navigate("/services/accountancy");
-                      setOpenDropdown(null);
-                    }}
-                    className="block px-4 py-2 hover:bg-gray-50"
-                  >
-                    Accountancy & Reporting
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/services/tax"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      navigate("/services/tax");
-                      setOpenDropdown(null);
-                    }}
-                    className="block px-4 py-2 hover:bg-gray-50"
-                  >
-                    Tax Advisory & Compliance
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/services/advisory"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      navigate("/services/advisory");
-                      setOpenDropdown(null);
-                    }}
-                    className="block px-4 py-2 hover:bg-gray-50"
-                  >
-                    Advisory Services
-                  </a>
-                </li>
-              </ul>
-            )}
+
+            <div className="absolute left-0 mt-3 w-60 bg-white shadow-xl rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+              <Link
+                to="/services/audit"
+                className="block px-4 py-2 hover:bg-gray-50"
+              >
+                Audit & Assurance
+              </Link>
+              <Link
+                to="/services/accountancy"
+                className="block px-4 py-2 hover:bg-gray-50"
+              >
+                Accountancy & Reporting
+              </Link>
+              <Link
+                to="/services/tax"
+                className="block px-4 py-2 hover:bg-gray-50"
+              >
+                Tax Advisory & Compliance
+              </Link>
+              <Link
+                to="/services/advisory"
+                className="block px-4 py-2 hover:bg-gray-50"
+              >
+                Advisory Services
+              </Link>
+            </div>
           </div>
 
-          <NavLink to="/contact" className={navLinkClasses("contact")}>
+          <NavLink to="/contact" className="hover:text-blue-600 transition">
             Contact
           </NavLink>
         </nav>
 
         {/* Mobile Hamburger */}
-        <div className="md:hidden">
-          <button
-            onClick={() => setMobileOpen((v) => !v)}
-            className="p-2 rounded-md bg-gray-100"
-            aria-label="Toggle menu"
-          >
-            <span
-              className={`block w-6 h-0.5 bg-gray-800 mb-1 transition-all ${mobileOpen ? "rotate-45 translate-y-2" : ""}`}
-            />
-            <span
-              className={`block w-6 h-0.5 bg-gray-800 mb-1 transition-all ${mobileOpen ? "opacity-0" : ""}`}
-            />
-            <span
-              className={`block w-6 h-0.5 bg-gray-800 transition-all ${mobileOpen ? "-rotate-45 -translate-y-2" : ""}`}
-            />
-          </button>
-        </div>
+        <button
+          onClick={() => setMobileOpen(!mobileOpen)}
+          className="md:hidden relative w-8 h-8 z-50"
+        >
+          <span
+            className={`absolute w-8 h-0.5 bg-black transition-all duration-300 ${
+              mobileOpen ? "rotate-45 top-4" : "top-2"
+            }`}
+          />
+          <span
+            className={`absolute w-8 h-0.5 bg-black transition-all duration-300 ${
+              mobileOpen ? "opacity-0" : "top-4"
+            }`}
+          />
+          <span
+            className={`absolute w-8 h-0.5 bg-black transition-all duration-300 ${
+              mobileOpen ? "-rotate-45 top-4" : "top-6"
+            }`}
+          />
+        </button>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Fullscreen Menu */}
       <div
-        className={`md:hidden bg-white border-t transition-max-height duration-500 overflow-hidden ${mobileOpen ? "max-h-screen" : "max-h-0"}`}
+        className={`fixed inset-0 bg-white flex flex-col items-center justify-center gap-8 text-xl font-semibold transform transition-transform duration-500 ${
+          mobileOpen ? "translate-x-0" : "translate-x-full"
+        } md:hidden`}
       >
-        <div className="px-6 py-4 space-y-2">
-          <NavLink
-            to="/"
-            onClick={() => setMobileOpen(false)}
-            className="block font-semibold"
+        <Link to="/" onClick={() => setMobileOpen(false)}>
+          Home
+        </Link>
+
+        {/* About Mobile */}
+        <div className="text-center">
+          <button
+            onClick={() => toggleDropdown("about")}
+            className="flex items-center gap-2"
           >
-            Home
-          </NavLink>
-
-          {/* About Dropdown Mobile */}
-          <div>
-            <button
-              onClick={() => toggleDropdown("about")}
-              className="w-full flex justify-between items-center py-2 font-semibold"
+            About
+            <span
+              className={`transition-transform duration-300 ${
+                openDropdown === "about" ? "rotate-180" : ""
+              }`}
             >
-              About
-            </button>
-            {openDropdown === "about" && (
-              <div className="pl-4">
-                <Link
-                  to="/about"
-                  onClick={() => setMobileOpen(false)}
-                  className="block py-2"
-                >
-                  About Us
-                </Link>
-                <Link
-                  to="/team"
-                  onClick={() => setMobileOpen(false)}
-                  className="block py-2"
-                >
-                  Our Team
-                </Link>
-              </div>
-            )}
-          </div>
+              ▼
+            </span>
+          </button>
 
-          {/* Services Dropdown Mobile */}
-          <div>
-            <button
-              onClick={() => toggleDropdown("services")}
-              className="w-full flex justify-between items-center py-2 font-semibold"
-            >
-              Services
-            </button>
-            {openDropdown === "services" && (
-              <div className="pl-4">
-                <Link
-                  to="/services/audit"
-                  onClick={() => setMobileOpen(false)}
-                  className="block py-2"
-                >
-                  Audit & Assurance
-                </Link>
-                <Link
-                  to="/services/accountancy"
-                  onClick={() => setMobileOpen(false)}
-                  className="block py-2"
-                >
-                  Accountancy & Reporting
-                </Link>
-                <Link
-                  to="/services/tax"
-                  onClick={() => setMobileOpen(false)}
-                  className="block py-2"
-                >
-                  Tax Advisory & Compliance
-                </Link>
-                <Link
-                  to="/services/advisory"
-                  onClick={() => setMobileOpen(false)}
-                  className="block py-2"
-                >
-                  Advisory Services
-                </Link>
-              </div>
-            )}
-          </div>
-
-          <NavLink
-            to="/contact"
-            onClick={() => setMobileOpen(false)}
-            className="block font-semibold"
+          <div
+            className={`overflow-hidden transition-all duration-500 ${
+              openDropdown === "about" ? "max-h-40 mt-3" : "max-h-0"
+            }`}
           >
-            Contact
-          </NavLink>
+            <Link
+              to="/about"
+              onClick={() => setMobileOpen(false)}
+              className="block py-2"
+            >
+              About Us
+            </Link>
+            <Link
+              to="/team"
+              onClick={() => setMobileOpen(false)}
+              className="block py-2"
+            >
+              Our Team
+            </Link>
+          </div>
         </div>
+
+        {/* Services Mobile */}
+        <div className="text-center">
+          <button
+            onClick={() => toggleDropdown("services")}
+            className="flex items-center gap-2"
+          >
+            Services
+            <span
+              className={`transition-transform duration-300 ${
+                openDropdown === "services" ? "rotate-180" : ""
+              }`}
+            >
+              ▼
+            </span>
+          </button>
+
+          <div
+            className={`overflow-hidden transition-all duration-500 ${
+              openDropdown === "services" ? "max-h-60 mt-3" : "max-h-0"
+            }`}
+          >
+            <Link
+              to="/services/audit"
+              onClick={() => setMobileOpen(false)}
+              className="block py-2"
+            >
+              Audit & Assurance
+            </Link>
+            <Link
+              to="/services/accountancy"
+              onClick={() => setMobileOpen(false)}
+              className="block py-2"
+            >
+              Accountancy & Reporting
+            </Link>
+            <Link
+              to="/services/tax"
+              onClick={() => setMobileOpen(false)}
+              className="block py-2"
+            >
+              Tax Advisory & Compliance
+            </Link>
+            <Link
+              to="/services/advisory"
+              onClick={() => setMobileOpen(false)}
+              className="block py-2"
+            >
+              Advisory Services
+            </Link>
+          </div>
+        </div>
+
+        <Link to="/contact" onClick={() => setMobileOpen(false)}>
+          Contact
+        </Link>
       </div>
     </header>
   );

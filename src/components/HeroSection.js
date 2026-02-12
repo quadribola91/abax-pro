@@ -105,7 +105,7 @@ export default function HeroSection() {
                     Our Services →
                   </Link>
 
-                  <Link
+                  {/* <Link
                     to="/contact"
                     className="bg-white/20 backdrop-blur-md border border-white/30 
                                hover:bg-white/30 text-white 
@@ -113,7 +113,7 @@ export default function HeroSection() {
                                transition-all duration-300"
                   >
                     Contact Us
-                  </Link>
+                  </Link> */}
                 </div>
               </div>
             </div>
@@ -121,7 +121,7 @@ export default function HeroSection() {
         ))}
       </div>
 
-      {/* Navigation Arrows */}
+      {/* Navigation Arrows
       <button
         onClick={prevSlide}
         className="absolute left-6 top-1/2 -translate-y-1/2 
@@ -140,7 +140,7 @@ export default function HeroSection() {
                    transition-all duration-300"
       >
         <FaArrowRight />
-      </button>
+      </button> */}
 
       {/* Indicators */}
       <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex gap-3">

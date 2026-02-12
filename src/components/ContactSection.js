@@ -67,7 +67,7 @@ export default function ContactSection() {
 
         {/* Contact Form */}
         <motion.form
-          className="bg-white p-8 rounded-2xl shadow-lg space-y-4"
+          className="bg-yellow-500 p-8 rounded-2xl shadow-lg space-y-4"
           initial={{ opacity: 0, x: 100 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 1.5 }}
@@ -92,7 +92,7 @@ export default function ContactSection() {
           />
           <button
             type="submit"
-            className="bg-blue-400 text-white px-6 py-3 rounded-full w-full font-semibold hover:bg-blue-800 transition-colors"
+            className="bg-blue-800 text-white px-6 py-3 rounded-full w-full font-semibold hover:bg-yellow-400 transition-colors"
           >
             Send Message
           </button>
