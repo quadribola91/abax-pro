@@ -4,6 +4,7 @@ import OlapejuImage from "../assets/Principal_ Mrs Sofowora.jpg";
 import AyoImage from "../assets/MsAlamutu.jpg";
 import img3 from "../assets/Mr FusiAkinkungbe.jpg";
 import img4 from "../assets/Mrs Babafunke Ajibade.jpg";
+import img5 from "../assets/Mr Anthony Ebele .JPG";
 
 const teamMembers = [
   {
@@ -48,7 +49,7 @@ Mr. Akinkugbe has led high-profile audit, forensic, and advisory engagements, wi
   {
     name: "Anthony Ebele",
     designation: "Team Lead / Head, Tax Management and Advisory",
-    // image: img3,
+    image: img5,
     email: "",
     bio: "Anthony Ebele leads Tax Management and Advisory.",
   },

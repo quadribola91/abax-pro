@@ -1,7 +1,7 @@
 import img1 from "../assets/Principal_ Mrs Sofowora.jpg";
 import img2 from "../assets/MsAlamutu.jpg";
 import img3 from "../assets/Mr FusiAkinkungbe.jpg";
-import img4 from "../assets/Mr FusiAkinkungbe.jpg";
+import img4 from "../assets/Mr Anthony Ebele .JPG";
 import img5 from "../assets/heroimage2.jpg";
 import img6 from "../assets/heroimage1.jpg";
 import img7 from "../assets/leadership.jpg";
@@ -54,7 +54,7 @@ She has served on corporate and institutional boards, including First City Monum
     role: "Team Lead / Head, Tax Management and Advisory",
     shortBio:
       "Specialist in tax advisory and management for corporate clients.",
-    image: "/images/team/anthony.jpg",
+    image: img4,
   },
   {
     id: "andrew-osiobe",

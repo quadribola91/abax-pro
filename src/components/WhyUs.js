@@ -32,25 +32,6 @@ const whyUsData = [
   },
 ];
 
-// Responsive Arrows
-const NextArrow = ({ onClick }) => (
-  <div
-    className="hidden md:flex absolute top-1/2 -translate-y-1/2 right-0 lg:-right-10 z-20 cursor-pointer text-gray-400 text-2xl lg:text-3xl hover:text-gray-600 transition"
-    onClick={onClick}
-  >
-    &#9654;
-  </div>
-);
-
-const PrevArrow = ({ onClick }) => (
-  <div
-    className="hidden md:flex absolute top-1/2 -translate-y-1/2 left-0 lg:-left-10 z-20 cursor-pointer text-gray-400 text-2xl lg:text-3xl hover:text-gray-600 transition"
-    onClick={onClick}
-  >
-    &#9664;
-  </div>
-);
-
 export default function WhyUs() {
   const [hovered, setHovered] = useState(null);
 
@@ -60,45 +41,40 @@ export default function WhyUs() {
   };
 
   const settings = {
-    dots: true,
+    dots: true, // only dots
     infinite: true,
-    speed: 500,
+    speed: 600,
     slidesToShow: 3,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 4000,
-    arrows: true,
-    nextArrow: <NextArrow />,
-    prevArrow: <PrevArrow />,
+    autoplaySpeed: 5000, // auto swipe every 5 seconds
+    arrows: false, // remove arrows
+    centerMode: false,
     responsive: [
       {
         breakpoint: 1024,
         settings: { slidesToShow: 2 },
       },
       {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 1,
-          arrows: false,
-        },
+        breakpoint: 640,
+        settings: { slidesToShow: 1, centerMode: false },
       },
     ],
   };
 
   return (
-    <section className="py-12 md:py-16 bg-gray-50 relative">
-      <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl relative">
+    <section className="py-12 md:py-16 bg-gray-50">
+      <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         {/* Heading */}
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-blue-900 mb-4">
           Why Abax Professional Services
         </h2>
-
         <p className="text-center text-gray-500 font-semibold mb-8 md:mb-12 max-w-2xl mx-auto text-sm sm:text-base">
           Experience the difference with our client-focused approach
         </p>
 
         {/* Slider */}
-        <Slider {...settings}>
+        <Slider {...settings} className="!overflow-visible">
           {whyUsData.map((item) => (
             <div key={item.key} className="px-2 sm:px-3">
               <Tilt
@@ -123,7 +99,6 @@ export default function WhyUs() {
                   >
                     {item.title}
                   </h3>
-
                   <p
                     className="text-sm sm:text-base text-gray-600 transition-colors duration-300 leading-relaxed"
                     style={hovered === item.key ? { color: "#f0f0f0" } : {}}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import {
   FaMapMarkerAlt,
@@ -19,17 +19,23 @@ export default function ContactSection() {
       title: "Working Hours",
       detail: "Mon - Fri: 9:00 AM - 5:00 PM",
     },
-    {
-      icon: <FaPhoneAlt />,
-      title: "Phone",
-      detail: "+234-911-010-8791",
-    },
-    {
-      icon: <FaEnvelope />,
-      title: "Email",
-      detail: "info@abaxps.com",
-    },
+    { icon: <FaPhoneAlt />, title: "Phone", detail: "+234-911-010-8791" },
+    { icon: <FaEnvelope />, title: "Email", detail: "info@abaxps.com" },
   ];
+
+  // Form state
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+
+  // Handle form submit
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const mailtoLink = `mailto:itsupport@abaxps.com?subject=Message from ${encodeURIComponent(
+      name,
+    )}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
+    window.location.href = mailtoLink;
+  };
 
   return (
     <section id="contact" className="py-24 bg-gray-50">
@@ -72,23 +78,34 @@ export default function ContactSection() {
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 1.5 }}
           viewport={{ once: true }}
+          onSubmit={handleSubmit}
         >
           <h3 className="text-2xl font-semibold text-gray-800 mb-4">
             Send us a Message
           </h3>
+
           <input
             className="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-900 transition"
             placeholder="Full Name"
             type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
           />
           <input
             className="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-900 transition"
             placeholder="Email"
             type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
           />
           <textarea
             className="w-full border border-gray-300 p-3 rounded-lg h-32 focus:outline-none focus:ring-2 focus:ring-blue-900 transition"
             placeholder="Your Message"
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            required
           />
           <button
             type="submit"
