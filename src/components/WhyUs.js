@@ -28,14 +28,14 @@ const whyUsData = [
   {
     key: "commitment",
     title: "Commitment to Long-Term Relationships",
-    desc: "We see every engagement as a start of a long term partnership. Beyond meeting immediate regulatory needs, we support clients in building sustainable growth, maintaining compliance, and enhancing organisational resilience.",
+    desc: "We see every engagement as the start of a long-term partnership. Beyond meeting immediate regulatory needs, we support clients in building sustainable growth and resilience.",
   },
 ];
 
-// Custom arrows
+// Responsive Arrows
 const NextArrow = ({ onClick }) => (
   <div
-    className="absolute top-1/2 -translate-y-1/2 right-[-40px] z-20 cursor-pointer text-gray-200 text-4xl hover:text-gray-400 transition-colors duration-300"
+    className="hidden md:flex absolute top-1/2 -translate-y-1/2 right-0 lg:-right-10 z-20 cursor-pointer text-gray-400 text-2xl lg:text-3xl hover:text-gray-600 transition"
     onClick={onClick}
   >
     &#9654;
@@ -44,7 +44,7 @@ const NextArrow = ({ onClick }) => (
 
 const PrevArrow = ({ onClick }) => (
   <div
-    className="absolute top-1/2 -translate-y-1/2 left-[-40px] z-20 cursor-pointer text-gray-200 text-4xl hover:text-gray-400 transition-colors duration-300"
+    className="hidden md:flex absolute top-1/2 -translate-y-1/2 left-0 lg:-left-10 z-20 cursor-pointer text-gray-400 text-2xl lg:text-3xl hover:text-gray-600 transition"
     onClick={onClick}
   >
     &#9664;
@@ -57,13 +57,12 @@ export default function WhyUs() {
   const hoverStyles = {
     background: "linear-gradient(135deg, #0b63ff, #0747d9)",
     color: "#fff",
-    transform: "scale(1.05)",
   };
 
   const settings = {
-    dots: false,
+    dots: true,
     infinite: true,
-    speed: 400,
+    speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
     autoplay: true,
@@ -72,40 +71,50 @@ export default function WhyUs() {
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
     responsive: [
-      { breakpoint: 1024, settings: { slidesToShow: 2 } },
-      { breakpoint: 640, settings: { slidesToShow: 1 } },
+      {
+        breakpoint: 1024,
+        settings: { slidesToShow: 2 },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+          arrows: false,
+        },
+      },
     ],
   };
 
   return (
-    <section className="py-16 bg-gray-50 relative overflow-visible">
-      <div className="container mx-auto px-6 max-w-6xl relative">
-        <h2 className="text-3xl md:text-4xl font-bold text-center text-blue-900 mb-4">
+    <section className="py-12 md:py-16 bg-gray-50 relative">
+      <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl relative">
+        {/* Heading */}
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-blue-900 mb-4">
           Why Abax Professional Services
         </h2>
-        <p className="text-center text-gray-500 font-bold mb-12 max-w-2xl mx-auto">
+
+        <p className="text-center text-gray-500 font-semibold mb-8 md:mb-12 max-w-2xl mx-auto text-sm sm:text-base">
           Experience the difference with our client-focused approach
         </p>
 
+        {/* Slider */}
         <Slider {...settings}>
           {whyUsData.map((item) => (
-            <div key={item.key} className="px-3">
+            <div key={item.key} className="px-2 sm:px-3">
               <Tilt
-                glareEnable={true}
-                glareMaxOpacity={0.2}
-                glareColor="#ffffff"
-                glarePosition="all"
+                glareEnable
+                glareMaxOpacity={0.15}
                 scale={1.02}
                 transitionSpeed={400}
               >
                 <div
                   onMouseEnter={() => setHovered(item.key)}
                   onMouseLeave={() => setHovered(null)}
-                  className="bg-gray-50 rounded-xl shadow-lg p-6 cursor-pointer transition-all duration-300 h-full flex flex-col min-h-[250px]"
+                  className="bg-white rounded-xl shadow-md hover:shadow-lg p-5 sm:p-6 cursor-pointer transition-all duration-300 h-full flex flex-col min-h-[220px] sm:min-h-[250px]"
                   style={hovered === item.key ? hoverStyles : {}}
                 >
                   <h3
-                    className={`text-xl font-semibold mb-3 transition-colors duration-300`}
+                    className="text-lg sm:text-xl font-semibold mb-3 transition-colors duration-300"
                     style={
                       hovered === item.key
                         ? { color: "#fff" }
@@ -114,8 +123,9 @@ export default function WhyUs() {
                   >
                     {item.title}
                   </h3>
+
                   <p
-                    className={`text-gray-700 transition-colors duration-300`}
+                    className="text-sm sm:text-base text-gray-600 transition-colors duration-300 leading-relaxed"
                     style={hovered === item.key ? { color: "#f0f0f0" } : {}}
                   >
                     {item.desc}

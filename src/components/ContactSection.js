@@ -32,7 +32,7 @@ export default function ContactSection() {
   ];
 
   return (
-    <section id="contact" className="py-20 bg-gray-50">
+    <section id="contact" className="py-24 bg-gray-50">
       <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12">
         {/* Contact Info */}
         <motion.div

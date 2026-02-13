@@ -49,25 +49,22 @@ export default function FooterSection() {
               </li>
               <li>
                 <Link
-                  to="/services"
+                  to="/servicepage"
                   className="hover:text-brandYellow transition"
                 >
                   Services
                 </Link>
               </li>
               <li>
-                <Link
-                  to="/why-us"
-                  className="hover:text-brandYellow transition"
-                >
-                  Why Us
+                <Link to="/team" className="hover:text-brandYellow transition">
+                  Team
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link to="/team" className="hover:text-brandYellow transition">
                   Our Leadership
                 </Link>
-              </li>
+              </li> */}
               <li>
                 <Link
                   to="/contact"

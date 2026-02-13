@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import img1 from "../assets/heroimage1.jpg";
 import img2 from "../assets/heroimage2.jpg";
 import img3 from "../assets/professionalteams.jpg";
@@ -27,25 +26,23 @@ export default function HeroSection() {
   const [index, setIndex] = useState(0);
   const intervalRef = useRef(null);
 
-  // Auto slide every 3 seconds (movement once, smooth push)
+  // Auto-slide every 5 seconds
   useEffect(() => {
     intervalRef.current = setInterval(() => {
       setIndex((prev) => (prev + 1) % slides.length);
     }, 5000);
-
     return () => clearInterval(intervalRef.current);
   }, []);
 
   const nextSlide = () => setIndex((prev) => (prev + 1) % slides.length);
-
   const prevSlide = () =>
     setIndex((prev) => (prev - 1 + slides.length) % slides.length);
 
   return (
-    <section className="relative w-full h-screen overflow-hidden">
-      {/* SLIDER CONTAINER */}
+    <section className="relative w-full overflow-hidden">
+      {/* Slider Container */}
       <div
-        className="flex h-full transition-transform duration-[2000ms] ease-in-out"
+        className="flex transition-transform duration-[2000ms] ease-in-out"
         style={{
           width: `${slides.length * 100}%`,
           transform: `translateX(-${index * (100 / slides.length)}%)`,
@@ -54,7 +51,7 @@ export default function HeroSection() {
         {slides.map((slide, i) => (
           <div
             key={i}
-            className="relative w-full h-full flex-shrink-0"
+            className="relative w-full flex-shrink-0 h-[70vh] sm:h-[60vh] md:h-[70vh] lg:h-[80vh]"
             style={{ width: `${100 / slides.length}%` }}
           >
             {/* Background Image */}
@@ -62,58 +59,33 @@ export default function HeroSection() {
               src={slide.image}
               alt={slide.title}
               className="absolute inset-0 w-full h-full object-cover object-center"
-              loading="eager"
             />
 
-            {/* Dark Gradient Overlay (Improves text clarity) */}
-            <div className="absolute inset-0"></div>
+            {/* Overlay for slight dark effect */}
+            <div className="absolute inset-0 bg-black/20"></div>
 
-            {/* Decorative Shape Accent */}
-            <div className="absolute bottom-0 left-0 w-72 h-72 bg-brandYellow/20 rounded-full blur-3xl"></div>
-
-            {/* Content */}
-            <div className="relative z-10 h-full flex items-center justify-center text-center px-6">
+            {/* Text Container */}
+            <div className="absolute bottom-8 left-6 sm:left-12 md:left-16 z-10 max-w-md sm:max-w-lg md:max-w-xl transition-all duration-1000">
               <div
-                className={`max-w-4xl transition-all duration-1000 ${
+                className={`bg-white p-4 sm:p-6 md:p-8 rounded-lg shadow-lg transform transition-all duration-1000 ${
                   i === index
                     ? "opacity-100 translate-y-0"
                     : "opacity-0 translate-y-6"
                 }`}
               >
-                <h1
-                  className="text-white font-extrabold leading-tight 
-                               text-3xl sm:text-4xl md:text-5xl lg:text-6xl"
-                >
+                <h1 className="text-gray-900 font-extrabold text-xl sm:text-2xl md:text-3xl lg:text-4xl leading-snug">
                   {slide.title}
                 </h1>
-
-                <p
-                  className="mt-6 text-white/95 
-                              text-base sm:text-lg md:text-xl 
-                              leading-relaxed"
-                >
+                <p className="mt-3 text-gray-700 text-sm sm:text-base md:text-lg leading-relaxed">
                   {slide.text}
                 </p>
-
-                <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4">
+                <div className="mt-4 sm:mt-6">
                   <Link
                     to="/servicepage"
-                    className="bg-brandYellow hover:bg-yellow-500 text-white 
-                               px-8 py-4 rounded-full font-semibold 
-                               transition-all duration-300 shadow-lg"
+                    className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 sm:px-6 sm:py-3 rounded-full font-semibold transition duration-300"
                   >
                     Our Services →
                   </Link>
-
-                  {/* <Link
-                    to="/contact"
-                    className="bg-white/20 backdrop-blur-md border border-white/30 
-                               hover:bg-white/30 text-white 
-                               px-8 py-4 rounded-full font-semibold 
-                               transition-all duration-300"
-                  >
-                    Contact Us
-                  </Link> */}
                 </div>
               </div>
             </div>
@@ -121,29 +93,8 @@ export default function HeroSection() {
         ))}
       </div>
 
-      {/* Navigation Arrows
-      <button
-        onClick={prevSlide}
-        className="absolute left-6 top-1/2 -translate-y-1/2 
-                   bg-white/20 hover:bg-white/40 text-white 
-                   p-3 rounded-full backdrop-blur-md 
-                   transition-all duration-300"
-      >
-        <FaArrowLeft />
-      </button>
-
-      <button
-        onClick={nextSlide}
-        className="absolute right-6 top-1/2 -translate-y-1/2 
-                   bg-white/20 hover:bg-white/40 text-white 
-                   p-3 rounded-full backdrop-blur-md 
-                   transition-all duration-300"
-      >
-        <FaArrowRight />
-      </button> */}
-
-      {/* Indicators */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex gap-3">
+      {/* Slide Indicators */}
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-3 z-20">
         {slides.map((_, i) => (
           <button
             key={i}
