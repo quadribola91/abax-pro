@@ -115,9 +115,7 @@ export default function TeamPage() {
           viewport={{ once: true }}
           variants={itemVariants}
         >
-          <h2 className="text-4xl font-bold text-gray-800">
-            Our Key Functionaries
-          </h2>
+          <h2 className="text-4xl font-bold text-gray-800">Our Team</h2>
           <div className="w-24 h-1 bg-blue-600 mx-auto mt-6 rounded"></div>
         </motion.div>
 
@@ -156,11 +154,11 @@ export default function TeamPage() {
               <div className="flex flex-col md:flex-row gap-8">
                 {/* Left: Image */}
                 <div className="md:w-1/3 w-full">
-                  <div className="w-full h-64 md:h-80 overflow-hidden rounded-lg">
+                  <div className="w-full rounded-lg overflow-hidden">
                     <img
                       src={selectedMember.image}
                       alt={selectedMember.name}
-                      className="w-full h-full object-cover"
+                      className="w-full h-auto object-contain"
                     />
                   </div>
                 </div>
