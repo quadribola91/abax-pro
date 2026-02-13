@@ -15,31 +15,47 @@ const services = [
     key: "audit",
     title: "Audit & Assurance",
     icon: <FaBalanceScale />,
-    desc: "Independent audit and assurance services that strengthen transparency, accountability, and stakeholder trust.",
+    desc: "Delivering confidence, credibility, and clarity through independent, high‑quality assurance engagements.",
     color: "#0b63ff",
     hoverBg: "linear-gradient(135deg, #0b63ff, #0747d9)",
   },
   {
     key: "accountancy",
-    title: "Accountancy & Reporting",
+    title: "Financial Reporting & Compliance Consulting",
     icon: <FaCalculator />,
-    desc: "Maintain accurate, reliable, and timely financial information essential for decision-making.",
+    desc: "Strengthening transparency, accuracy, and trust in every aspect of your financial reporting.",
     color: "#0747d9",
     hoverBg: "linear-gradient(135deg, #0747d9, #0b63ff)",
   },
   {
     key: "tax",
-    title: "Tax Advisory & Compliance",
+    title: "Tax Management & Advisory",
     icon: <FaFileInvoiceDollar />,
-    desc: "Comprehensive tax advisory and compliance services built on clarity and regulatory alignment.",
+    desc: "Helping organizations navigate complexity, optimize tax positions, and stay ahead of regulatory change.",
     color: "#ffb703",
     hoverBg: "linear-gradient(135deg, #ffb703, #f59e0b)",
   },
   {
     key: "advisory",
-    title: "Advisory Services",
+    title: "Governance, Risk & Internal Control (GRC)",
     icon: <FaChartLine />,
-    desc: "Practical, forward-looking advisory solutions to enhance organisational effectiveness.",
+    desc: "Building resilient organizations through strong governance, proactive risk management, and effective controls.",
+    color: "#0b63ff",
+    hoverBg: "linear-gradient(135deg, #0b63ff, #ffb703)",
+  },
+  {
+    key: "advisory",
+    title: "Management & Financial Advisory",
+    icon: <FaChartLine />,
+    desc: "Driving performance, growth, and financial clarity through strategic, operational, and people‑focused excellence.",
+    color: "#0b63ff",
+    hoverBg: "linear-gradient(135deg, #0b63ff, #ffb703)",
+  },
+  {
+    key: "advisory",
+    title: "Human Resource Advisory",
+    icon: <FaChartLine />,
+    desc: "Empowering organizations to build strong, capable, and engaged workforces.",
     color: "#0b63ff",
     hoverBg: "linear-gradient(135deg, #0b63ff, #ffb703)",
   },
@@ -73,7 +89,7 @@ export default function ServicesSection() {
         </motion.p>
 
         {/* Services Grid */}
-        <div className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((s) => {
             const isHover = hovered === s.key;
 
@@ -92,7 +108,7 @@ export default function ServicesSection() {
                 onLeave={() => setHovered(null)}
               >
                 <motion.div
-                  className="rounded-2xl p-6 shadow-lg cursor-pointer h-full flex flex-col justify-between transition-all duration-[2000ms] ease-in-out"
+                  className="rounded-2xl p-6 shadow-lg cursor-pointer h-full flex flex-row justify-between transition-all duration-[2000ms] ease-in-out"
                   style={
                     isHover
                       ? { background: s.hoverBg, color: "#fff" }
@@ -134,13 +150,13 @@ export default function ServicesSection() {
                     </p>
 
                     {/* CTA */}
-                    <Link
+                    {/* <Link
                       to={`/services/${s.key}`}
                       className="mt-6 text-sm font-semibold hover:underline transition-all duration-[2000ms]"
                       style={{ color: isHover ? "#fff" : s.color }}
                     >
                       Learn More →
-                    </Link>
+                    </Link> */}
                   </div>
                 </motion.div>
               </Tilt>

@@ -66,7 +66,7 @@ export default function HeroSection() {
             />
 
             {/* Dark Gradient Overlay (Improves text clarity) */}
-            <div className="absolute inset-0 bg-gradient-to-r from-[#0B3A6E]/90 via-[#0B3A6E]/70 to-[#0B3A6E]/50"></div>
+            <div className="absolute inset-0"></div>
 
             {/* Decorative Shape Accent */}
             <div className="absolute bottom-0 left-0 w-72 h-72 bg-brandYellow/20 rounded-full blur-3xl"></div>
@@ -97,8 +97,8 @@ export default function HeroSection() {
 
                 <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4">
                   <Link
-                    to="/services"
-                    className="bg-brandYellow hover:bg-yellow-500 text-primary 
+                    to="/servicepage"
+                    className="bg-brandYellow hover:bg-yellow-500 text-white 
                                px-8 py-4 rounded-full font-semibold 
                                transition-all duration-300 shadow-lg"
                   >

@@ -30,31 +30,20 @@ export default function TeamSection() {
           </p>
         </motion.div>
 
-        {/* TOP MEMBER */}
+        {/* TOP 3 MEMBERS - Flex Row on larger screens */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="max-w-xl mx-auto mb-12"
+          className="flex flex-col lg:flex-row items-center lg:items-start justify-center gap-8 mb-12"
         >
-          <TeamCard member={topMember} />
-        </motion.div>
+          <TeamCard member={topMember} className="lg:w-1/3" />
 
-        {/* BOTTOM TWO MEMBERS */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
-          {bottomMembers.map((member, index) => (
-            <motion.div
-              key={member.id}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: index * 0.2 }}
-              viewport={{ once: true }}
-            >
-              <TeamCard member={member} />
-            </motion.div>
+          {bottomMembers.map((member) => (
+            <TeamCard key={member.id} member={member} className="lg:w-1/3" />
           ))}
-        </div>
+        </motion.div>
 
         {/* View Full Team Button */}
         <div className="text-center mt-14 sm:mt-16">
@@ -73,28 +62,29 @@ export default function TeamSection() {
 }
 
 /* ---------- Reusable Team Card Component ---------- */
-
-function TeamCard({ member }) {
+function TeamCard({ member, className }) {
   return (
-    <div className="bg-white rounded-2xl shadow-md overflow-hidden group cursor-pointer transition-all duration-500 hover:shadow-2xl hover:-translate-y-2">
+    <div
+      className={`bg-white rounded-2xl shadow-md overflow-hidden group cursor-pointer transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 ${className}`}
+    >
       {/* Image */}
       <div className="relative w-full aspect-[4/5] overflow-hidden">
         <img
           src={member.image}
           alt={member.name}
           loading="lazy"
-          className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+          className="w-full h-full object-cover object-center rounded-2xl transition-transform duration-700 group-hover:scale-105"
         />
 
         {/* Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end justify-center md:justify-start p-6">
+        {/* <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end justify-center md:justify-start p-6">
           <Link
             to={`/team/${member.id}`}
             className="bg-blue-600 text-white px-5 py-2 rounded-lg shadow-lg hover:bg-blue-700 transition duration-300"
           >
             Learn More
           </Link>
-        </div>
+        </div> */}
       </div>
 
       {/* Info */}

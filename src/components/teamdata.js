@@ -1,6 +1,6 @@
 import img1 from "../assets/Principal_ Mrs Sofowora.jpg";
 import img2 from "../assets/MsAlamutu.jpg";
-import img3 from "../assets/heroimage2.jpg";
+import img3 from "../assets/Mr FusiAkinkungbe.jpg";
 import img4 from "../assets/Mr FusiAkinkungbe.jpg";
 import img5 from "../assets/heroimage2.jpg";
 import img6 from "../assets/heroimage1.jpg";
@@ -38,7 +38,7 @@ She has served on corporate and institutional boards, including First City Monum
     role: "Senior Consultant Audit and Assurance",
     shortBio:
       "Multi-skilled Governance, Financial Accounts, and Audit professional with 30+ years experience in Nigeria and UK. Specializes in risk, compliance, and internal audit.",
-    image: img5,
+    image: img3,
   },
   {
     id: "fusi-akinkugbe",

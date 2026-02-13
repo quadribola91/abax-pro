@@ -17,7 +17,7 @@ export default function StoryPurposeSection() {
             className="space-y-6"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-blue-900">
-              Our Story
+              About Us
             </h2>
 
             <div className="h-1 w-20 bg-blue-600 rounded-full" />

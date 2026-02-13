@@ -30,11 +30,15 @@ export default function Navbar() {
       <div className="container mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-3">
-          <img src={logo} alt="logo" className="h-16 w-auto" />
+          <img src={logo} alt="logo" className="h-24 w-auto" />
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-8 font-medium">
+        <nav
+          className={`hidden md:flex items-center gap-8 font-medium transition-colors duration-300 ${
+            scrolled ? "text-black" : "text-white"
+          }`}
+        >
           <NavLink to="/" className="hover:text-blue-600 transition">
             Home
           </NavLink>
@@ -52,7 +56,7 @@ export default function Navbar() {
               </svg>
             </button>
 
-            <div className="absolute left-0 mt-3 w-48 bg-white shadow-xl rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+            <div className="absolute left-0 mt-3 w-48 bg-white shadow-xl rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 text-black">
               <Link to="/about" className="block px-4 py-2 hover:bg-gray-50">
                 About Us
               </Link>
@@ -63,45 +67,13 @@ export default function Navbar() {
           </div>
 
           {/* Services */}
-          <div className="relative group">
-            <button className="flex items-center gap-1 hover:text-blue-600 transition">
-              Services
-              <svg
-                className="w-4 h-4 transition-transform duration-300 group-hover:rotate-180"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" />
-              </svg>
-            </button>
-
-            <div className="absolute left-0 mt-3 w-60 bg-white shadow-xl rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
-              <Link
-                to="/services/audit"
-                className="block px-4 py-2 hover:bg-gray-50"
-              >
-                Audit & Assurance
-              </Link>
-              <Link
-                to="/services/accountancy"
-                className="block px-4 py-2 hover:bg-gray-50"
-              >
-                Accountancy & Reporting
-              </Link>
-              <Link
-                to="/services/tax"
-                className="block px-4 py-2 hover:bg-gray-50"
-              >
-                Tax Advisory & Compliance
-              </Link>
-              <Link
-                to="/services/advisory"
-                className="block px-4 py-2 hover:bg-gray-50"
-              >
-                Advisory Services
-              </Link>
+          <Link to="/servicepage" className="block px-4 py-2">
+            <div className="relative group">
+              <button className="flex items-center gap-1 hover:text-blue-600 transition">
+                Services
+              </button>
             </div>
-          </div>
+          </Link>
 
           <NavLink to="/contact" className="hover:text-blue-600 transition">
             Contact
@@ -114,19 +86,19 @@ export default function Navbar() {
           className="md:hidden relative w-8 h-8 z-50"
         >
           <span
-            className={`absolute w-8 h-0.5 bg-black transition-all duration-300 ${
-              mobileOpen ? "rotate-45 top-4" : "top-2"
-            }`}
+            className={`absolute w-8 h-0.5 transition-all duration-300 ${
+              scrolled ? "bg-black" : "bg-white"
+            } ${mobileOpen ? "rotate-45 top-4" : "top-2"}`}
           />
           <span
-            className={`absolute w-8 h-0.5 bg-black transition-all duration-300 ${
-              mobileOpen ? "opacity-0" : "top-4"
-            }`}
+            className={`absolute w-8 h-0.5 transition-all duration-300 ${
+              scrolled ? "bg-black" : "bg-white"
+            } ${mobileOpen ? "opacity-0" : "top-4"}`}
           />
           <span
-            className={`absolute w-8 h-0.5 bg-black transition-all duration-300 ${
-              mobileOpen ? "-rotate-45 top-4" : "top-6"
-            }`}
+            className={`absolute w-8 h-0.5 transition-all duration-300 ${
+              scrolled ? "bg-black" : "bg-white"
+            } ${mobileOpen ? "-rotate-45 top-4" : "top-6"}`}
           />
         </button>
       </div>
@@ -137,6 +109,9 @@ export default function Navbar() {
           mobileOpen ? "translate-x-0" : "translate-x-full"
         } md:hidden`}
       >
+        {/* ✅ Logo Added Here */}
+        <img src={logo} alt="logo" className="h-20 mb-6" />
+
         <Link to="/" onClick={() => setMobileOpen(false)}>
           Home
         </Link>
@@ -181,54 +156,13 @@ export default function Navbar() {
 
         {/* Services Mobile */}
         <div className="text-center">
-          <button
-            onClick={() => toggleDropdown("services")}
-            className="flex items-center gap-2"
+          <Link
+            to="/servicepage"
+            onClick={() => setMobileOpen(false)}
+            className="block py-2"
           >
             Services
-            <span
-              className={`transition-transform duration-300 ${
-                openDropdown === "services" ? "rotate-180" : ""
-              }`}
-            >
-              ▼
-            </span>
-          </button>
-
-          <div
-            className={`overflow-hidden transition-all duration-500 ${
-              openDropdown === "services" ? "max-h-60 mt-3" : "max-h-0"
-            }`}
-          >
-            <Link
-              to="/services/audit"
-              onClick={() => setMobileOpen(false)}
-              className="block py-2"
-            >
-              Audit & Assurance
-            </Link>
-            <Link
-              to="/services/accountancy"
-              onClick={() => setMobileOpen(false)}
-              className="block py-2"
-            >
-              Accountancy & Reporting
-            </Link>
-            <Link
-              to="/services/tax"
-              onClick={() => setMobileOpen(false)}
-              className="block py-2"
-            >
-              Tax Advisory & Compliance
-            </Link>
-            <Link
-              to="/services/advisory"
-              onClick={() => setMobileOpen(false)}
-              className="block py-2"
-            >
-              Advisory Services
-            </Link>
-          </div>
+          </Link>
         </div>
 
         <Link to="/contact" onClick={() => setMobileOpen(false)}>

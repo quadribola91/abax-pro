@@ -5,6 +5,7 @@ import CoreValues from "./CoreValues";
 import CallToAction from "./CallToAction";
 import aboutBg from "../assets/heroimage2.jpg";
 import StoryPurposeSection from "./StoryPurposeSection";
+import WhyUs from "../components/WhyUs";
 
 export default function AboutHero() {
   return (
@@ -38,6 +39,7 @@ export default function AboutHero() {
 
       {/* Other Sections */}
       <StoryPurposeSection />
+      <WhyUs />
       <CoreValues />
       <CallToAction />
     </>

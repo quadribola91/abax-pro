@@ -3,7 +3,7 @@ import VisionMissionSection from "../components/VisionMissionSection";
 import ServicesSection from "../components/Services";
 import AboutSection from "../components/AboutSection";
 import HeroSection from "../components/HeroSection";
-import WhyUs from "../components/WhyUs";
+// import WhyUs from "../components/WhyUs";
 import TeamSection from "../components/TeamSection";
 import ContactSection from "../components/ContactSection";
 
@@ -14,7 +14,7 @@ export default function Home() {
       <VisionMissionSection />
       <ServicesSection />
       <AboutSection />
-      <WhyUs />
+      {/* <WhyUs /> */}
       <TeamSection />
       <ContactSection />
     </>

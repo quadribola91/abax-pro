@@ -1,16 +1,19 @@
 import React, { useState } from "react";
 import Tilt from "react-parallax-tilt";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const whyUsData = [
   {
     key: "experience",
     title: "Proven Experience, Focused Practice",
-    desc: "Our firm is led by senior professionals with decades of hands-on experience in audit, tax, corporate finance, and advisory services.",
+    desc: "Our firm is led by senior professionals with decades of hands-on experience in audit, tax, corporate finance, and advisory services. We maintain a deliberately focused structure, yet our track record spans multiple industries and complex business environments.",
   },
   {
     key: "partner",
-    title: "Partner-Led Engagements",
-    desc: "Every assignment is driven by a Partner level engagement lead, who understands their business regulatory landscape and risk profile ensuring quality, accountability and informed guidance.",
+    title: "Senior-Level Expertise",
+    desc: "Every team is led by a senior consultant who understands their business regulatory landscape and risk profile, ensuring quality, accountability and informed guidance.",
   },
   {
     key: "technical",
@@ -29,6 +32,25 @@ const whyUsData = [
   },
 ];
 
+// Custom arrows
+const NextArrow = ({ onClick }) => (
+  <div
+    className="absolute top-1/2 -translate-y-1/2 right-[-40px] z-20 cursor-pointer text-gray-200 text-4xl hover:text-gray-400 transition-colors duration-300"
+    onClick={onClick}
+  >
+    &#9654;
+  </div>
+);
+
+const PrevArrow = ({ onClick }) => (
+  <div
+    className="absolute top-1/2 -translate-y-1/2 left-[-40px] z-20 cursor-pointer text-gray-200 text-4xl hover:text-gray-400 transition-colors duration-300"
+    onClick={onClick}
+  >
+    &#9664;
+  </div>
+);
+
 export default function WhyUs() {
   const [hovered, setHovered] = useState(null);
 
@@ -38,9 +60,26 @@ export default function WhyUs() {
     transform: "scale(1.05)",
   };
 
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 400,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 4000,
+    arrows: true,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
+    responsive: [
+      { breakpoint: 1024, settings: { slidesToShow: 2 } },
+      { breakpoint: 640, settings: { slidesToShow: 1 } },
+    ],
+  };
+
   return (
-    <section className="py-16 bg-gray-50">
-      <div className="container mx-auto px-6 max-w-6xl">
+    <section className="py-16 bg-gray-50 relative overflow-visible">
+      <div className="container mx-auto px-6 max-w-6xl relative">
         <h2 className="text-3xl md:text-4xl font-bold text-center text-blue-900 mb-4">
           Why Abax Professional Services
         </h2>
@@ -48,43 +87,44 @@ export default function WhyUs() {
           Experience the difference with our client-focused approach
         </p>
 
-        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <Slider {...settings}>
           {whyUsData.map((item) => (
-            <Tilt
-              key={item.key}
-              glareEnable={true}
-              glareMaxOpacity={0.2}
-              glareColor="#ffffff"
-              glarePosition="all"
-              scale={1.02}
-              transitionSpeed={400}
-            >
-              <div
-                onMouseEnter={() => setHovered(item.key)}
-                onMouseLeave={() => setHovered(null)}
-                className="bg-white rounded-xl shadow-lg p-6 cursor-pointer transition-all duration-300 h-full flex flex-col"
-                style={hovered === item.key ? hoverStyles : {}}
+            <div key={item.key} className="px-3">
+              <Tilt
+                glareEnable={true}
+                glareMaxOpacity={0.2}
+                glareColor="#ffffff"
+                glarePosition="all"
+                scale={1.02}
+                transitionSpeed={400}
               >
-                <h3
-                  className={`text-xl font-semibold mb-3 transition-colors duration-300`}
-                  style={
-                    hovered === item.key
-                      ? { color: "#fff" }
-                      : { color: "#0b63ff" }
-                  }
+                <div
+                  onMouseEnter={() => setHovered(item.key)}
+                  onMouseLeave={() => setHovered(null)}
+                  className="bg-gray-50 rounded-xl shadow-lg p-6 cursor-pointer transition-all duration-300 h-full flex flex-col min-h-[250px]"
+                  style={hovered === item.key ? hoverStyles : {}}
                 >
-                  {item.title}
-                </h3>
-                <p
-                  className={`text-gray-700 transition-colors duration-300`}
-                  style={hovered === item.key ? { color: "#f0f0f0" } : {}}
-                >
-                  {item.desc}
-                </p>
-              </div>
-            </Tilt>
+                  <h3
+                    className={`text-xl font-semibold mb-3 transition-colors duration-300`}
+                    style={
+                      hovered === item.key
+                        ? { color: "#fff" }
+                        : { color: "#303b52" }
+                    }
+                  >
+                    {item.title}
+                  </h3>
+                  <p
+                    className={`text-gray-700 transition-colors duration-300`}
+                    style={hovered === item.key ? { color: "#f0f0f0" } : {}}
+                  >
+                    {item.desc}
+                  </p>
+                </div>
+              </Tilt>
+            </div>
           ))}
-        </div>
+        </Slider>
       </div>
     </section>
   );
