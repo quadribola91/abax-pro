@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import img1 from "../assets/heroimage1.jpg";
-import img2 from "../assets/heroimage2.jpg";
+import img2 from "../assets/Copy of DSC_2464.JPG";
 import img3 from "../assets/professionalteams.jpg";
 
 export default function HeroSection() {
