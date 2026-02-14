@@ -1,101 +1,100 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Link, useNavigate } from "react-router-dom";
 import teamData from "./teamdata";
 
 export default function TeamSection() {
-  const navigate = useNavigate();
-
-  // Get first 3 members
-  const topMember = teamData[0];
-  const bottomMembers = teamData.slice(1, 3);
+  const principal = teamData[0];
+  const others = teamData.slice(1);
 
   return (
-    <section id="our-team" className="py-16 sm:py-20 lg:py-24 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <motion.div
+    <section id="our-team" className="py-24 bg-gray-50 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 text-center">
+        {/* Header */}
+        <motion.h2
+          className="text-4xl font-bold text-blue-700 mb-4"
           initial={{ opacity: 0, y: -30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-12 sm:mb-16"
         >
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-blue-700 mb-4">
-            Our Team
-          </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto text-sm sm:text-base">
-            Meet our leadership team driving excellence, governance, and
-            innovation in every service we deliver.
-          </p>
-        </motion.div>
+          Our Leadership Team
+        </motion.h2>
 
-        {/* TOP 3 MEMBERS - Flex Row on larger screens */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="flex flex-col lg:flex-row items-center lg:items-start justify-center gap-8 mb-12"
-        >
-          <TeamCard member={topMember} className="lg:w-1/3" />
+        <p className="text-gray-600 max-w-2xl mx-auto mb-16">
+          Meet the professionals driving excellence and strategic growth.
+        </p>
 
-          {bottomMembers.map((member) => (
-            <TeamCard key={member.id} member={member} className="lg:w-1/3" />
-          ))}
-        </motion.div>
+        {/* PRINCIPAL */}
+        <div className="flex justify-center mb-20">
+          <PrincipalCard member={principal} />
+        </div>
 
-        {/* View Full Team Button */}
-        <div className="text-center mt-14 sm:mt-16">
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => navigate("/team")}
-            className="bg-blue-600 text-white px-8 sm:px-10 py-3 rounded-full font-semibold shadow-lg hover:bg-blue-800 transition duration-300"
+        {/* SLIDING TEAM MEMBERS */}
+        <div className="relative w-full overflow-hidden">
+          <motion.div
+            className="flex gap-8"
+            animate={{ x: ["0%", "-50%"] }}
+            transition={{
+              repeat: Infinity,
+              duration: 25,
+              ease: "linear",
+            }}
           >
-            View Full Team
-          </motion.button>
+            {[...others, ...others].map((member, index) => (
+              <TeamCard key={index} member={member} />
+            ))}
+          </motion.div>
         </div>
       </div>
     </section>
   );
 }
 
-/* ---------- Reusable Team Card Component ---------- */
-function TeamCard({ member, className }) {
+/* ===============================
+   PRINCIPAL CARD (TOP)
+================================= */
+
+function PrincipalCard({ member }) {
   return (
-    <div
-      className={`bg-white rounded-2xl shadow-md overflow-hidden group cursor-pointer transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 ${className}`}
-    >
-      {/* Image */}
-      <div className="relative w-full aspect-[4/5] overflow-hidden">
+    <div className="w-72 bg-white rounded-2xl shadow-2xl p-6 transition duration-500 hover:shadow-blue-300 hover:-translate-y-2">
+      <div className="flex flex-col items-center text-center">
         <img
           src={member.image}
           alt={member.name}
-          loading="lazy"
-          className="w-full h-full object-cover object-center rounded-2xl transition-transform duration-700 group-hover:scale-105"
+          className="w-36 h-36 rounded-full object-cover border-4 border-blue-600 mb-6 transition duration-500 hover:scale-105"
         />
 
-        {/* Overlay */}
-        {/* <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end justify-center md:justify-start p-6">
-          <Link
-            to={`/team/${member.id}`}
-            className="bg-blue-600 text-white px-5 py-2 rounded-lg shadow-lg hover:bg-blue-700 transition duration-300"
-          >
-            Learn More
-          </Link>
-        </div> */}
-      </div>
+        <h3 className="text-2xl font-bold text-gray-900">{member.name}</h3>
 
-      {/* Info */}
-      <div className="p-5 sm:p-6">
-        <h3 className="text-xl sm:text-2xl font-semibold text-gray-900">
-          {member.name}
-        </h3>
-        <p className="text-blue-600 font-medium mt-1 text-sm sm:text-base">
-          {member.role}
+        <p className="text-blue-600 font-semibold mt-1">{member.role}</p>
+
+        <p className="text-gray-600 text-sm mt-4 leading-relaxed">
+          {member.shortBio}
         </p>
-        <p className="text-gray-700 mt-3 text-sm leading-relaxed line-clamp-4">
+      </div>
+    </div>
+  );
+}
+
+/* ===============================
+   SLIDING TEAM CARD (NON CLICKABLE)
+================================= */
+
+function TeamCard({ member }) {
+  return (
+    <div className="w-56 bg-white rounded-xl shadow-lg p-5 flex-shrink-0">
+      <div className="flex flex-col items-center text-center">
+        <img
+          src={member.image}
+          alt={member.name}
+          className="w-24 h-24 rounded-full object-cover mb-4"
+        />
+
+        <h4 className="text-lg font-semibold text-gray-900">{member.name}</h4>
+
+        <p className="text-blue-600 text-sm mt-1">{member.role}</p>
+
+        <p className="text-gray-600 text-xs mt-3 leading-relaxed line-clamp-4">
           {member.shortBio}
         </p>
       </div>

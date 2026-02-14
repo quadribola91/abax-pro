@@ -21,6 +21,11 @@ export default function Navbar() {
     setOpenDropdown((prev) => (prev === key ? null : key));
   };
 
+  const closeMobileMenu = () => {
+    setMobileOpen(false);
+    setOpenDropdown(null);
+  };
+
   return (
     <header
       className={`fixed w-full z-50 transition-all duration-500 ${
@@ -67,13 +72,10 @@ export default function Navbar() {
           </div>
 
           {/* Services */}
-          <Link to="/servicepage" className="block px-4 py-2">
-            <div className="relative group">
-              <button className="flex items-center gap-1 hover:text-blue-600 transition">
-                Services
-              </button>
-            </div>
+          <Link to="/servicepage" className="hover:text-blue-600 transition">
+            Services
           </Link>
+
           {/* Blogs */}
           <div className="relative group">
             <button className="flex items-center gap-1 hover:text-blue-600 transition">
@@ -91,9 +93,6 @@ export default function Navbar() {
               <div className="block px-4 py-2 hover:bg-gray-50">
                 Publications & News
               </div>
-              {/* <Link to="/team" className="block px-4 py-2 hover:bg-gray-50">
-                News
-              </Link> */}
               <div className="block px-4 py-2 hover:bg-gray-50">
                 Image Gallery
               </div>
@@ -128,16 +127,15 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile Fullscreen Menu */}
+      {/* Mobile Menu */}
       <div
         className={`fixed inset-0 bg-white flex flex-col items-center justify-center gap-8 text-xl font-semibold transform transition-transform duration-500 ${
           mobileOpen ? "translate-x-0" : "translate-x-full"
         } md:hidden`}
       >
-        {/* ✅ Logo Added Here */}
         <img src={logo} alt="logo" className="h-20 mb-6" />
 
-        <Link to="/" onClick={() => setMobileOpen(false)}>
+        <Link to="/" onClick={closeMobileMenu}>
           Home
         </Link>
 
@@ -162,44 +160,34 @@ export default function Navbar() {
               openDropdown === "about" ? "max-h-40 mt-3" : "max-h-0"
             }`}
           >
-            <Link
-              to="/about"
-              onClick={() => setMobileOpen(false)}
-              className="block py-2"
-            >
+            <Link to="/about" onClick={closeMobileMenu} className="block py-2">
               About Us
             </Link>
-            <Link
-              to="/team"
-              onClick={() => setMobileOpen(false)}
-              className="block py-2"
-            >
+            <Link to="/team" onClick={closeMobileMenu} className="block py-2">
               Our Team
             </Link>
           </div>
         </div>
 
         {/* Services Mobile */}
-        <div className="text-center">
-          <Link
-            to="/servicepage"
-            onClick={() => setMobileOpen(false)}
-            className="block py-2"
-          >
-            Services
-          </Link>
-        </div>
+        <Link
+          to="/servicepage"
+          onClick={closeMobileMenu}
+          className="block py-2"
+        >
+          Services
+        </Link>
 
         {/* Blogs Mobile */}
         <div className="text-center">
           <button
-            onClick={() => toggleDropdown("about")}
+            onClick={() => toggleDropdown("blogs")}
             className="flex items-center gap-2"
           >
             Blogs
             <span
               className={`transition-transform duration-300 ${
-                openDropdown === "about" ? "rotate-180" : ""
+                openDropdown === "blogs" ? "rotate-180" : ""
               }`}
             >
               ▼
@@ -208,19 +196,19 @@ export default function Navbar() {
 
           <div
             className={`overflow-hidden transition-all duration-500 ${
-              openDropdown === "about" ? "max-h-40 mt-3" : "max-h-0"
+              openDropdown === "blogs" ? "max-h-40 mt-3" : "max-h-0"
             }`}
           >
-            <div onClick={() => setMobileOpen(false)} className="block py-2">
+            <div onClick={closeMobileMenu} className="block py-2">
               Publications & News
             </div>
-            <div onClick={() => setMobileOpen(false)} className="block py-2">
+            <div onClick={closeMobileMenu} className="block py-2">
               Image Gallery
             </div>
           </div>
         </div>
 
-        <Link to="/contact" onClick={() => setMobileOpen(false)}>
+        <Link to="/contact" onClick={closeMobileMenu}>
           Contact
         </Link>
       </div>
