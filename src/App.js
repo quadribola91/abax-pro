@@ -1,36 +1,70 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
+
 import Navbar from "./components/Navbar";
-import HeroSection from "./components/HeroSection";
-import VisionMissionSection from "./components/VisionMissionSection";
-import ServicesSection from "./components/Services";
-import AboutSection from "./components/AboutSection";
+import FooterSection from "./components/FooterSection";
+import PageLoader from "./components/PageLoader";
+import ScrollToTop from "./components/ScrollToTop";
+import ScrollToTopButton from "./components/ScrollToTopButton";
+
+import Home from "./pages/Home";
 import About from "./pages/About";
 import ContactSection from "./components/ContactSection";
-import TeamSection from "./components/TeamSection";
-import WhyUs from "./components/WhyUs";
-import FooterSection from "./components/FooterSection";
-import Home from "./pages/Home";
 import TeamPage from "./pages/TeamPage";
-import ScrollToTop from "./components/ScrollToTop";
 import ServicesPage from "./pages/ServicesPage";
 
-function App() {
+/* -------------------------
+   INNER APP (Uses Router)
+-------------------------- */
+
+function AppContent() {
+  const location = useLocation();
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setLoading(true);
+
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, [location]);
+
   return (
-    <Router>
-      {/* Navbar appears on all pages */}
+    <>
+      {loading && <PageLoader />}
+
       <Navbar />
       <ScrollToTop />
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<ContactSection />} />
-        <Route path="/team" element={<TeamPage />} />{" "}
+        <Route path="/team" element={<TeamPage />} />
         <Route path="/servicepage" element={<ServicesPage />} />
       </Routes>
 
-      {/* Footer appears on all pages */}
       <FooterSection />
+      <ScrollToTopButton />
+    </>
+  );
+}
+
+/* -------------------------
+   ROOT APP
+-------------------------- */
+
+function App() {
+  return (
+    <Router>
+      <AppContent />
     </Router>
   );
 }
