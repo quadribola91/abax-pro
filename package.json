@@ -14,7 +14,6 @@
     "react-parallax-tilt": "^1.7.319",
     "react-router-dom": "^7.13.0",
     "react-scripts": "5.0.1",
-    "react-snap": "^1.23.0",
     "swiper": "^12.1.1",
     "web-vitals": "^2.1.4"
   },
