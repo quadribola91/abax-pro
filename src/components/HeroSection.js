@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import img1 from "../assets/heroimage1.jpg";
-import img2 from "../assets/Copy of DSC_2464.JPG";
-import img3 from "../assets/professionalteams.jpg";
+import img1 from "../assets/splash.jpg";
+import img2 from "../assets/splash1.jpg";
+import img3 from "../assets/splash2.jpg";
 
 export default function HeroSection() {
   const slides = [
