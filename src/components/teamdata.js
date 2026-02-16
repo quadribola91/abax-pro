@@ -46,7 +46,7 @@ She has served on corporate and institutional boards, including First City Monum
     role: "Senior Consultant Financial Services",
     shortBio:
       "Finance and assurance professional with nearly 40 years experience in consulting, corporate leadership, and professional services. Expertise in governance and organizational effectiveness.",
-    image: img3,
+    image: img7,
   },
   {
     id: "anthony-ebele",
@@ -62,7 +62,7 @@ She has served on corporate and institutional boards, including First City Monum
     role: "Team Lead / Head, Audit and Advisory",
     shortBio:
       "Audit and advisory expert providing risk-based assurance and strategic guidance.",
-    image: "/images/team/andrew.jpg",
+    image: img5,
   },
   {
     id: "oluwadare-osoneye",
@@ -70,7 +70,7 @@ She has served on corporate and institutional boards, including First City Monum
     role: "Team Lead / Head, Human Resource Consulting",
     shortBio:
       "HR consulting expert specializing in recruitment, outsourcing, and training.",
-    image: "/images/team/oluwadare.jpg",
+    image: img6,
   },
 ];
 

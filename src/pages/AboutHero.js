@@ -1,6 +1,4 @@
 import React from "react";
-import OurStory from "./OurStory";
-import OurPurpose from "./OurPurpose";
 import CoreValues from "./CoreValues";
 import CallToAction from "./CallToAction";
 import aboutBg from "../assets/heroimage2.jpg";
