@@ -129,7 +129,7 @@ Internal Controls
     icon: FaUsers,
     shortDesc:
       "Empowering organizations to build strong, capable, and engaged workforces.",
-    content: `Governance
+    content: `
     • HR strategy and workforce planning
     • Talent acquisition and recruitment support
     • Performance management frameworks

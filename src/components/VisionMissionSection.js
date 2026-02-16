@@ -31,7 +31,7 @@ export default function VisionMissionSection() {
     <section
       id="vision-mission"
       ref={sectionRef}
-      className="py-20 bg-gray-50 overflow-hidden"
+      className="py-20 bg-gray-50 overflow-hidden font-sans"
     >
       <div className="container mx-auto px-6">
         {/* Heading */}

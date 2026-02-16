@@ -9,7 +9,7 @@ export default function AboutHero() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative min-h-[60vh] md:min-h-[95vh] flex items-center justify-center text-center text-white overflow-hidden">
+      <section className="relative min-h-[60vh] md:min-h-[95vh] flex items-center justify-center text-center text-white overflow-hidden font-sans">
         {/* Background Image */}
         <div className="absolute inset-0">
           <img
@@ -24,11 +24,11 @@ export default function AboutHero() {
 
         {/* Content */}
         <div className="relative z-10 max-w-4xl px-6">
-          <h1 className="text-2xl md:text-2xl lg:text-4xl font-bold mb-6 leading-tight">
+          <h1 className="text-2xl md:text-2xl lg:text-4xl font-bold mb-6 leading-tight font-sans">
             About Abax Professional Services
           </h1>
 
-          <p className="text-lg md:text-xl text-blue-100">
+          <p className="text-lg md:text-xl text-blue-100 font-sans">
             Built on integrity. Driven by excellence. Focused on long-term
             partnerships.
           </p>

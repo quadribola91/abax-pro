@@ -27,7 +27,7 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed w-full z-50 transition-all duration-500 ${
+      className={`fixed w-full z-50 transition-all duration-500 font-sans ${
         scrolled ? "bg-white shadow-lg" : "bg-transparent"
       }`}
     >
@@ -39,7 +39,7 @@ export default function Navbar() {
 
         {/* Desktop Navigation */}
         <nav
-          className={`hidden md:flex items-center gap-8 font-medium transition-colors duration-300 ${
+          className={`hidden md:flex items-center gap-8 font-medium transition-colors duration-300 font-sans ${
             scrolled ? "text-gray-700" : "text-white"
           }`}
         >

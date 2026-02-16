@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { FaLinkedinIn } from "react-icons/fa";
-import footlogo from "../assets/abax-ps-logo.jpg";
+import footlogo from "../assets/ABAX logo_page-0001.jpg";
 
 export default function FooterSection() {
   return (
-    <footer className="bg-blue-800 text-white mt-20">
+    <footer className="bg-blue-800 text-white mt-20 font-sans">
       <div className="max-w-7xl mx-auto px-6 py-14">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {/* Logo + Description */}
@@ -16,7 +16,7 @@ export default function FooterSection() {
               className="max-w-[170px] mb-5"
             />
 
-            <p className="text-white/80 leading-relaxed mb-6">
+            <p className="text-white/80 leading-relaxed mb-6 font-sans">
               Providing professional services to businesses and individuals with
               integrity, excellence, and a client-first approach.
             </p>
@@ -32,11 +32,11 @@ export default function FooterSection() {
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-brandYellow text-lg font-semibold mb-5">
+            <h3 className="text-brandYellow text-lg font-semibold mb-5 font-sans">
               Quick Links
             </h3>
 
-            <ul className="space-y-3 text-white/90">
+            <ul className="space-y-3 text-white/90 font-sans">
               <li>
                 <Link to="/" className="hover:text-brandYellow transition">
                   Home
@@ -78,11 +78,11 @@ export default function FooterSection() {
 
           {/* Services */}
           <div>
-            <h3 className="text-brandYellow text-lg font-semibold mb-5">
+            <h3 className="text-brandYellow text-lg font-semibold mb-5 font-sans">
               Our Services
             </h3>
 
-            <ul className="space-y-3 text-white/90">
+            <ul className="space-y-3 text-white/90 font-sans">
               <li>Audit & Assurance</li>
               <li>Accountancy & Financial Reporting</li>
               <li>Tax Advisory & Compliance</li>
@@ -92,7 +92,7 @@ export default function FooterSection() {
         </div>
 
         {/* Divider */}
-        <div className="border-t border-white/20 mt-10 pt-6 text-center text-white/70 text-sm">
+        <div className="border-t border-white/20 mt-10 pt-6 text-center text-white/70 text-sm font-sans">
           © 2026 Abax Professional Services. All Rights Reserved.
         </div>
       </div>

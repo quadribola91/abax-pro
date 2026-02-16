@@ -45,7 +45,7 @@ export default function HeroSection() {
   }, [index]);
 
   return (
-    <section className="relative w-full overflow-hidden">
+    <section className="relative w-full overflow-hidden font-sans">
       {/* IMAGE SLIDER */}
       <div
         className="flex transition-transform duration-[2000ms] ease-in-out"

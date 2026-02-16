@@ -26,25 +26,39 @@ const teamMembers = [
     name: "Ayo Alamutu",
     designation: "Senior Consultant Governance and Risk",
     image: AyoImage,
-    bio: `Governance, Risk, Audit and Compliance Executive with over 30 years experience across UK and Nigeria...`,
+    bio: `Ms. Alamutu is a Governance, Risk, Audit, Assurance, and Compliance Executive with over 30 years of experience across the UK and Nigeria. She advises Boards and senior management on enterprise risk, operational resilience, business continuity, and internal audit, supporting organisations to strengthen performance, manage disruption, and preserve value across sectors including banking, insurance, manufacturing, investment, and fintech.
+
+
+She is a Fellow of the Institute of Chartered Accountants of Nigeria (FICAN), a Certified Member of the Institute of Risk Management (CIRM), holds a Certificate in Risk Governance from the DCRO Institute, and currently serves as Vice Chair of the IRM Nigeria Regional Group. She is also an Information Systems Auditor, Project Management Professional, and a Board member of the Institute of Internal Auditors.`,
   },
   {
     name: "Babafunke Ajibade",
     designation: "Senior Consultant Audit and Assurance",
     image: img4,
-    bio: `Multi-skilled Governance and Assurance professional across public and private sectors...`,
+    bio: `A multi-skilled Governance, Financial Accounts, Risk, Audit, Assurance, and Compliance Executive across Private, Government and Third party (Charity} Sectors with over three decades of progressive experience across  Nigeria and the United Kingdom . Her core strength lies in quality control on Assurance Audits advising Boards, Trustees and Senior Management on enterprise risk, strategy, compliance, business continuity, internal audit practice, helping organizations strengthen performance, compliance on accounting and auditing standards, sustain competitive advantage at  industry level and respond proactively to disruption. She has worked on audits ranging from Nuclear decommissioning agencies, HMRC, Government departments and international charity audits, review of established audit and compliance systems, and supported risk-based strategy, compliance, and internal audit. She specializes in assessment of compliance with the relevant international standards 
+Mrs. Ajibade is a member of the Institute of Chartered Accountants of Nigeria, A Certified member of The Chartered Institute of Public Finance Accountants CIPFA. 
+`,
   },
   {
     name: "Fusi Akinkugbe",
     designation: "Senior Consultant Financial Services",
     image: img3,
-    bio: `Seasoned finance professional with nearly four decades of experience...`,
+    bio: `Mr. Fusi Akinkugbe is a seasoned finance and assurance professional with nearly four decades of experience spanning professional practice, corporate leadership, consulting, and the public sector. He holds a degree in Economics and is a Chartered Accountant and Fellow of the Institute of Chartered Accountants of Nigeria (FCA).
+He has held senior executive roles including Treasury Controller at DHL International Nigeria Ltd and pioneer Managing Director/CEO of Chrysalis Ltd, a technology services company jointly owned by Accenture and two financial institutions.
+Mr. Akinkugbe has led high-profile audit, forensic, and advisory engagements, with strong expertise in governance, internal controls, and organisational effectiveness. He serves on several not-for-profit boards, is an author and leadership commentator, and currently acts as Lead Consultant at HYCL Consulting, focusing on leadership development and organisational effectiveness.
+`,
   },
   {
     name: "Anthony Ebele",
     designation: "Head, Tax Management and Advisory",
     image: img5,
-    bio: "Leads tax management and advisory engagements.",
+    bio: "",
+  },
+  {
+    name: "Oluwadere Osoneye",
+    designation: "Head, Human Resourse Consulting",
+    image: "",
+    bio: "",
   },
 ];
 
