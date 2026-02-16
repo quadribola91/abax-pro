@@ -5,6 +5,7 @@
 @tailwind components;
 @tailwind utilities;
 
-html, body {
-	@apply font-sans;
+html,
+body {
+  @apply font-sans;
 }

@@ -1,11 +1,52 @@
-import React, { useState } from "react";
+// src/pages/ServicesPage.js
+import React from "react";
 import { motion } from "framer-motion";
 import services from "../components/ServicesData";
 import heroImage from "../assets/Copy of DSC_2464.JPG";
 
-export default function ServicesPage() {
-  const [selectedService, setSelectedService] = useState(null);
+// Reusable Card Component
+const ServiceCard = ({ service }) => {
+  const Icon = service.icon;
+  const bulletPoints = service.content.split("\n").filter(Boolean);
 
+  return (
+    <motion.div
+      className="bg-white p-8 rounded-3xl shadow-lg hover:shadow-2xl hover:scale-105 transition duration-300 flex flex-col w-full"
+      whileHover={{ scale: 1.02 }}
+    >
+      {/* Top Section: Icon + Title */}
+      <div className="flex items-center mb-6 space-x-4">
+        <div className="w-16 h-16 flex items-center justify-center rounded-full bg-blue-100 text-blue-600 text-2xl flex-shrink-0">
+          <Icon />
+        </div>
+        <h3 className="text-2xl font-bold text-gray-800">{service.title}</h3>
+      </div>
+
+      {/* Short Description */}
+      <p className="text-gray-600 mb-6">{service.shortDesc}</p>
+
+      {/* Bullet Points displayed in rows */}
+      <div className="flex flex-col md:flex-row md:flex-wrap gap-4 mb-6">
+        {bulletPoints.map((point, idx) => (
+          <div
+            key={idx}
+            className="flex items-start bg-gray-50 rounded-lg p-3 flex-1 min-w-[200px]"
+          >
+            <span className="text-blue-600 mr-2 mt-1">✓</span>
+            <span className="text-gray-700">{point}</span>
+          </div>
+        ))}
+      </div>
+
+      {/* Learn More Button */}
+      {/* <button className="self-start mt-auto bg-blue-600 text-white px-5 py-2 rounded-xl hover:bg-blue-700 transition text-sm font-medium">
+        Learn More
+      </button> */}
+    </motion.div>
+  );
+};
+
+export default function ServicesPage() {
   const itemVariants = {
     hidden: { opacity: 0, y: 40 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
@@ -20,10 +61,7 @@ export default function ServicesPage() {
           alt="Our Professional Services"
           className="absolute inset-0 w-full h-full object-cover"
         />
-
-        {/* overlay */}
         <div className="absolute inset-0 bg-gradient-to-r from-blue-950/80 to-blue-900/40"></div>
-
         <div className="relative text-center px-6 max-w-3xl text-white">
           <motion.h1
             className="text-4xl md:text-5xl font-serif font-bold"
@@ -33,7 +71,6 @@ export default function ServicesPage() {
           >
             Our Service Catalogue
           </motion.h1>
-
           <motion.p
             className="mt-6 text-lg md:text-xl text-gray-200"
             initial={{ opacity: 0 }}
@@ -63,66 +100,12 @@ export default function ServicesPage() {
             <div className="w-20 h-1 bg-blue-600 mx-auto mt-6 rounded"></div>
           </motion.div>
 
-          {/* Cards */}
-          <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service) => {
-              const Icon = service.icon;
-
-              return (
-                <motion.div
-                  key={service.id}
-                  className="bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition duration-300 cursor-pointer flex flex-col h-full"
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
-                  variants={itemVariants}
-                  onClick={() => setSelectedService(service)}
-                >
-                  <div className="w-14 h-14 flex items-center justify-center rounded-full bg-blue-100 text-blue-600 text-xl mb-5">
-                    <Icon />
-                  </div>
-
-                  <h3 className="text-lg font-semibold text-gray-800 mb-3">
-                    {service.title}
-                  </h3>
-
-                  <p className="text-gray-600 text-sm leading-relaxed flex-grow">
-                    {service.shortDesc}
-                  </p>
-
-                  <button className="mt-6 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition text-sm font-medium">
-                    Learn More
-                  </button>
-                </motion.div>
-              );
-            })}
+          {/* Services in a single column */}
+          <div className="flex flex-col gap-8">
+            {services.map((service) => (
+              <ServiceCard key={service.id} service={service} />
+            ))}
           </div>
-
-          {/* Modal */}
-          {selectedService && (
-            <div className="fixed inset-0 z-50 bg-black bg-opacity-70 flex items-center justify-center p-4">
-              <div className="bg-white rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto p-8 relative shadow-2xl">
-                <button
-                  className="absolute top-4 right-5 text-2xl font-bold text-gray-600 hover:text-black"
-                  onClick={() => setSelectedService(null)}
-                >
-                  &times;
-                </button>
-
-                <div className="w-16 h-16 flex items-center justify-center rounded-full bg-blue-100 text-blue-600 text-2xl mb-6">
-                  <selectedService.icon />
-                </div>
-
-                <h3 className="text-2xl font-semibold mb-4">
-                  {selectedService.title}
-                </h3>
-
-                <p className="text-gray-700 leading-relaxed whitespace-pre-line">
-                  {selectedService.content}
-                </p>
-              </div>
-            </div>
-          )}
         </div>
       </div>
     </>
