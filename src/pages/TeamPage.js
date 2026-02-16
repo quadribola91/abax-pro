@@ -13,7 +13,7 @@ import img5 from "../assets/Mr Anthony Ebele .JPG";
 /* ---------------- DATA ---------------- */
 
 const principal = {
-  name: "Olapeju Sofowora B.SC, FCA, FCIT CISA",
+  name: "Olapeju Sofowora B.SC, FCA, FCIT",
   designation: "Principal Consultant",
   image: OlapejuImage,
   bio: `Olapeju E. Sofowora is the Founding Partner of ABAX Professional Services, bringing over 30 years of experience across audit, tax, corporate finance, and professional advisory services.
@@ -52,7 +52,7 @@ Mr. Akinkugbe has led high-profile audit, forensic, and advisory engagements, wi
     bio: "",
   },
   {
-    name: "Oluwadere Osoneye",
+    name: "Dare Osoneye",
     designation: "Head, Human Resourse Consulting",
     image: "",
     bio: "",

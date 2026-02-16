@@ -1,60 +1,113 @@
 // src/pages/ServicesPage.js
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import services from "../components/ServicesData";
 import heroImage from "../assets/Copy of DSC_2464.JPG";
 
-// Reusable Card Component
-const ServiceCard = ({ service }) => {
+// Accordion Section inside dropdown
+const AccordionSection = ({ section, isOpen, onClick }) => {
+  return (
+    <div className="border rounded-xl overflow-hidden bg-white">
+      <button
+        onClick={onClick}
+        className="w-full flex justify-between items-center px-5 py-4 text-left font-semibold text-gray-800 hover:bg-gray-50"
+      >
+        {section.title}
+        <span className={`transition-transform ${isOpen ? "rotate-180" : ""}`}>
+          ⌄
+        </span>
+      </button>
+
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            className="px-6 pb-5"
+          >
+            <ul className="space-y-2 text-gray-600">
+              {section.points.map((point, i) => (
+                <li key={i} className="flex items-start gap-2">
+                  <span className="text-blue-600 mt-1">✓</span>
+                  {point}
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
+
+// Service Card
+const ServiceCard = ({ service, active, setActive }) => {
   const Icon = service.icon;
-  const bulletPoints = service.content.split("\n").filter(Boolean);
+  const [openSection, setOpenSection] = useState(null);
+
+  const toggleCard = () => {
+    setActive(active === service.id ? null : service.id);
+    setOpenSection(null);
+  };
 
   return (
     <motion.div
-      className="bg-white p-8 rounded-3xl shadow-lg hover:shadow-2xl hover:scale-105 transition duration-300 flex flex-col w-full"
-      whileHover={{ scale: 1.02 }}
+      layout
+      className="bg-white rounded-3xl shadow-lg overflow-hidden"
     >
-      {/* Top Section: Icon + Title */}
-      <div className="flex items-center mb-6 space-x-4">
-        <div className="w-16 h-16 flex items-center justify-center rounded-full bg-blue-100 text-blue-600 text-2xl flex-shrink-0">
+      {/* CARD HEADER */}
+      <div className="p-8 flex items-start gap-5">
+        <div className="w-16 h-16 flex items-center justify-center rounded-full bg-blue-100 text-blue-600 text-2xl">
           <Icon />
         </div>
-        <h3 className="text-2xl font-bold text-gray-800">{service.title}</h3>
-      </div>
 
-      {/* Short Description */}
-      <p className="text-gray-600 mb-6">{service.shortDesc}</p>
+        <div className="flex-1">
+          <h3 className="text-2xl font-bold text-gray-800">{service.title}</h3>
+          <p className="text-gray-600 mt-2">{service.shortDesc}</p>
 
-      {/* Bullet Points displayed in rows */}
-      <div className="flex flex-col md:flex-row md:flex-wrap gap-4 mb-6">
-        {bulletPoints.map((point, idx) => (
-          <div
-            key={idx}
-            className="flex items-start bg-gray-50 rounded-lg p-3 flex-1 min-w-[200px]"
+          <button
+            onClick={toggleCard}
+            className="mt-5 bg-blue-600 text-white px-5 py-2 rounded-xl hover:bg-blue-700 transition text-sm font-medium"
           >
-            <span className="text-blue-600 mr-2 mt-1">✓</span>
-            <span className="text-gray-700">{point}</span>
-          </div>
-        ))}
+            {active === service.id ? "Close" : "Read More"}
+          </button>
+        </div>
       </div>
 
-      {/* Learn More Button */}
-      {/* <button className="self-start mt-auto bg-blue-600 text-white px-5 py-2 rounded-xl hover:bg-blue-700 transition text-sm font-medium">
-        Learn More
-      </button> */}
+      {/* DROPDOWN CONTENT */}
+      <AnimatePresence>
+        {active === service.id && (
+          <motion.div
+            layout
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="px-8 pb-8 space-y-4 bg-gray-50"
+          >
+            {service.sections.map((section, index) => (
+              <AccordionSection
+                key={index}
+                section={section}
+                isOpen={openSection === index}
+                onClick={() =>
+                  setOpenSection(openSection === index ? null : index)
+                }
+              />
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 };
 
 export default function ServicesPage() {
-  const itemVariants = {
-    hidden: { opacity: 0, y: 40 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-  };
+  const [activeService, setActiveService] = useState(null);
 
   return (
     <>
-      {/* HERO HEADER */}
+      {/* HERO */}
       <section className="relative w-full h-[55vh] min-h-[420px] flex items-center justify-center">
         <img
           src={heroImage}
@@ -62,50 +115,29 @@ export default function ServicesPage() {
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-blue-950/80 to-blue-900/40"></div>
+
         <div className="relative text-center px-6 max-w-3xl text-white">
-          <motion.h1
-            className="text-4xl md:text-5xl font-serif font-bold"
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
+          <h1 className="text-4xl md:text-5xl font-serif font-bold">
             Our Service Catalogue
-          </motion.h1>
-          <motion.p
-            className="mt-6 text-lg md:text-xl text-gray-200"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-          >
+          </h1>
+          <p className="mt-6 text-lg md:text-xl text-gray-200">
             Explore our comprehensive professional offerings designed to
             strengthen governance, compliance, and performance.
-          </motion.p>
+          </p>
         </div>
       </section>
 
-      {/* MAIN CONTENT */}
-      <div id="servicepage" className="py-20 bg-gray-50 min-h-screen">
-        <div className="container mx-auto px-4 md:px-6">
-          {/* Section Header */}
-          <motion.div
-            className="text-center mb-14"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={itemVariants}
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-800">
-              What We Do
-            </h2>
-            <div className="w-20 h-1 bg-blue-600 mx-auto mt-6 rounded"></div>
-          </motion.div>
-
-          {/* Services in a single column */}
-          <div className="flex flex-col gap-8">
-            {services.map((service) => (
-              <ServiceCard key={service.id} service={service} />
-            ))}
-          </div>
+      {/* SERVICES */}
+      <div className="py-20 bg-gray-50 min-h-screen">
+        <div className="container mx-auto px-4 md:px-6 space-y-8">
+          {services.map((service) => (
+            <ServiceCard
+              key={service.id}
+              service={service}
+              active={activeService}
+              setActive={setActiveService}
+            />
+          ))}
         </div>
       </div>
     </>

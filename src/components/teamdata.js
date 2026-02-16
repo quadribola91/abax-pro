@@ -8,7 +8,7 @@ import img7 from "../assets/Mrs Babafunke Ajibade.jpg";
 const teamData = [
   {
     id: "olapeju-sofowora",
-    name: "Olapeju Sofowora B.SC, FCA, FCIT CISA",
+    name: "Olapeju Sofowora B.SC, FCA, FCIT",
     role: "Principal Consultant",
     shortBio:
       "Founding Partner with 30+ years experience in audit, tax, corporate finance, and advisory services. Passionate about governance and professional development.",

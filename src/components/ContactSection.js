@@ -7,7 +7,7 @@ import {
   FaClock,
 } from "react-icons/fa";
 
-import contactHero from "../assets/Copy of DSC_2464.JPG";
+import contactHero from "../assets/DSC_8104.JPG";
 
 export default function ContactSection() {
   const contactInfo = [
@@ -38,7 +38,7 @@ export default function ContactSection() {
 
     try {
       const response = await fetch(
-        "https://abaxps.com/abaxps/api/sendmail.php",
+        "https://www.abaxps.com/abaxps/api/sendmail.php",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

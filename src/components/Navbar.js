@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
-import logo from "../assets/ABAX logo_page-0001.jpg";
+import logo from "../assets/abax_no_bg.png";
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -34,7 +34,7 @@ export default function Navbar() {
       <div className="container mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-3">
-          <img src={logo} alt="logo" className="h-12 w-auto" />
+          <img src={logo} alt="logo" className="h-16 w-auto" />
         </Link>
 
         {/* Desktop Navigation */}

@@ -1,7 +1,7 @@
 import React from "react";
 import CoreValues from "./CoreValues";
 import CallToAction from "./CallToAction";
-import aboutBg from "../assets/heroimage2.jpg";
+import aboutBg from "../assets/DSC_8097.JPG";
 import StoryPurposeSection from "./StoryPurposeSection";
 import WhyUs from "../components/WhyUs";
 
