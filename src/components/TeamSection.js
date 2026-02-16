@@ -112,9 +112,9 @@ export default function TeamSection() {
                     <p className="text-blue-700 text-xs sm:text-sm mt-1">
                       {member.role}
                     </p>
-                    <p className="text-gray-600 text-xs sm:text-sm mt-2 leading-snug line-clamp-3">
+                    {/* <p className="text-gray-600 text-xs sm:text-sm mt-2 leading-snug line-clamp-3">
                       {member.shortBio}
-                    </p>
+                    </p> */}
                   </div>
                 </SwiperSlide>
               ))}
