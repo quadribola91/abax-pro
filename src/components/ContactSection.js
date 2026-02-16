@@ -29,10 +29,11 @@ export default function ContactSection() {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setLoading(true);
     setStatus("Sending message...");
 
     try {
@@ -40,25 +41,26 @@ export default function ContactSection() {
         "https://abaxps.com/abaxps/api/sendmail.php",
         {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ name, email, message }),
         },
       );
 
       const data = await response.json();
+      setLoading(false);
 
       if (data.success) {
-        setStatus("Message sent successfully!");
+        setStatus("✅ Message sent successfully!");
         setName("");
         setEmail("");
         setMessage("");
       } else {
-        setStatus("Failed to send message. Please try again.");
+        setStatus(`❌ ${data.error || "Failed to send message."}`);
       }
     } catch (error) {
-      setStatus("Server error. Try again later.");
+      console.error(error);
+      setLoading(false);
+      setStatus("❌ Server error. Try again later.");
     }
   };
 
@@ -71,7 +73,6 @@ export default function ContactSection() {
           alt="Contact Abax Professional Services"
           className="w-full h-full object-cover"
         />
-
         <div className="absolute inset-0 bg-black/60 flex items-center justify-center">
           <h1 className="text-white text-4xl md:text-5xl font-bold tracking-wide">
             Contact Us
@@ -115,7 +116,7 @@ export default function ContactSection() {
 
           {/* CONTACT FORM */}
           <motion.form
-            className="bg-yellow-500 p-8 rounded-2xl shadow-lg space-y-4"
+            className="bg-white p-8 rounded-2xl shadow-lg space-y-4"
             initial={{ opacity: 0, x: 100 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 1.2 }}
@@ -154,9 +155,14 @@ export default function ContactSection() {
 
             <button
               type="submit"
-              className="bg-blue-800 text-white px-6 py-3 rounded-full w-full font-semibold hover:bg-yellow-400 transition-colors"
+              className={`w-full px-6 py-3 rounded-full font-semibold transition-colors ${
+                loading
+                  ? "bg-gray-400 cursor-not-allowed"
+                  : "bg-blue-800 hover:bg-blue-600 text-white"
+              }`}
+              disabled={loading}
             >
-              Send Message
+              {loading ? "Sending..." : "Send Message"}
             </button>
 
             {status && (

@@ -1,3 +1,4 @@
+// src/components/TeamSection.js
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -31,9 +32,9 @@ export default function TeamSection() {
           </p>
         </motion.div>
 
-        {/* Split Grid: Principal & Swiper */}
+        {/* Grid: Principal & Swiper */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
-          {/* Principal Left (50% width) */}
+          {/* Principal */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -42,31 +43,36 @@ export default function TeamSection() {
           >
             <div
               className={`w-full max-w-md bg-white rounded-3xl shadow-2xl p-6 sm:p-8 transition-transform duration-300 ${
-                hovered === "principal"
-                  ? "hover:scale-105 hover:shadow-blue-200"
-                  : ""
+                hovered === "principal" ? "scale-105 shadow-blue-200" : ""
               }`}
               onMouseEnter={() => setHovered("principal")}
               onMouseLeave={() => setHovered(null)}
             >
-              <img
-                src={principal.image}
-                alt={principal.name}
-                className="w-28 h-28 sm:w-32 sm:h-32 rounded-full object-cover border-2 border-blue-700 mb-6"
-              />
-              <h3 className="text-2xl sm:text-3xl font-bold text-gray-900">
+              {/* Image */}
+              <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-full overflow-hidden border-2 border-blue-700 mb-6 mx-auto lg:mx-0">
+                <img
+                  src={principal.image}
+                  alt={principal.name}
+                  className="w-full h-full object-cover object-top"
+                />
+              </div>
+
+              {/* Name & Role */}
+              <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 text-center lg:text-left">
                 {principal.name}
               </h3>
-              <p className="text-blue-700 font-semibold text-sm sm:text-base mt-1">
+              <p className="text-blue-700 font-semibold text-sm sm:text-base mt-1 text-center lg:text-left">
                 {principal.role}
               </p>
-              <p className="text-gray-600 text-sm sm:text-base mt-4 leading-relaxed line-clamp-6">
+
+              {/* Short Bio */}
+              <p className="text-gray-600 text-sm sm:text-base mt-4 leading-relaxed line-clamp-6 text-center lg:text-left">
                 {principal.shortBio}
               </p>
             </div>
           </motion.div>
 
-          {/* Right Swiper (50% width) */}
+          {/* Swiper */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -87,17 +93,19 @@ export default function TeamSection() {
               {others.map((member, idx) => (
                 <SwiperSlide key={idx}>
                   <div
-                    className={`w-full h-64 bg-white rounded-2xl shadow-lg p-5 flex flex-col items-center text-center transition-transform duration-300 ${
+                    className={`w-full h-72 bg-white rounded-2xl shadow-lg p-5 flex flex-col items-center text-center transition-transform duration-300 ${
                       hovered === idx ? "scale-105 shadow-blue-200" : ""
                     }`}
                     onMouseEnter={() => setHovered(idx)}
                     onMouseLeave={() => setHovered(null)}
                   >
-                    <img
-                      src={member.image}
-                      alt={member.name}
-                      className="w-20 h-20 sm:w-24 sm:h-24 rounded-full object-cover mb-3 sm:mb-4"
-                    />
+                    <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden border-2 border-blue-500 mb-3 sm:mb-4">
+                      <img
+                        src={member.image}
+                        alt={member.name}
+                        className="w-full h-full object-cover object-top"
+                      />
+                    </div>
                     <h4 className="text-base sm:text-lg font-semibold text-gray-900">
                       {member.name}
                     </h4>
@@ -121,13 +129,10 @@ export default function TeamSection() {
           transition={{ duration: 0.6 }}
           className="text-center mt-12"
         >
-          <Link to="team">
-            <a
-              href="#team"
-              className="inline-block px-8 py-3 bg-blue-700 text-white font-semibold rounded-lg shadow hover:bg-blue-800 hover:shadow-lg transition"
-            >
+          <Link to="team" className="inline-block">
+            <span className="inline-block px-8 py-3 bg-blue-700 text-white font-semibold rounded-lg shadow hover:bg-blue-800 hover:shadow-lg transition">
               View Full Team
-            </a>
+            </span>
           </Link>
         </motion.div>
       </div>

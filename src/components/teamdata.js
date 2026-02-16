@@ -2,9 +2,8 @@ import img1 from "../assets/Principal_ Mrs Sofowora.jpg";
 import img2 from "../assets/MsAlamutu.jpg";
 import img3 from "../assets/Mr FusiAkinkungbe.jpg";
 import img4 from "../assets/Mr Anthony Ebele .JPG";
-import img5 from "../assets/heroimage2.jpg";
 import img6 from "../assets/heroimage1.jpg";
-import img7 from "../assets/leadership.jpg";
+import img7 from "../assets/Mrs Babafunke Ajibade.jpg";
 
 const teamData = [
   {
@@ -38,7 +37,7 @@ She has served on corporate and institutional boards, including First City Monum
     role: "Senior Consultant Audit and Assurance",
     shortBio:
       "Multi-skilled Governance, Financial Accounts, and Audit professional with 30+ years experience in Nigeria and UK. Specializes in risk, compliance, and internal audit.",
-    image: img3,
+    image: img7,
   },
   {
     id: "fusi-akinkugbe",
@@ -46,28 +45,20 @@ She has served on corporate and institutional boards, including First City Monum
     role: "Senior Consultant Financial Services",
     shortBio:
       "Finance and assurance professional with nearly 40 years experience in consulting, corporate leadership, and professional services. Expertise in governance and organizational effectiveness.",
-    image: img7,
+    image: img3,
   },
   {
     id: "anthony-ebele",
     name: "Anthony Ebele",
-    role: "Team Lead / Head, Tax Management and Advisory",
+    role: "Team Lead",
     shortBio:
       "Specialist in tax advisory and management for corporate clients.",
     image: img4,
   },
   {
-    id: "andrew-osiobe",
-    name: "Andrew Osiobe",
-    role: "Team Lead / Head, Audit and Advisory",
-    shortBio:
-      "Audit and advisory expert providing risk-based assurance and strategic guidance.",
-    image: img5,
-  },
-  {
     id: "oluwadare-osoneye",
     name: "Oluwadare Osoneye",
-    role: "Team Lead / Head, Human Resource Consulting",
+    role: "Team Lead",
     shortBio:
       "HR consulting expert specializing in recruitment, outsourcing, and training.",
     image: img6,

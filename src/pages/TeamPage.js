@@ -1,7 +1,8 @@
+// src/pages/TeamPage.js
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-import heroImg from "../assets/professionalteams.jpg";
+import heroImg from "../assets/splash1.jpg";
 
 import OlapejuImage from "../assets/Principal_ Mrs Sofowora.jpg";
 import AyoImage from "../assets/MsAlamutu.jpg";
@@ -28,16 +29,13 @@ const teamMembers = [
     image: AyoImage,
     bio: `Ms. Alamutu is a Governance, Risk, Audit, Assurance, and Compliance Executive with over 30 years of experience across the UK and Nigeria. She advises Boards and senior management on enterprise risk, operational resilience, business continuity, and internal audit, supporting organisations to strengthen performance, manage disruption, and preserve value across sectors including banking, insurance, manufacturing, investment, and fintech.
 
-
 She is a Fellow of the Institute of Chartered Accountants of Nigeria (FICAN), a Certified Member of the Institute of Risk Management (CIRM), holds a Certificate in Risk Governance from the DCRO Institute, and currently serves as Vice Chair of the IRM Nigeria Regional Group. She is also an Information Systems Auditor, Project Management Professional, and a Board member of the Institute of Internal Auditors.`,
   },
   {
     name: "Babafunke Ajibade",
     designation: "Senior Consultant Audit and Assurance",
     image: img4,
-    bio: `A multi-skilled Governance, Financial Accounts, Risk, Audit, Assurance, and Compliance Executive across Private, Government and Third party (Charity} Sectors with over three decades of progressive experience across  Nigeria and the United Kingdom . Her core strength lies in quality control on Assurance Audits advising Boards, Trustees and Senior Management on enterprise risk, strategy, compliance, business continuity, internal audit practice, helping organizations strengthen performance, compliance on accounting and auditing standards, sustain competitive advantage at  industry level and respond proactively to disruption. She has worked on audits ranging from Nuclear decommissioning agencies, HMRC, Government departments and international charity audits, review of established audit and compliance systems, and supported risk-based strategy, compliance, and internal audit. She specializes in assessment of compliance with the relevant international standards 
-Mrs. Ajibade is a member of the Institute of Chartered Accountants of Nigeria, A Certified member of The Chartered Institute of Public Finance Accountants CIPFA. 
-`,
+    bio: `A multi-skilled Governance, Financial Accounts, Risk, Audit, Assurance, and Compliance Executive across Private, Government and Third party (Charity} Sectors with over three decades of progressive experience across  Nigeria and the United Kingdom. Her core strength lies in quality control on Assurance Audits advising Boards, Trustees and Senior Management on enterprise risk, strategy, compliance, business continuity, internal audit practice, helping organizations strengthen performance, compliance on accounting and auditing standards, sustain competitive advantage at  industry level and respond proactively to disruption. She has worked on audits ranging from Nuclear decommissioning agencies, HMRC, Government departments and international charity audits, review of established audit and compliance systems, and supported risk-based strategy, compliance, and internal audit. She specializes in assessment of compliance with the relevant international standards. Mrs. Ajibade is a member of the Institute of Chartered Accountants of Nigeria, A Certified member of The Chartered Institute of Public Finance Accountants CIPFA.`,
   },
   {
     name: "Fusi Akinkugbe",
@@ -45,8 +43,7 @@ Mrs. Ajibade is a member of the Institute of Chartered Accountants of Nigeria, A
     image: img3,
     bio: `Mr. Fusi Akinkugbe is a seasoned finance and assurance professional with nearly four decades of experience spanning professional practice, corporate leadership, consulting, and the public sector. He holds a degree in Economics and is a Chartered Accountant and Fellow of the Institute of Chartered Accountants of Nigeria (FCA).
 He has held senior executive roles including Treasury Controller at DHL International Nigeria Ltd and pioneer Managing Director/CEO of Chrysalis Ltd, a technology services company jointly owned by Accenture and two financial institutions.
-Mr. Akinkugbe has led high-profile audit, forensic, and advisory engagements, with strong expertise in governance, internal controls, and organisational effectiveness. He serves on several not-for-profit boards, is an author and leadership commentator, and currently acts as Lead Consultant at HYCL Consulting, focusing on leadership development and organisational effectiveness.
-`,
+Mr. Akinkugbe has led high-profile audit, forensic, and advisory engagements, with strong expertise in governance, internal controls, and organisational effectiveness.`,
   },
   {
     name: "Anthony Ebele",
@@ -62,6 +59,8 @@ Mr. Akinkugbe has led high-profile audit, forensic, and advisory engagements, wi
   },
 ];
 
+/* ---------------- COMPONENT ---------------- */
+
 export default function TeamPage() {
   const [view, setView] = useState("principal");
   const [activeMember, setActiveMember] = useState(null);
@@ -72,7 +71,7 @@ export default function TeamPage() {
       <section className="relative h-[45vh] md:h-[55vh]">
         <img
           src={heroImg}
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover object-top"
         />
         <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
           <h1 className="text-white text-4xl md:text-5xl font-bold tracking-wide">
@@ -108,9 +107,8 @@ export default function TeamPage() {
           <div className="grid md:grid-cols-2 gap-12 items-center bg-white p-8 rounded-2xl shadow-xl">
             <img
               src={principal.image}
-              className="rounded-xl w-full object-cover"
+              className="rounded-xl w-full object-cover object-top"
             />
-
             <div>
               <h2 className="text-3xl font-bold text-gray-800">
                 {principal.name}
@@ -134,14 +132,29 @@ export default function TeamPage() {
             {teamMembers.map((m, i) => (
               <motion.div
                 key={i}
-                whileHover={{ y: -8 }}
+                whileHover={{ y: -6 }}
                 className="bg-white rounded-2xl shadow-lg overflow-hidden cursor-pointer"
                 onClick={() => setActiveMember(m)}
               >
-                <img src={m.image} className="h-72 w-full object-cover" />
+                <div className="h-72 w-full overflow-hidden">
+                  {m.image ? (
+                    <img
+                      src={m.image}
+                      className="h-full w-full object-cover object-top"
+                    />
+                  ) : (
+                    <div className="h-full w-full bg-gray-200 flex items-center justify-center text-gray-500">
+                      No Image
+                    </div>
+                  )}
+                </div>
+
                 <div className="p-5">
                   <h3 className="font-semibold text-lg">{m.name}</h3>
                   <p className="text-blue-600 text-sm">{m.designation}</p>
+                  <p className="text-gray-500 text-xs mt-2 italic">
+                    Click to read more...
+                  </p>
                 </div>
               </motion.div>
             ))}
@@ -166,7 +179,12 @@ export default function TeamPage() {
               ✕
             </button>
 
-            <img src={activeMember.image} className="rounded-lg mb-6" />
+            {activeMember.image && (
+              <img
+                src={activeMember.image}
+                className="rounded-lg mb-6 object-cover object-top w-full h-72"
+              />
+            )}
 
             <h2 className="text-2xl font-bold">{activeMember.name}</h2>
             <p className="text-blue-700 font-semibold mb-4">
@@ -174,7 +192,7 @@ export default function TeamPage() {
             </p>
 
             <p className="text-gray-700 whitespace-pre-line leading-relaxed">
-              {activeMember.bio}
+              {activeMember.bio || "No additional information available."}
             </p>
           </motion.div>
         )}
