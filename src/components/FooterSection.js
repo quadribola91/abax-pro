@@ -41,7 +41,7 @@ export default function FooterSection() {
               href="#"
               className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-blue-800 hover:bg-brandYellow hover:text-[#0B3A6E] transition duration-300"
             >
-              <FaLinkedinIn size={14} />
+              <FaLinkedinIn size={14} className="text-white" />
             </a>
           </div>
 
