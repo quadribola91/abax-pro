@@ -4,11 +4,11 @@ import { motion, AnimatePresence } from "framer-motion";
 
 import heroImg from "../assets/splash1.jpg";
 
-import OlapejuImage from "../assets/Principal_ Mrs Sofowora.jpg";
+import OlapejuImage from "../assets/Madam Sofowora.jpg";
 import AyoImage from "../assets/MsAlamutu.jpg";
 import img3 from "../assets/Mr FusiAkinkungbe.jpg";
-import img4 from "../assets/Mrs Babafunke Ajibade.jpg";
-import img5 from "../assets/Mr Anthony Ebele .JPG";
+import img4 from "../assets/Babafunke .jpg";
+import img5 from "../assets/Anthony Ebele.jpg";
 
 /* ---------------- DATA ---------------- */
 
@@ -104,7 +104,7 @@ export default function TeamPage() {
       {/* PRINCIPAL VIEW */}
       {view === "principal" && (
         <section className="max-w-6xl mx-auto px-6 pb-20">
-          <div className="grid md:grid-cols-2 gap-12 items-center bg-white p-8 rounded-2xl shadow-xl">
+          <div className="grid md:grid-cols-2 gap-12 items-center bg-white p-8 shadow-xl">
             <img
               src={principal.image}
               className="rounded-xl w-full object-cover object-top"
@@ -136,7 +136,7 @@ export default function TeamPage() {
                 className="bg-white rounded-2xl shadow-lg overflow-hidden cursor-pointer"
                 onClick={() => setActiveMember(m)}
               >
-                <div className="h-72 w-full overflow-hidden">
+                <div className="h-72 p-24 w-full overflow-hidden">
                   {m.image ? (
                     <img
                       src={m.image}

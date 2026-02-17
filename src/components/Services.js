@@ -7,7 +7,7 @@ import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 
-import heroImage from "../assets/splash2.jpg";
+import heroImage from "../assets/splash4.jpg";
 import {
   FaBalanceScale,
   FaCalculator,
@@ -54,7 +54,7 @@ export default function ServicesSection() {
   const [activeCard, setActiveCard] = useState(null);
 
   return (
-    <section className="w-full py-16 sm:py-20 bg-gray-50 overflow-hidden">
+    <section className="w-full py-16 sm:py-20 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
         {/* LEFT IMAGE */}
         <motion.div

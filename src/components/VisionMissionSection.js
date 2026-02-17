@@ -5,94 +5,93 @@ export default function VisionMissionSection() {
   const sectionRef = useRef(null);
   const [visible, setVisible] = useState(false);
 
-  // Scroll reveal
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-        }
-      },
-      { threshold: 0.3 },
+      ([entry]) => entry.isIntersecting && setVisible(true),
+      { threshold: 0.25 },
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
   }, []);
+
+  const Card = ({ icon, title, text, accent, delay }) => (
+    <div
+      className={`group relative flex items-center justify-center transition-all duration-1000
+      ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20"}`}
+      style={{ transitionDelay: delay }}
+    >
+      {/* Rotating Gradient Ring */}
+      <div
+        className={`absolute w-[340px] h-[340px] rounded-full blur-md opacity-60
+        bg-gradient-to-r ${accent}
+        animate-spin-slow group-hover:opacity-100`}
+      />
+
+      {/* Main Circle */}
+      <div
+        className="relative w-[300px] h-[300px] rounded-full bg-white shadow-xl
+        flex flex-col items-center justify-center text-center p-10
+        transition-all duration-500 group-hover:scale-105 group-hover:shadow-2xl"
+      >
+        {/* Floating Icon Badge */}
+        <div
+          className={`absolute -top-10 w-20 h-20 rounded-full flex items-center justify-center
+          text-white text-3xl shadow-lg ${accent} group-hover:scale-110 transition`}
+        >
+          {icon}
+        </div>
+
+        {/* Title */}
+        <h3 className="text-2xl font-bold text-blue-700 mt-6 mb-4">{title}</h3>
+
+        {/* Divider */}
+        <div className="w-16 h-1 bg-yellow-400 mb-4 rounded-full group-hover:w-24 transition-all"></div>
+
+        {/* Text */}
+        <p className="text-gray-600 text-sm leading-relaxed group-hover:text-gray-800 transition">
+          {text}
+        </p>
+      </div>
+    </div>
+  );
 
   return (
     <section
-      id="vision-mission"
       ref={sectionRef}
-      className="py-20 bg-gray-50 overflow-hidden font-sans"
+      className="py-24 bg-gradient-to-b from-gray-50 to-white overflow-hidden"
     >
-      <div className="container mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-6">
         {/* Heading */}
         <div
-          className={`text-center transition-all duration-[2000ms] ${
-            visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-          }`}
+          className={`text-center mb-20 transition-all duration-1000
+          ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-blue-700">
+          <h2 className="text-4xl md:text-5xl font-bold text-blue-800">
             Our Vision & Mission
           </h2>
-          <p className="text-gray-600 font-bold mt-4">
+          <p className="text-gray-500 font-medium mt-4">
             Trusted insight and sustainable growth
           </p>
         </div>
 
-        {/* Cards */}
-        <div className="grid md:grid-cols-2 gap-10 mt-16">
-          {/* Vision Card */}
-          <div
-            className={`bg-white rounded-2xl shadow-md hover:shadow-2xl transform transition-all duration-500 hover:-translate-y-3 p-10 relative border-t-4 border-yellow-400 ${
-              visible
-                ? "opacity-100 translate-x-0"
-                : "opacity-0 -translate-x-10"
-            }`}
-          >
-            <div className="text-yellow-700 text-5xl mb-6 flex justify-center transition-transform duration-500 hover:scale-110">
-              <FaEye />
-            </div>
+        {/* Circles */}
+        <div className="flex flex-col lg:flex-row items-center justify-center gap-24">
+          <Card
+            icon={<FaEye />}
+            title="Vision"
+            delay="0.2s"
+            accent="from-yellow-100 to-gray-200"
+            text="To build a resilient, high-performing professional services firm that consistently delivers measurable value and supports sustainable organisational growth."
+          />
 
-            <h3 className="text-2xl font-semibold text-center text-blue-700 mb-4">
-              Vision
-            </h3>
-
-            <p className="text-gray-700 text-center leading-relaxed">
-              To build a resilient, high-performing professional services firm
-              that consistently delivers measurable value and supports the
-              sustainable growth of the organisations we serve.
-            </p>
-          </div>
-
-          {/* Mission Card */}
-          <div
-            className={`bg-white rounded-2xl shadow-md hover:shadow-2xl transform transition-all duration-500 hover:-translate-y-3 p-10 relative border-t-4 border-blue-400 ${
-              visible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"
-            }`}
-          >
-            <div className="text-blue-700 text-5xl mb-6 flex justify-center transition-transform duration-500 hover:scale-110">
-              <FaBullseye />
-            </div>
-
-            <h3 className="text-2xl font-semibold text-center text-blue-700 mb-4">
-              Mission
-            </h3>
-
-            <p className="text-gray-700 text-center leading-relaxed">
-              Our mission is to deliver high-quality assurance and advisory
-              services that strengthen governance, enhance transparency, and
-              create measurable value for the organisations we serve.
-            </p>
-          </div>
+          <Card
+            icon={<FaBullseye />}
+            title="Mission"
+            delay="0.4s"
+            accent="from-blue-100 to-indigo-200"
+            text="To deliver high-quality assurance and advisory services that strengthen governance, enhance transparency, and create measurable value."
+          />
         </div>
       </div>
     </section>

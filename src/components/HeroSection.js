@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import img1 from "../assets/DSC_8105.JPG";
-import img2 from "../assets/splash1.jpg";
+import img2 from "../assets/splash5.jpg";
 import img3 from "../assets/splash2.jpg";
 
 export default function HeroSection() {
@@ -90,7 +90,7 @@ export default function HeroSection() {
             <Link
               to="/servicepage"
               className="inline-flex items-center gap-2 
-              bg-blue-600 hover:bg-blue-700 
+              bg-yellow-600 hover:bg-blue-700 
               text-white px-6 py-3 rounded-full 
               font-semibold tracking-wide
               shadow-md hover:shadow-lg 

@@ -1,9 +1,9 @@
-import img1 from "../assets/Principal_ Mrs Sofowora.jpg";
-import img2 from "../assets/MsAlamutu.jpg";
+import img1 from "../assets/Madam Sofowora.jpg";
+import img2 from "../assets/Ms Alamutu.jpg";
 import img3 from "../assets/Mr FusiAkinkungbe.jpg";
 import img4 from "../assets/Mr Anthony Ebele .JPG";
 import img6 from "../assets/heroimage1.jpg";
-import img7 from "../assets/Mrs Babafunke Ajibade.jpg";
+import img7 from "../assets/Babafunke .jpg";
 
 const teamData = [
   {

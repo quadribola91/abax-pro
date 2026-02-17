@@ -20,7 +20,7 @@ export default function FooterSection() {
   const currentYear = new Date().getFullYear(); // Dynamic year
 
   return (
-    <footer className="bg-blue-900 text-white mt-20 font-sans relative">
+    <footer className="bg-white text-black mt-20 font-sans relative">
       <div className="max-w-7xl mx-auto px-6 py-14">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
           {/* Logo + Description */}
@@ -31,7 +31,7 @@ export default function FooterSection() {
               className="max-w-[170px] mb-5"
             />
 
-            <p className="text-white/80 leading-relaxed mb-6 font-sans">
+            <p className="text-black/80 leading-relaxed mb-6 font-sans">
               Providing professional services to businesses and individuals with
               integrity, excellence, and a client-first approach.
             </p>
@@ -39,7 +39,7 @@ export default function FooterSection() {
             {/* Social */}
             <a
               href="#"
-              className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-white/10 hover:bg-brandYellow hover:text-[#0B3A6E] transition duration-300"
+              className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-blue-800 hover:bg-brandYellow hover:text-[#0B3A6E] transition duration-300"
             >
               <FaLinkedinIn size={14} />
             </a>
@@ -51,7 +51,7 @@ export default function FooterSection() {
               Quick Links
             </h3>
 
-            <ul className="space-y-3 text-white/90 font-sans">
+            <ul className="space-y-3 text-black/90 font-sans">
               <li>
                 <Link to="/" className="hover:text-brandYellow transition">
                   Home
@@ -92,7 +92,7 @@ export default function FooterSection() {
               Our Services
             </h3>
 
-            <ul className="space-y-3 text-white/90 font-sans">
+            <ul className="space-y-3 text-black/90 font-sans">
               <li>Audit & Assurance</li>
               <li>Accountancy & Financial Reporting</li>
               <li>Tax Advisory & Compliance</li>
@@ -120,7 +120,7 @@ export default function FooterSection() {
               />
               <button
                 type="submit"
-                className="bg-brandYellow text-[#0B3A6E] px-4 py-2 rounded-lg font-semibold hover:bg-yellow-400 transition"
+                className="bg-blue-200 text-[#0B3A6E] px-4 py-2 rounded-lg font-semibold hover:bg-yellow-400 transition"
               >
                 Subscribe
               </button>
@@ -129,7 +129,7 @@ export default function FooterSection() {
         </div>
 
         {/* Divider */}
-        <div className="border-t border-white/20 mt-10 pt-6 text-center text-white/70 text-sm font-sans">
+        <div className="border-t border-white/20 bg-blue-100 mt-10 pt-6 text-center text-black/70 text-sm font-sans">
           © {currentYear} Abax Professional Services. All Rights Reserved.
         </div>
       </div>
