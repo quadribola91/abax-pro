@@ -129,7 +129,7 @@ export default function FooterSection() {
         </div>
 
         {/* Divider */}
-        <div className="border-t border-white/20 bg-blue-100 mt-10 pt-6 text-center text-black/70 text-sm font-sans">
+        <div className="border-t border-white/20 mt-10 pt-6 text-center text-black/70 text-sm font-sans">
           © {currentYear} Abax Professional Services. All Rights Reserved.
         </div>
       </div>

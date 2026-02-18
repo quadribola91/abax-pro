@@ -178,10 +178,10 @@ export default function Navbar() {
         </Link>
 
         {/* Blogs Mobile */}
-        <div className="text-center">
+        <div className="w-full flex flex-col items-center">
           <button
             onClick={() => toggleDropdown("blogs")}
-            className="flex items-center gap-2"
+            className="flex items-center justify-center gap-2 w-full py-2 font-semibold"
           >
             Blogs
             <span
@@ -194,14 +194,20 @@ export default function Navbar() {
           </button>
 
           <div
-            className={`overflow-hidden transition-all duration-500 ${
-              openDropdown === "blogs" ? "max-h-40 mt-3" : "max-h-0"
+            className={`overflow-hidden transition-all duration-500 w-full flex flex-col items-center ${
+              openDropdown === "blogs" ? "max-h-40 mt-2" : "max-h-0"
             }`}
           >
-            <div onClick={closeMobileMenu} className="block py-2">
+            <div
+              onClick={closeMobileMenu}
+              className="w-full text-center py-2 hover:bg-gray-100 rounded"
+            >
               Publications & News
             </div>
-            <div onClick={closeMobileMenu} className="block py-2">
+            <div
+              onClick={closeMobileMenu}
+              className="w-full text-center py-2 hover:bg-gray-100 rounded"
+            >
               Image Gallery
             </div>
           </div>

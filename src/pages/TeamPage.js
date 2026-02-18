@@ -16,7 +16,7 @@ const principal = {
   name: "Olapeju Sofowora B.SC, FCA, FCIT",
   designation: "Principal Consultant",
   image: OlapejuImage,
-  bio: `Olapeju E. Sofowora is the Founding Partner of ABAX Professional Services, bringing over 30 years of experience across audit, tax, corporate finance, and professional advisory services.
+  bio: `Olapeju E. Sofowora is the Founding Partner of ABAX Professional Services, bringing about 40 years of experience across audit, tax, corporate finance, and professional advisory services.
 She began her career at Coopers & Lybrand (now PricewaterhouseCoopers), later held senior roles in the banking sector, and went on to establish and lead multiple professional services practices, including serving as Partner and Managing Partner at Abax-OOSA Professionals for over 17 years. Her passion for quality professional services led her to establish Binary Consulting Limited, a Human Resources Consulting firm specialising in recruitment, outsourcing  and training for clients across different industries.
 Olapeju is a Fellow of the Institute of Chartered Accountants of Nigeria (ICAN) and the Chartered Institute of Taxation of Nigeria (CITN), a Certified Information Systems Auditor (CISA), and holds a degree in Statistics from the University of Ilorin. She has served on corporate and institutional boards, including First City Monument Bank Group, Royal Trust Assurance Limited (Merged with Crusader Insurance), Olashore International School Association, the Educational Committee of the Chartered Institute of Taxation and as an Executive Committee Member of the Money Market Association of Nigeria, and remains active in governance, compliance, and professional development initiatives.
 `,
@@ -132,29 +132,42 @@ export default function TeamPage() {
             {teamMembers.map((m, i) => (
               <motion.div
                 key={i}
-                whileHover={{ y: -6 }}
-                className="bg-white rounded-2xl shadow-lg overflow-hidden cursor-pointer"
+                whileHover={{ y: -8 }}
+                transition={{ type: "spring", stiffness: 200 }}
+                className="bg-white hover:shadow-2xl 
+  transition-all duration-500 cursor-pointer border border-gray-100
+  hover:border-blue-200 group"
                 onClick={() => setActiveMember(m)}
               >
-                <div className="h-72 p-24 w-full overflow-hidden">
-                  {m.image ? (
-                    <img
-                      src={m.image}
-                      className="h-full w-full object-cover object-top"
-                    />
-                  ) : (
-                    <div className="h-full w-full bg-gray-200 flex items-center justify-center text-gray-500">
-                      No Image
-                    </div>
-                  )}
-                </div>
+                <div className="flex items-center gap-5 p-6">
+                  {/* Image */}
+                  <div className="w-20 h-20 flex-shrink-0 overflow-hidden ring-2 ring-transparent group-hover:ring-blue-400 transition-all duration-500">
+                    {m.image ? (
+                      <img
+                        src={m.image}
+                        className="w-full h-full object-cover object-top group-hover:scale-110 transition duration-500"
+                      />
+                    ) : (
+                      <div className="w-full h-full bg-gray-200 flex items-center justify-center text-gray-500 text-xs">
+                        No Image
+                      </div>
+                    )}
+                  </div>
 
-                <div className="p-5">
-                  <h3 className="font-semibold text-lg">{m.name}</h3>
-                  <p className="text-blue-600 text-sm">{m.designation}</p>
-                  <p className="text-gray-500 text-xs mt-2 italic">
-                    Click to read more...
-                  </p>
+                  {/* Name + Designation */}
+                  <div className="flex-1 min-w-0">
+                    <h3 className="font-semibold text-lg text-gray-800 group-hover:text-blue-700 transition truncate">
+                      {m.name}
+                    </h3>
+
+                    <p className="text-blue-600 text-sm truncate">
+                      {m.designation}
+                    </p>
+
+                    <p className="text-gray-400 text-xs mt-1 italic opacity-0 group-hover:opacity-100 transition">
+                      Click to view profile →
+                    </p>
+                  </div>
                 </div>
               </motion.div>
             ))}
@@ -180,10 +193,13 @@ export default function TeamPage() {
             </button>
 
             {activeMember.image && (
-              <img
-                src={activeMember.image}
-                className="rounded-lg mb-6 object-cover object-top w-full h-72"
-              />
+              <div className="mb-6 flex justify-center">
+                <img
+                  src={activeMember.image}
+                  alt={activeMember.name}
+                  className="max-h-[400px] w-auto object-contain rounded-xl shadow-md"
+                />
+              </div>
             )}
 
             <h2 className="text-2xl font-bold">{activeMember.name}</h2>

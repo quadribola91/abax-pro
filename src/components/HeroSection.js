@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import img1 from "../assets/DSC_8105.JPG";
 import img2 from "../assets/splash5.jpg";
@@ -24,87 +24,109 @@ export default function HeroSection() {
   ];
 
   const [index, setIndex] = useState(0);
-  const [animate, setAnimate] = useState(true);
-  const intervalRef = useRef(null);
+  const [typedTitle, setTypedTitle] = useState("");
+  const [typedText, setTypedText] = useState("");
 
-  // Auto-slide every 5 seconds
+  const typingSpeed = 30;
+  const slideInterval = useRef(null);
+  const typingInterval = useRef(null);
+
+  // AUTO SLIDE
   useEffect(() => {
-    intervalRef.current = setInterval(() => {
+    slideInterval.current = setInterval(() => {
       setIndex((prev) => (prev + 1) % slides.length);
-    }, 5000);
-    return () => clearInterval(intervalRef.current);
+    }, 7000);
+
+    return () => clearInterval(slideInterval.current);
   }, []);
 
-  // Trigger vertical animation on index change
+  // TYPEWRITER FIXED
   useEffect(() => {
-    setAnimate(false);
-    const timeout = setTimeout(() => {
-      setAnimate(true);
-    }, 50);
-    return () => clearTimeout(timeout);
+    clearInterval(typingInterval.current);
+
+    const fullTitle = slides[index].title;
+    const fullText = slides[index].text;
+
+    setTypedTitle("");
+    setTypedText("");
+
+    let currentTitle = "";
+    let currentText = "";
+    let charIndex = 0;
+    let typingTitle = true;
+
+    typingInterval.current = setInterval(() => {
+      if (typingTitle) {
+        currentTitle += fullTitle.charAt(charIndex);
+        setTypedTitle(currentTitle);
+        charIndex++;
+
+        if (charIndex === fullTitle.length) {
+          typingTitle = false;
+          charIndex = 0;
+        }
+      } else {
+        currentText += fullText.charAt(charIndex);
+        setTypedText(currentText);
+        charIndex++;
+
+        if (charIndex === fullText.length) {
+          clearInterval(typingInterval.current);
+        }
+      }
+    }, typingSpeed);
+
+    return () => clearInterval(typingInterval.current);
   }, [index]);
 
   return (
-    <section className="relative w-full overflow-hidden font-sans">
-      {/* IMAGE SLIDER */}
-      <div
-        className="flex transition-transform duration-[2000ms] ease-in-out"
-        style={{
-          width: `${slides.length * 100}%`,
-          transform: `translateX(-${index * (100 / slides.length)}%)`,
-        }}
-      >
-        {slides.map((slide, i) => (
-          <div
-            key={i}
-            className="relative w-full flex-shrink-0 h-[70vh] sm:h-[60vh] md:h-[70vh] lg:h-[80vh]"
-            style={{ width: `${100 / slides.length}%` }}
-          >
-            <img
-              src={slide.image}
-              alt={slide.title}
-              className="absolute inset-0 w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-black/30"></div>
-          </div>
-        ))}
-      </div>
-
-      {/* TEXT CONTAINER (Now Fixed & Independent) */}
-      <div className="absolute bottom-8 left-6 sm:left-12 md:left-16 z-20 max-w-md sm:max-w-lg md:max-w-xl">
+    <section className="relative w-full h-[80vh] overflow-hidden font-sans">
+      {/* BACKGROUND FADE */}
+      {slides.map((slide, i) => (
         <div
-          className={`backdrop-blur-lg bg-white/70 border border-white/40 
-          p-6 md:p-8 rounded-2xl shadow-2xl
-          transition-all duration-700 ease-out transform
-          ${animate ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
+          key={i}
+          className={`absolute inset-0 transition-opacity duration-[2000ms] ease-in-out ${
+            i === index ? "opacity-100 z-10" : "opacity-0 z-0"
+          }`}
         >
-          <h1 className="text-gray-900 font-extrabold text-xl sm:text-2xl md:text-3xl lg:text-4xl leading-snug">
-            {slides[index].title}
-          </h1>
+          <img
+            src={slide.image}
+            alt={slide.title}
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-black/50"></div>
+        </div>
+      ))}
 
-          <p className="mt-3 text-gray-700 text-sm sm:text-base md:text-lg leading-relaxed">
-            {slides[index].text}
-          </p>
+      {/* DYNAMIC TEXT */}
+      <div className="absolute z-20 bottom-20 left-6 sm:left-12 md:left-20 max-w-2xl text-white">
+        <h1 className="font-extrabold text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight">
+          {typedTitle}
+          <span className="animate-pulse">|</span>
+        </h1>
 
-          <div className="mt-6">
-            <Link
-              to="/servicepage"
-              className="inline-flex items-center gap-2 
+        <p className="mt-5 text-base sm:text-lg md:text-xl text-gray-200 leading-relaxed">
+          {typedText}
+        </p>
+
+        <div className="mt-8">
+          <Link
+            to="/servicepage"
+            className="inline-flex items-center gap-2 
               bg-yellow-600 hover:bg-blue-700 
-              text-white px-6 py-3 rounded-full 
+              text-white px-8 py-3 rounded-full 
               font-semibold tracking-wide
-              shadow-md hover:shadow-lg 
+              shadow-lg hover:shadow-xl 
               transition-all duration-300 
               hover:scale-105"
-            >
-              Our Services →
-            </Link>
-          </div>
+          >
+            Our Services →
+          </Link>
         </div>
       </div>
 
-      {/* DOT INDICATORS */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-3 z-30">
+      {/* DOT NAVIGATION */}
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3 z-30">
         {slides.map((_, i) => (
           <button
             key={i}

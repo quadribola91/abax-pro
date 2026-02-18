@@ -14,7 +14,7 @@ const teamData = [
       "Founding Partner with 30+ years experience in audit, tax, corporate finance, and advisory services. Passionate about governance and professional development.",
     image: img1,
     fullBio: `
-Olapeju E. Sofowora is the Founding Partner of ABAX Professional Services, bringing over 30 years of experience across audit, tax, corporate finance, and professional advisory services.
+Olapeju E. Sofowora is the Founding Partner of ABAX Professional Services, bringing about 40 years of experience across audit, tax, corporate finance, and professional advisory services.
 
 She began her career at Coopers & Lybrand (now PricewaterhouseCoopers), later held senior roles in the banking sector, and went on to establish and lead multiple professional services practices, including serving as Partner and Managing Partner at Abax-OOSA Professionals for over 17 years. Her passion for quality professional services led her to establish Binary Consulting Limited, a Human Resources Consulting firm specialising in recruitment, outsourcing and training for clients across different industries.
 
@@ -56,8 +56,8 @@ She has served on corporate and institutional boards, including First City Monum
     image: img4,
   },
   {
-    id: "oluwadare-osoneye",
-    name: "Oluwadare Osoneye",
+    id: "Dare-osoneye",
+    name: "Dare Osoneye",
     role: "Team Lead",
     shortBio:
       "HR consulting expert specializing in recruitment, outsourcing, and training.",

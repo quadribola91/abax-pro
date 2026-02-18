@@ -1,50 +1,58 @@
 // src/pages/ServicesPage.js
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React, { useState, useRef } from "react";
+import { motion, AnimatePresence, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 import services from "../components/ServicesData";
 import heroImage from "../assets/Copy of DSC_2464.JPG";
 
-// Accordion Section inside dropdown
-const AccordionSection = ({ section, isOpen, onClick }) => {
-  return (
-    <div className="border rounded-xl overflow-hidden bg-white">
-      <button
-        onClick={onClick}
-        className="w-full flex justify-between items-center px-5 py-4 text-left font-semibold text-gray-800 hover:bg-gray-50"
-      >
-        {section.title}
-        <span className={`transition-transform ${isOpen ? "rotate-180" : ""}`}>
-          ⌄
-        </span>
-      </button>
+// Accordion Section
+const AccordionSection = ({ section, isOpen, onClick }) => (
+  <div className="border rounded-xl overflow-hidden bg-white">
+    <button
+      onClick={onClick}
+      className="w-full flex justify-between items-center px-5 py-4 text-left font-semibold text-gray-800 hover:bg-gray-50"
+    >
+      {section.title}
+      <span className={`transition-transform ${isOpen ? "rotate-180" : ""}`}>
+        ⌄
+      </span>
+    </button>
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          initial={{ height: 0, opacity: 0 }}
+          animate={{ height: "auto", opacity: 1 }}
+          exit={{ height: 0, opacity: 0 }}
+          className="px-6 pb-5"
+        >
+          <ul className="space-y-2 text-gray-600">
+            {section.points.map((point, i) => (
+              <li key={i} className="flex items-start gap-2">
+                <span className="text-blue-600 mt-1">✓</span>
+                {point}
+              </li>
+            ))}
+          </ul>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  </div>
+);
 
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            className="px-6 pb-5"
-          >
-            <ul className="space-y-2 text-gray-600">
-              {section.points.map((point, i) => (
-                <li key={i} className="flex items-start gap-2">
-                  <span className="text-blue-600 mt-1">✓</span>
-                  {point}
-                </li>
-              ))}
-            </ul>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
-  );
-};
-
-// Service Card
-const ServiceCard = ({ service, active, setActive }) => {
+// Service Card with dynamic entrance
+const ServiceCard = ({ service, active, setActive, index }) => {
   const Icon = service.icon;
   const [openSection, setOpenSection] = useState(null);
+
+  // Animation controls
+  const controls = useAnimation();
+  const [ref, inView] = useInView({ threshold: 0.2 });
+
+  React.useEffect(() => {
+    if (inView) {
+      controls.start({ x: 0, opacity: 1, transition: { duration: 0.8 } });
+    }
+  }, [controls, inView]);
 
   const toggleCard = () => {
     setActive(active === service.id ? null : service.id);
@@ -53,8 +61,11 @@ const ServiceCard = ({ service, active, setActive }) => {
 
   return (
     <motion.div
-      layout
-      className="bg-white rounded-3xl shadow-lg overflow-hidden"
+      ref={ref}
+      initial={{ x: index % 2 === 0 ? -200 : 200, opacity: 0 }}
+      animate={controls}
+      whileHover={{ scale: 1.03, boxShadow: "0px 10px 20px rgba(0,0,0,0.15)" }}
+      className="bg-white rounded-3xl shadow-lg overflow-hidden cursor-pointer"
     >
       {/* CARD HEADER */}
       <div className="p-8 flex items-start gap-5">
@@ -129,13 +140,14 @@ export default function ServicesPage() {
 
       {/* SERVICES */}
       <div className="py-20 bg-gray-50 min-h-screen">
-        <div className="container mx-auto px-4 md:px-6 space-y-8">
-          {services.map((service) => (
+        <div className="container mx-auto px-4 md:px-6 space-y-12">
+          {services.map((service, index) => (
             <ServiceCard
               key={service.id}
               service={service}
               active={activeService}
               setActive={setActiveService}
+              index={index}
             />
           ))}
         </div>

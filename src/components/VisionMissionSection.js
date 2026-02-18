@@ -78,7 +78,6 @@ export default function VisionMissionSection() {
         {/* Circles */}
         <div className="flex flex-col lg:flex-row items-center justify-center gap-24">
           <Card
-            icon={<FaEye />}
             title="Vision"
             delay="0.2s"
             accent="from-yellow-100 to-gray-200"
@@ -86,7 +85,6 @@ export default function VisionMissionSection() {
           />
 
           <Card
-            icon={<FaBullseye />}
             title="Mission"
             delay="0.4s"
             accent="from-blue-100 to-indigo-200"
