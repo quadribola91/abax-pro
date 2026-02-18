@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-import heroImg from "../assets/splash1.jpg";
+import heroImg from "../assets/Team1.jpg";
 
 import OlapejuImage from "../assets/Madam Sofowora.jpg";
 import AyoImage from "../assets/MsAlamutu.jpg";

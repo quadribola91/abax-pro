@@ -3,7 +3,7 @@ import React, { useState, useRef } from "react";
 import { motion, AnimatePresence, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import services from "../components/ServicesData";
-import heroImage from "../assets/Copy of DSC_2464.JPG";
+import heroImage from "../assets/splash5.jpg";
 
 // Accordion Section
 const AccordionSection = ({ section, isOpen, onClick }) => (
