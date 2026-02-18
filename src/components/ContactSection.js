@@ -33,25 +33,33 @@ export default function ContactSection() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const data = new URLSearchParams();
-    data.append("name", name);
-    data.append("email", email);
-    data.append("message", message);
+    setLoading(true);
+    setStatus("Sending message...");
 
     try {
-      const response = await fetch(
-        "https://www.abaxps.com/abaxps/api/sendmail.php",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: data.toString(),
-        },
-      );
-      const result = await response.json();
-      setStatus(result.success ? "✅ Message sent!" : `❌ ${result.error}`);
-    } catch (err) {
-      console.error(err);
+      const response = await fetch("https://formspree.io/f/xrealqko", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name,
+          email,
+          message,
+        }),
+      });
+
+      setLoading(false);
+
+      if (response.ok) {
+        setStatus("✅ Message sent successfully!");
+        setName("");
+        setEmail("");
+        setMessage("");
+      } else {
+        setStatus("❌ Failed to send message. Try again later.");
+      }
+    } catch (error) {
+      console.error(error);
+      setLoading(false);
       setStatus("❌ Server error. Try again later.");
     }
   };
