@@ -11,6 +11,7 @@ import FooterSection from "./components/FooterSection";
 import PageLoader from "./components/PageLoader";
 import ScrollToTop from "./components/ScrollToTop";
 import ScrollToTopButton from "./components/ScrollToTopButton";
+import AbaxChatbot from "./components/AbaxChatbot";
 
 import Home from "./pages/Home";
 import About from "./pages/About";
@@ -53,6 +54,7 @@ function AppContent() {
 
       <FooterSection />
       <ScrollToTopButton />
+      <AbaxChatbot />
     </>
   );
 }
