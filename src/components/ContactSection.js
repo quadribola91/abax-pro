@@ -33,33 +33,25 @@ export default function ContactSection() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
-    setStatus("Sending message...");
+
+    const data = new URLSearchParams();
+    data.append("name", name);
+    data.append("email", email);
+    data.append("message", message);
 
     try {
       const response = await fetch(
         "https://www.abaxps.com/abaxps/api/sendmail.php",
         {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ name, email, message }),
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: data.toString(),
         },
       );
-
-      const data = await response.json();
-      setLoading(false);
-
-      if (data.success) {
-        setStatus("✅ Message sent successfully!");
-        setName("");
-        setEmail("");
-        setMessage("");
-      } else {
-        setStatus(`❌ ${data.error || "Failed to send message."}`);
-      }
-    } catch (error) {
-      console.error(error);
-      setLoading(false);
+      const result = await response.json();
+      setStatus(result.success ? "✅ Message sent!" : `❌ ${result.error}`);
+    } catch (err) {
+      console.error(err);
       setStatus("❌ Server error. Try again later.");
     }
   };
