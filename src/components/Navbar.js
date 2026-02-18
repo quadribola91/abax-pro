@@ -9,7 +9,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const onScroll = () => {
-      setScrolled(window.scrollY > 80);
+      setScrolled(window.scrollY > 40);
     };
 
     window.addEventListener("scroll", onScroll);
@@ -26,28 +26,30 @@ export default function Navbar() {
   };
 
   return (
-    <header
-      className={`fixed w-full z-50 transition-all duration-500 font-sans ${
-        scrolled ? "bg-white shadow-lg" : "bg-transparent"
-      }`}
-    >
+    <header className="fixed w-full z-50 bg-transparent transition-all duration-500">
       <div className="container mx-auto px-6 py-4 flex items-center justify-between">
-        {/* Logo */}
-        <Link to="/" className="flex items-center gap-3">
-          <img src={logo} alt="logo" className="h-16 w-auto" />
+        {/* LOGO */}
+        <Link to="/" className="z-50">
+          <img
+            src={logo}
+            alt="logo"
+            className={`h-16 transition-all duration-500 ${
+              scrolled ? "scale-110 brightness-110 drop-shadow-md" : "scale-100"
+            }`}
+          />
         </Link>
 
-        {/* Desktop Navigation */}
+        {/* DESKTOP NAV */}
         <nav
-          className={`hidden md:flex items-center gap-8 font-medium transition-colors duration-300 font-sans ${
-            scrolled ? "text-gray-700" : "text-white"
+          className={`hidden md:flex items-center gap-10 transition-all duration-300 ${
+            scrolled ? "text-black font-semibold" : "text-white font-medium"
           }`}
         >
           <NavLink to="/" className="hover:text-blue-600 transition">
             Home
           </NavLink>
 
-          {/* About */}
+          {/* ABOUT */}
           <div className="relative group">
             <button className="flex items-center gap-1 hover:text-blue-600 transition">
               About
@@ -60,7 +62,7 @@ export default function Navbar() {
               </svg>
             </button>
 
-            <div className="absolute left-0 mt-3 w-48 bg-white shadow-xl rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 text-black">
+            <div className="absolute left-0 mt-3 w-52 bg-white shadow-xl rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 text-black">
               <Link to="/about" className="block px-4 py-2 hover:bg-gray-50">
                 About Us
               </Link>
@@ -70,12 +72,11 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Services */}
           <Link to="/servicepage" className="hover:text-blue-600 transition">
             Services
           </Link>
 
-          {/* Blogs */}
+          {/* BLOGS */}
           <div className="relative group">
             <button className="flex items-center gap-1 hover:text-blue-600 transition">
               Blogs
@@ -88,7 +89,7 @@ export default function Navbar() {
               </svg>
             </button>
 
-            <div className="absolute left-0 mt-3 w-48 bg-white shadow-xl rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 text-black">
+            <div className="absolute left-0 mt-3 w-56 bg-white shadow-xl rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 text-black">
               <div className="block px-4 py-2 hover:bg-gray-50">
                 Publications & News
               </div>
@@ -103,7 +104,7 @@ export default function Navbar() {
           </NavLink>
         </nav>
 
-        {/* Mobile Hamburger */}
+        {/* MOBILE TOGGLE */}
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
           className="md:hidden relative w-8 h-8 z-50"
@@ -126,94 +127,87 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile Menu */}
+      {/* MOBILE MENU */}
       <div
-        className={`fixed inset-0 bg-white flex flex-col items-center justify-center gap-8 text-xl font-semibold transform transition-transform duration-500 ${
+        className={`fixed inset-0 bg-white flex flex-col items-center justify-center text-xl font-semibold transition-transform duration-500 ${
           mobileOpen ? "translate-x-0" : "translate-x-full"
         } md:hidden`}
       >
-        <img src={logo} alt="logo" className="h-20 mb-6" />
+        {/* <img src={logo} alt="logo" className="h-20 mb-8" /> */}
 
-        <Link to="/" onClick={closeMobileMenu}>
+        <Link
+          to="/"
+          onClick={closeMobileMenu}
+          className="py-3 w-full text-center"
+        >
           Home
         </Link>
 
-        {/* About Mobile */}
-        <div className="text-center">
+        {/* ABOUT MOBILE */}
+        <div className="w-full text-center">
           <button
             onClick={() => toggleDropdown("about")}
-            className="flex items-center gap-2"
+            className="w-full py-3"
           >
             About
-            <span
-              className={`transition-transform duration-300 ${
-                openDropdown === "about" ? "rotate-180" : ""
-              }`}
-            >
-              ▼
-            </span>
           </button>
 
           <div
             className={`overflow-hidden transition-all duration-500 ${
-              openDropdown === "about" ? "max-h-40 mt-3" : "max-h-0"
+              openDropdown === "about" ? "max-h-40" : "max-h-0"
             }`}
           >
-            <Link to="/about" onClick={closeMobileMenu} className="block py-2">
+            <Link
+              to="/about"
+              onClick={closeMobileMenu}
+              className="block py-2 w-full"
+            >
               About Us
             </Link>
-            <Link to="/team" onClick={closeMobileMenu} className="block py-2">
+            <Link
+              to="/team"
+              onClick={closeMobileMenu}
+              className="block py-2 w-full"
+            >
               Our Team
             </Link>
           </div>
         </div>
 
-        {/* Services Mobile */}
         <Link
           to="/servicepage"
           onClick={closeMobileMenu}
-          className="block py-2"
+          className="py-3 w-full text-center"
         >
           Services
         </Link>
 
-        {/* Blogs Mobile */}
-        <div className="w-full flex flex-col items-center">
+        {/* BLOGS MOBILE */}
+        <div className="w-full text-center">
           <button
             onClick={() => toggleDropdown("blogs")}
-            className="flex items-center justify-center gap-2 w-full py-2 font-semibold"
+            className="w-full py-3"
           >
             Blogs
-            <span
-              className={`transition-transform duration-300 ${
-                openDropdown === "blogs" ? "rotate-180" : ""
-              }`}
-            >
-              ▼
-            </span>
           </button>
 
           <div
-            className={`overflow-hidden transition-all duration-500 w-full flex flex-col items-center ${
-              openDropdown === "blogs" ? "max-h-40 mt-2" : "max-h-0"
+            className={`overflow-hidden transition-all duration-500 ${
+              openDropdown === "blogs" ? "max-h-40" : "max-h-0"
             }`}
           >
-            <div
-              onClick={closeMobileMenu}
-              className="w-full text-center py-2 hover:bg-gray-100 rounded"
-            >
+            <div className="block py-2 w-full text-center">
               Publications & News
             </div>
-            <div
-              onClick={closeMobileMenu}
-              className="w-full text-center py-2 hover:bg-gray-100 rounded"
-            >
-              Image Gallery
-            </div>
+            <div className="block py-2 w-full text-center">Image Gallery</div>
           </div>
         </div>
 
-        <Link to="/contact" onClick={closeMobileMenu}>
+        <Link
+          to="/contact"
+          onClick={closeMobileMenu}
+          className="py-3 w-full text-center"
+        >
           Contact
         </Link>
       </div>

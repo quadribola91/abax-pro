@@ -65,7 +65,7 @@ const ServiceCard = ({ service, active, setActive, index }) => {
       initial={{ x: index % 2 === 0 ? -200 : 200, opacity: 0 }}
       animate={controls}
       whileHover={{ scale: 1.03, boxShadow: "0px 10px 20px rgba(0,0,0,0.15)" }}
-      className="bg-white rounded-3xl shadow-lg overflow-hidden cursor-pointer"
+      className="bg-white  overflow-hidden cursor-pointer"
     >
       {/* CARD HEADER */}
       <div className="p-8 flex items-start gap-5">
@@ -79,7 +79,7 @@ const ServiceCard = ({ service, active, setActive, index }) => {
 
           <button
             onClick={toggleCard}
-            className="mt-5 bg-blue-600 text-white px-5 py-2 rounded-xl hover:bg-blue-700 transition text-sm font-medium"
+            className="mt- text-black font-italic px-5 py-2 rounded-sm hover:bg-blue-200 transition text-sm"
           >
             {active === service.id ? "Close" : "Read More"}
           </button>
