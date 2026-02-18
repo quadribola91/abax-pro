@@ -11,7 +11,7 @@ const teamData = [
     name: "Olapeju Sofowora B.SC, FCA, FCIT",
     role: "Principal Consultant",
     shortBio:
-      "Principal Consultant with 30+ years experience in audit, tax, corporate finance, and advisory services. Passionate about governance and professional development.",
+      "Principal Consultant with about 40 years experience in audit, tax, corporate finance, and advisory services. Passionate about governance and professional development.",
     image: img1,
     fullBio: `
 Olapeju E. Sofowora is the Founding Partner of ABAX Professional Services, bringing about 40 years of experience across audit, tax, corporate finance, and professional advisory services.
