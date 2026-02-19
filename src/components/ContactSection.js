@@ -7,7 +7,7 @@ import {
   FaClock,
 } from "react-icons/fa";
 
-import contactHero from "../assets/splash2.jpg";
+import contactHero from "../assets/contact2.jpg";
 
 export default function ContactSection() {
   const contactInfo = [

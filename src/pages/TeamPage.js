@@ -2,13 +2,14 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-import heroImg from "../assets/Team1.jpg";
+import heroImg from "../assets/landing1.jpg";
 
 import OlapejuImage from "../assets/Madam Sofowora.jpg";
 import AyoImage from "../assets/MsAlamutu.jpg";
 import img3 from "../assets/Mr FusiAkinkungbe.jpg";
 import img4 from "../assets/Babafunke .jpg";
 import img5 from "../assets/Anthony Ebele.jpg";
+import img6 from "../assets/Dare Osoneye.JPG";
 
 /* ---------------- DATA ---------------- */
 
@@ -54,7 +55,7 @@ Mr. Akinkugbe has led high-profile audit, forensic, and advisory engagements, wi
   {
     name: "Dare Osoneye",
     designation: "Head, Human Resourse Consulting",
-    image: "",
+    image: img6,
     bio: "",
   },
 ];

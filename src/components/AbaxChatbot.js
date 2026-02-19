@@ -41,7 +41,7 @@ export default function AbaxChatbot() {
         onClick={() => setOpen(!open)}
         className="fixed bottom-24 right-6 bg-white hover:bg-blue-500 text-blue-900 hover:text-white shadow-md px-5 py-3 rounded-full shadow-lg hover:bg-blue-800 transition-all z-50"
       >
-        {open ? "Close" : "ABAX Assistant"}
+        {open ? "Close" : "Abaxps Assistant"}
       </button>
 
       {open && (

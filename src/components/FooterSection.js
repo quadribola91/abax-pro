@@ -99,7 +99,16 @@ export default function FooterSection() {
               <li>Advisory Services</li>
             </ul>
           </div>
+          <div>
+            <h3 className="text-brandYellow text-lg font-semibold mb-5 font-sans">
+              Contact Us
+            </h3>
 
+            <ul className="space-y-3 text-black/90 font-sans">
+              <li>Our location: No. 2, Ibeju Lekki Street, Ikoyi, Lagos</li>
+              <li>Telephone: +234-911-010-8791</li>
+            </ul>
+          </div>
           {/* Newsletter */}
           <div>
             <h3 className="text-brandYellow text-lg font-semibold mb-5 font-sans">

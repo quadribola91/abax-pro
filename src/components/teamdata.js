@@ -2,7 +2,7 @@ import img1 from "../assets/Madam Sofowora.jpg";
 import img2 from "../assets/Ms Alamutu.jpg";
 import img3 from "../assets/Mr FusiAkinkungbe.jpg";
 import img4 from "../assets/Mr Anthony Ebele .JPG";
-import img6 from "../assets/heroimage1.jpg";
+import img6 from "../assets/Dare Osoneye.JPG";
 import img7 from "../assets/Babafunke .jpg";
 
 const teamData = [

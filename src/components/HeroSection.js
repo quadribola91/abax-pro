@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
-import img1 from "../assets/Team1.jpg";
+import img1 from "../assets/landing.jpg";
 import img2 from "../assets/splash5.jpg";
-import img3 from "../assets/Team2.jpg";
+import img3 from "../assets/landing1.jpg";
 
 export default function HeroSection() {
   const slides = [
@@ -113,8 +113,8 @@ export default function HeroSection() {
           <Link
             to="/servicepage"
             className="inline-flex items-center gap-2 
-              bg-yellow-600 hover:bg-blue-700 
-              text-white px-8 py-3 rounded-full 
+              bg-transparent border-sm hover:bg-gray-50 
+              text-white hover:text-black px-8 py-3 rounded-full 
               font-semibold tracking-wide
               shadow-lg hover:shadow-xl 
               transition-all duration-300 
