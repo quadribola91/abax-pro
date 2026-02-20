@@ -139,8 +139,8 @@ export default function TeamPage() {
 
       {/* TEAM GRID */}
       {view === "team" && (
-        <section className="max-w-7xl mx-auto px-6 pb-24">
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 pb-24">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {teamMembers.map((m, i) => {
               const isSenior = m.designation.includes("Senior Consultant");
               const isLead =
@@ -150,7 +150,7 @@ export default function TeamPage() {
               return (
                 <motion.div
                   key={i}
-                  whileHover={{ y: -8 }}
+                  whileHover={{ y: -6 }}
                   transition={{ type: "spring", stiffness: 200 }}
                   onClick={() => setActiveMember(m)}
                   className={`
@@ -166,11 +166,13 @@ export default function TeamPage() {
               hover:border-blue-400
             `}
                 >
-                  <div className="flex items-center gap-5 p-6">
-                    {/* Image */}
+                  {/* CARD CONTENT */}
+                  <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 p-4 sm:p-6 text-center sm:text-left">
+                    {/* IMAGE */}
                     <div
                       className={`
-                  w-20 h-20 flex-shrink-0 overflow-hidden rounded-full
+                  w-24 h-24 sm:w-20 sm:h-20
+                  flex-shrink-0 overflow-hidden rounded-full
                   transition-all duration-500
                   ${
                     isSenior
@@ -194,11 +196,11 @@ export default function TeamPage() {
                       )}
                     </div>
 
-                    {/* Name + Designation */}
+                    {/* TEXT */}
                     <div className="flex-1 min-w-0">
                       <h3
                         className={`
-                    truncate transition
+                    transition break-words
                     ${
                       isSenior
                         ? "text-xl font-extrabold text-gray-900"
@@ -213,7 +215,7 @@ export default function TeamPage() {
 
                       <p
                         className={`
-                    truncate mt-1
+                    mt-1 break-words
                     ${
                       isSenior
                         ? "text-blue-700 font-bold"
@@ -226,8 +228,8 @@ export default function TeamPage() {
                         {m.designation}
                       </p>
 
-                      <p className="text-gray-400 text-xs mt-2 italic opacity-0 group-hover:opacity-100 transition">
-                        Click to view profile →
+                      <p className="text-gray-400 text-xs mt-2 italic opacity-0 sm:group-hover:opacity-100 transition">
+                        Tap to view profile →
                       </p>
                     </div>
                   </div>
@@ -237,6 +239,7 @@ export default function TeamPage() {
           </div>
         </section>
       )}
+
       {/* SIDE PANEL PROFILE */}
       <AnimatePresence>
         {activeMember && (
