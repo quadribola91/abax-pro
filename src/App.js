@@ -6,6 +6,7 @@ import {
   useLocation,
 } from "react-router-dom";
 import { Helmet, HelmetProvider } from "react-helmet-async";
+import ReactGA from "react-ga4";
 
 import Navbar from "./components/Navbar";
 import FooterSection from "./components/FooterSection";
@@ -27,11 +28,24 @@ function AppContent() {
   const location = useLocation();
   const [loading, setLoading] = useState(false);
 
+  // 🔹 Initialize GA once
+  useEffect(() => {
+    ReactGA.initialize("G-33ZY1HZJLR");
+  }, []);
+
+  // 🔹 Track pageviews + handle loader
   useEffect(() => {
     setLoading(true);
+
+    ReactGA.send({
+      hitType: "pageview",
+      page: location.pathname,
+    });
+
     const timer = setTimeout(() => {
       setLoading(false);
     }, 500);
+
     return () => clearTimeout(timer);
   }, [location]);
 

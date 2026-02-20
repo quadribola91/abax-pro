@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-import heroImg from "../assets/landing1.jpg";
+import heroImg from "../assets/landing.jpg";
 import OlapejuImage from "../assets/Madam Sofowora.jpg";
 import AyoImage from "../assets/MsAlamutu.jpg";
 import img3 from "../assets/Mr FusiAkinkungbe.jpg";
@@ -63,7 +63,7 @@ export default function TeamPage() {
       {/* <Navbar /> */}
 
       {/* HERO */}
-      <section className="relative min-h-[95vh] flex items-center justify-center text-center text-white overflow-hidden">
+      <section className="relative min-h-[55vh] flex items-center justify-center text-center text-white overflow-hidden">
         <img
           src={heroImg}
           alt="Team Background"
