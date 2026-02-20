@@ -39,15 +39,23 @@ const teamMembers = [
   },
   {
     name: "Anthony Ebele",
-    designation: "Head, Tax Management and Advisory",
+    designation: "Team Lead / Head, Tax Management and Advisory",
     image: img5,
-    bio: "",
+    bio: `Anthony Ebele is a results-driven tax professional with strong expertise in tax compliance, advisory, and regulatory reporting. Experienced in providing end-to-end tax solutions, including corporate and personal income tax, VAT, withholding tax, Capital Gain Tax and tax audits for both Federal and State Revenue Services.
+
+He is skilled in interpreting tax laws, identifying tax-saving opportunities, and ensuring full compliance with statutory requirements.
+
+Anthony is also known for delivering practical, client-focused advice, maintaining strong relationships with tax authorities, and supporting businesses in managing tax risks efficiently while aligning with evolving regulatory frameworks.`,
   },
   {
     name: "Dare Osoneye",
     designation: "Head, Human Resource Consulting",
     image: img6,
-    bio: "",
+    bio: `Dare Osoneye is a dedicated Human Resource professional with years of experience in talent acquisition, employee relations, performance management and organisational development. As an HR generalist and an HR Consultant, she is skilled at implementing HR strategies that enhance productivity, retention and compliance.
+
+She holds an M.Sc. in Employment Relations and HR Management and a B.Sc. in Economics, both from the University of Lagos. She is a certified and licensed HR consultant with her CIPM HR practitioners license, a member of the Society for Human Resource Management (SHRM-CP) and an associate of the Chartered Institute of Personnel Management (ACIPM).
+
+She is passionate about driving corporate efficiency through strategic HR initiatives.`,
   },
 ];
 
@@ -133,46 +141,102 @@ export default function TeamPage() {
       {view === "team" && (
         <section className="max-w-7xl mx-auto px-6 pb-24">
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
-            {teamMembers.map((m, i) => (
-              <motion.div
-                key={i}
-                whileHover={{ y: -8 }}
-                transition={{ type: "spring", stiffness: 200 }}
-                className="bg-white hover:shadow-2xl transition-all duration-500 cursor-pointer border border-gray-100 hover:border-blue-200 group rounded-xl"
-                onClick={() => setActiveMember(m)}
-              >
-                <div className="flex items-center gap-5 p-6">
-                  <div className="w-20 h-20 flex-shrink-0 overflow-hidden ring-2 ring-transparent group-hover:ring-blue-400 transition-all duration-500 rounded-full">
-                    {m.image ? (
-                      <img
-                        src={m.image}
-                        alt={m.name}
-                        className="w-full h-full object-cover object-top group-hover:scale-110 transition duration-500"
-                      />
-                    ) : (
-                      <div className="w-full h-full bg-gray-200 flex items-center justify-center text-gray-500 text-xs">
-                        No Image
-                      </div>
-                    )}
+            {teamMembers.map((m, i) => {
+              const isSenior = m.designation.includes("Senior Consultant");
+              const isLead =
+                m.designation.includes("Team Lead") ||
+                m.designation.includes("Head");
+
+              return (
+                <motion.div
+                  key={i}
+                  whileHover={{ y: -8 }}
+                  transition={{ type: "spring", stiffness: 200 }}
+                  onClick={() => setActiveMember(m)}
+                  className={`
+              cursor-pointer group rounded-xl transition-all duration-500
+              border
+              ${
+                isSenior
+                  ? "bg-white shadow-2xl border-blue-300"
+                  : isLead
+                    ? "bg-white shadow-md border-gray-200"
+                    : "bg-white shadow border-gray-100"
+              }
+              hover:border-blue-400
+            `}
+                >
+                  <div className="flex items-center gap-5 p-6">
+                    {/* Image */}
+                    <div
+                      className={`
+                  w-20 h-20 flex-shrink-0 overflow-hidden rounded-full
+                  transition-all duration-500
+                  ${
+                    isSenior
+                      ? "ring-4 ring-blue-500"
+                      : isLead
+                        ? "ring-2 ring-gray-300"
+                        : "ring-2 ring-transparent"
+                  }
+                `}
+                    >
+                      {m.image ? (
+                        <img
+                          src={m.image}
+                          alt={m.name}
+                          className="w-full h-full object-cover object-top group-hover:scale-110 transition duration-500"
+                        />
+                      ) : (
+                        <div className="w-full h-full bg-gray-200 flex items-center justify-center text-gray-500 text-xs">
+                          No Image
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Name + Designation */}
+                    <div className="flex-1 min-w-0">
+                      <h3
+                        className={`
+                    truncate transition
+                    ${
+                      isSenior
+                        ? "text-xl font-extrabold text-gray-900"
+                        : isLead
+                          ? "text-lg font-semibold text-gray-800"
+                          : "text-lg font-medium text-gray-700"
+                    }
+                  `}
+                      >
+                        {m.name}
+                      </h3>
+
+                      <p
+                        className={`
+                    truncate mt-1
+                    ${
+                      isSenior
+                        ? "text-blue-700 font-bold"
+                        : isLead
+                          ? "text-blue-600 font-semibold"
+                          : "text-blue-600 font-medium"
+                    }
+                  `}
+                      >
+                        {m.designation}
+                      </p>
+
+                      <p className="text-gray-400 text-xs mt-2 italic opacity-0 group-hover:opacity-100 transition">
+                        Click to view profile →
+                      </p>
+                    </div>
                   </div>
-                  <div className="flex-1 min-w-0">
-                    <h3 className="font-semibold text-lg text-gray-800 group-hover:text-blue-700 transition truncate">
-                      {m.name}
-                    </h3>
-                    <p className="text-blue-600 text-sm truncate">
-                      {m.designation}
-                    </p>
-                    <p className="text-gray-400 text-xs mt-1 italic opacity-0 group-hover:opacity-100 transition">
-                      Click to view profile →
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
+                </motion.div>
+              );
+            })}
           </div>
         </section>
       )}
-
       {/* SIDE PANEL PROFILE */}
       <AnimatePresence>
         {activeMember && (

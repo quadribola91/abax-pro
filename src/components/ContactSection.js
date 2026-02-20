@@ -14,7 +14,7 @@ export default function ContactSection() {
     {
       icon: <FaMapMarkerAlt />,
       title: "Our Location",
-      detail: "No. 2, Ibeju Lekki Street, Ikoyi, Lagos",
+      detail: "No. 2, Ibeju Lekki Street, Dolphin Estate Ikoyi, Lagos",
     },
     {
       icon: <FaClock />,
@@ -37,7 +37,7 @@ export default function ContactSection() {
     setStatus("Sending message...");
 
     try {
-      const response = await fetch("https://formspree.io/f/xrealqko", {
+      const response = await fetch("https://formspree.io/f/mnjbayyk", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
