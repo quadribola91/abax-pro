@@ -4,43 +4,43 @@ import img1 from "../assets/landing.jpg";
 import img2 from "../assets/splash5.jpg";
 import img3 from "../assets/landing1.jpg";
 
-export default function HeroSection() {
-  const slides = [
-    {
-      image: img1,
-      title: "Trusted Insight & Sustainable Growth",
-      text: "We bring together deep professional expertise and real-world experience, enabling us to provide solutions that are both technically sound and commercially relevant.",
-    },
-    {
-      image: img2,
-      title: "Professional Excellence & Strategic Advisory",
-      text: "Delivering audit, tax and advisory services built on integrity, precision and measurable outcomes.",
-    },
-    {
-      image: img3,
-      title: "Building Governance & Financial Strength",
-      text: "We help organisations strengthen governance, manage risk and unlock sustainable performance.",
-    },
-  ];
+/* Move slides outside component (prevents dependency warnings) */
+const slides = [
+  {
+    image: img1,
+    title: "Trusted Insight & Sustainable Growth",
+    text: "We bring together deep professional expertise and real-world experience, enabling us to provide solutions that are both technically sound and commercially relevant.",
+  },
+  {
+    image: img2,
+    title: "Professional Excellence & Strategic Advisory",
+    text: "Delivering audit, tax and advisory services built on integrity, precision and measurable outcomes.",
+  },
+  {
+    image: img3,
+    title: "Building Governance & Financial Strength",
+    text: "We help organisations strengthen governance, manage risk and unlock sustainable performance.",
+  },
+];
 
+export default function HeroSection() {
   const [index, setIndex] = useState(0);
   const [typedTitle, setTypedTitle] = useState("");
   const [typedText, setTypedText] = useState("");
 
   const typingSpeed = 30;
-  const slideInterval = useRef(null);
   const typingInterval = useRef(null);
 
-  // AUTO SLIDE
+  /* AUTO SLIDE */
   useEffect(() => {
-    slideInterval.current = setInterval(() => {
+    const interval = setInterval(() => {
       setIndex((prev) => (prev + 1) % slides.length);
-    }, 7000);
+    }, 5000);
 
-    return () => clearInterval(slideInterval.current);
+    return () => clearInterval(interval);
   }, []);
 
-  // TYPEWRITER FIXED
+  /* TYPEWRITER */
   useEffect(() => {
     clearInterval(typingInterval.current);
 
@@ -113,7 +113,7 @@ export default function HeroSection() {
           <Link
             to="/servicepage"
             className="inline-flex items-center gap-2 
-              bg-transparent border-sm hover:bg-gray-50 
+              bg-transparent hover:bg-gray-50 
               text-white hover:text-black px-8 py-3 rounded-full 
               font-semibold tracking-wide
               shadow-lg hover:shadow-xl 

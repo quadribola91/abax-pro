@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import { FaEye, FaBullseye } from "react-icons/fa";
 
 export default function VisionMissionSection() {
   const sectionRef = useRef(null);

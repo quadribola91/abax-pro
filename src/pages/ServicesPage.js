@@ -1,5 +1,5 @@
 // src/pages/ServicesPage.js
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { motion, AnimatePresence, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import services from "../components/ServicesData";

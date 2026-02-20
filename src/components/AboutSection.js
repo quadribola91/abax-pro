@@ -1,6 +1,6 @@
 import React from "react";
 import Img1 from "../assets/teamimage1.jpg";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
 export default function AboutSection() {
