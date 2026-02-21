@@ -50,7 +50,7 @@ She has served on corporate and institutional boards, including First City Monum
   {
     id: "anthony-ebele",
     name: "Anthony Ebele (HND ACTI)",
-    role: "Team Lead / Head, Tax Management and Advisory",
+    role: "Head, Tax Management and Advisory",
     shortBio:
       "Specialist in tax advisory and management for corporate clients.",
     image: img4,
@@ -58,7 +58,7 @@ She has served on corporate and institutional boards, including First City Monum
   {
     id: "Dare-osoneye",
     name: "Dare Osoneye (BSc, MSc, CIPM, SHRM-CP, ACIPM)",
-    role: "Team Lead /Head, Human Resources Consulting",
+    role: "Head, Human Resources Consulting",
     shortBio:
       "HR consulting expert specializing in recruitment, outsourcing, and training.",
     image: img6,
