@@ -14,7 +14,7 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Lock body scroll when mobile open
+  // Lock body scroll when mobile menu is open
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "auto";
   }, [mobileOpen]);
@@ -54,58 +54,17 @@ export default function Navbar() {
             Home
           </NavLink>
 
-          {/* ABOUT */}
-          <div className="relative group">
-            <button className="flex items-center gap-1 hover:text-blue-600 transition">
-              About
-              <svg
-                className="w-4 h-4 transition-transform duration-300 group-hover:rotate-180"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path d="M5.23 7.21L10 10.94l4.77-4.73 1.06 1.06-5.3 5.3-5.3-5.3z" />
-              </svg>
-            </button>
-
-            <div className="absolute left-0 mt-3 w-56 bg-white shadow-xl rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 text-gray-700">
-              <Link
-                to="/about"
-                className="block px-4 py-3 hover:bg-gray-50 border-b"
-              >
-                About Us
-              </Link>
-              <Link to="/team" className="block px-4 py-3 hover:bg-gray-50">
-                Our Team
-              </Link>
-            </div>
-          </div>
+          <NavLink to="/about" className="hover:text-blue-600 transition">
+            About
+          </NavLink>
 
           <NavLink to="/servicepage" className="hover:text-blue-600 transition">
             Services
           </NavLink>
 
-          {/* BLOGS */}
-          <div className="relative group">
-            <button className="flex items-center gap-1 hover:text-blue-600 transition">
-              Blogs
-              <svg
-                className="w-4 h-4 transition-transform duration-300 group-hover:rotate-180"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path d="M5.23 7.21L10 10.94l4.77-4.73 1.06 1.06-5.3 5.3-5.3-5.3z" />
-              </svg>
-            </button>
-
-            <div className="absolute left-0 mt-3 w-56 bg-white shadow-xl rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 text-gray-700">
-              <div className="block px-4 py-3 hover:bg-gray-50 border-b">
-                Publications & News
-              </div>
-              <div className="block px-4 py-3 hover:bg-gray-50">
-                Image Gallery
-              </div>
-            </div>
-          </div>
+          <NavLink to="/blogs" className="hover:text-blue-600 transition">
+            Blogs
+          </NavLink>
 
           <NavLink to="/contact" className="hover:text-blue-600 transition">
             Contact
@@ -135,105 +94,103 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* MOBILE MENU OVERLAY */}
+      {/* MOBILE FULLSCREEN MENU */}
       <div
-        className={`fixed inset-0 bg-black/40 backdrop-blur-sm transition-opacity duration-500 ${
-          mobileOpen ? "opacity-100 visible" : "opacity-0 invisible"
-        } md:hidden`}
-        onClick={closeMobileMenu}
-      />
-
-      {/* MOBILE MENU PANEL */}
-      <div
-        className={`fixed top-0 right-0 h-full w-80 bg-white shadow-2xl transform transition-transform duration-500 md:hidden ${
+        className={`fixed inset-0 bg-white flex flex-col items-center justify-center text-lg font-semibold transform transition-transform duration-500 md:hidden ${
           mobileOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        <div className="flex flex-col mt-24 text-lg font-semibold text-gray-800">
-          <Link
-            onClick={closeMobileMenu}
-            to="/"
-            className="px-6 py-4 border-b hover:bg-gray-50"
+        <Link
+          to="/"
+          onClick={closeMobileMenu}
+          className="py-4 w-4/5 text-center border-b"
+        >
+          Home
+        </Link>
+
+        {/* ABOUT */}
+        <div className="w-4/5 border-b text-center">
+          <button
+            onClick={() => toggleDropdown("about")}
+            className="w-full py-4 flex justify-center items-center gap-2"
           >
-            Home
-          </Link>
-
-          {/* ABOUT */}
-          <div className="border-b">
-            <button
-              onClick={() => toggleDropdown("about")}
-              className="w-full text-left px-6 py-4 flex justify-between items-center"
+            About
+            <span
+              className={`transition-transform duration-300 ${
+                openDropdown === "about" ? "rotate-180" : ""
+              }`}
             >
-              About
-              <span
-                className={`transition-transform ${openDropdown === "about" ? "rotate-180" : ""}`}
-              >
-                ⌄
-              </span>
-            </button>
+              ⌄
+            </span>
+          </button>
 
-            <div
-              className={`overflow-hidden transition-all duration-500 ${openDropdown === "about" ? "max-h-40" : "max-h-0"}`}
+          <div
+            className={`overflow-hidden transition-[max-height,opacity] duration-500 ease-in-out ${
+              openDropdown === "about"
+                ? "max-h-screen opacity-100"
+                : "max-h-0 opacity-0"
+            }`}
+          >
+            <Link
+              to="/about"
+              onClick={closeMobileMenu}
+              className="block py-3 border-t"
             >
-              <Link
-                onClick={closeMobileMenu}
-                to="/about"
-                className="block px-10 py-3 border-t hover:bg-gray-50"
-              >
-                About Us
-              </Link>
-              <Link
-                onClick={closeMobileMenu}
-                to="/team"
-                className="block px-10 py-3 border-t hover:bg-gray-50"
-              >
-                Our Team
-              </Link>
-            </div>
+              About Us
+            </Link>
+            <Link
+              to="/team"
+              onClick={closeMobileMenu}
+              className="block py-3 border-t"
+            >
+              Our Team
+            </Link>
           </div>
-
-          <Link
-            onClick={closeMobileMenu}
-            to="/servicepage"
-            className="px-6 py-4 border-b hover:bg-gray-50"
-          >
-            Services
-          </Link>
-
-          {/* BLOGS */}
-          <div className="border-b">
-            <button
-              onClick={() => toggleDropdown("blogs")}
-              className="w-full text-left px-6 py-4 flex justify-between items-center"
-            >
-              Blogs
-              <span
-                className={`transition-transform ${openDropdown === "blogs" ? "rotate-180" : ""}`}
-              >
-                ⌄
-              </span>
-            </button>
-
-            <div
-              className={`overflow-hidden transition-all duration-500 ${openDropdown === "blogs" ? "max-h-40" : "max-h-0"}`}
-            >
-              <div className="px-10 py-3 border-t hover:bg-gray-50">
-                Publications & News
-              </div>
-              <div className="px-10 py-3 border-t hover:bg-gray-50">
-                Image Gallery
-              </div>
-            </div>
-          </div>
-
-          <Link
-            onClick={closeMobileMenu}
-            to="/contact"
-            className="px-6 py-4 border-b hover:bg-gray-50"
-          >
-            Contact
-          </Link>
         </div>
+
+        <Link
+          to="/servicepage"
+          onClick={closeMobileMenu}
+          className="py-4 w-4/5 text-center border-b"
+        >
+          Services
+        </Link>
+
+        {/* BLOGS */}
+        <div className="w-4/5 border-b text-center">
+          <button
+            onClick={() => toggleDropdown("blogs")}
+            className="w-full py-4 flex justify-center items-center gap-2"
+          >
+            Blogs
+            <span
+              className={`transition-transform duration-300 ${
+                openDropdown === "blogs" ? "rotate-180" : ""
+              }`}
+            >
+              ⌄
+            </span>
+          </button>
+
+          <div
+            className={`overflow-hidden transition-[max-height,opacity] duration-500 ease-in-out ${
+              openDropdown === "blogs"
+                ? "max-h-screen opacity-100"
+                : "max-h-0 opacity-0"
+            }`}
+          >
+            <div className="py-3 border-t">Publications & News</div>
+            <div className="py-3 border-t">Image Gallery</div>
+          </div>
+        </div>
+
+        <Link
+          to="/contact"
+          onClick={closeMobileMenu}
+          className="py-4 w-4/5 text-center border-b"
+        >
+          Contact
+        </Link>
       </div>
     </header>
   );
