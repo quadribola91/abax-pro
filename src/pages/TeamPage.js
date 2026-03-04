@@ -39,7 +39,7 @@ const teamMembers = [
   },
   {
     name: "Anthony Ebele",
-    designation: "Team Lead / Head, Tax Management and Advisory",
+    designation: "Head, Tax Management and Advisory",
     image: img5,
     bio: `Anthony Ebele is a results-driven tax professional with strong expertise in tax compliance, advisory, and regulatory reporting. Experienced in providing end-to-end tax solutions, including corporate and personal income tax, VAT, withholding tax, Capital Gain Tax and tax audits for both Federal and State Revenue Services.
 

@@ -1,18 +1,19 @@
 import React from "react";
 import { motion } from "framer-motion";
+import purposeImage from "../assets/DSC_8104 (1).JPG"; // <-- replace with your image
 
 export default function StoryPurposeSection() {
   return (
     <section className="py-24 bg-gray-50 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 bg-yellow-300 px-4 py-2 gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* ===================== */}
-          {/* OUR STORY */}
+          {/* ABOUT US */}
           {/* ===================== */}
           <motion.div
             initial={{ opacity: 0, x: -100 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1.8, ease: "easeOut" }}
+            transition={{ duration: 1.2, ease: "easeOut" }}
             viewport={{ once: true }}
             className="space-y-6"
           >
@@ -36,27 +37,22 @@ export default function StoryPurposeSection() {
           </motion.div>
 
           {/* ===================== */}
-          {/* OUR PURPOSE */}
+          {/* IMAGE SECTION */}
           {/* ===================== */}
           <motion.div
             initial={{ opacity: 0, x: 100 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1.8, ease: "easeOut" }}
+            transition={{ duration: 1.2, ease: "easeOut" }}
             viewport={{ once: true }}
-            className="bg-white p-8 md:p-12 rounded-xl shadow-md hover:shadow-xl transition-all duration-700 transform hover:-translate-y-2"
+            className="relative overflow-hidden rounded-xl shadow-lg"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-blue-900 mb-6">
-              Our Purpose
-            </h2>
-
-            <div className="h-1 w-20 bg-yellow-600 rounded-full mb-6" />
-
-            <p className="text-gray-700 text-lg leading-relaxed">
-              We believe that strong financial reporting, regulatory compliance,
-              and independent advisory frameworks are not merely statutory
-              obligations — they are essential to investor confidence,
-              organisational resilience, and sustainable economic growth.
-            </p>
+            <div className="overflow-hidden rounded-xl">
+              <img
+                src={purposeImage}
+                alt="About Abax"
+                className="w-full h-[400px] object-cover transform transition-transform duration-700 hover:scale-110"
+              />
+            </div>
           </motion.div>
         </div>
       </div>

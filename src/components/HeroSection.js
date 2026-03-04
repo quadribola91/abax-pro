@@ -92,7 +92,9 @@ export default function HeroSection() {
           <img
             src={slide.image}
             alt={slide.title}
-            className="w-full h-full object-cover"
+            className={`w-full h-full object-cover transition-transform duration-[7000ms] ease-linear ${
+              i === index ? "scale-110" : "scale-100"
+            }`}
           />
           <div className="absolute inset-0 bg-black/50"></div>
         </div>
@@ -113,12 +115,12 @@ export default function HeroSection() {
           <Link
             to="/servicepage"
             className="inline-flex items-center gap-2 
-              bg-transparent hover:bg-gray-50 
-              text-white hover:text-black px-8 py-3 rounded-full 
-              font-semibold tracking-wide
-              shadow-lg hover:shadow-xl 
-              transition-all duration-300 
-              hover:scale-105"
+            bg-transparent hover:bg-gray-50 
+            text-white hover:text-black px-8 py-3 rounded-full 
+            font-semibold tracking-wide
+            shadow-lg hover:shadow-xl 
+            transition-all duration-300 
+            hover:scale-105"
           >
             Our Services →
           </Link>

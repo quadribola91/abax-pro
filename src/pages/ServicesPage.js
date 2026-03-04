@@ -1,5 +1,5 @@
 // src/pages/ServicesPage.js
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import services from "../components/ServicesData";
@@ -17,19 +17,21 @@ const AccordionSection = ({ section, isOpen, onClick }) => (
         ⌄
       </span>
     </button>
+
     <AnimatePresence>
       {isOpen && (
         <motion.div
           initial={{ height: 0, opacity: 0 }}
           animate={{ height: "auto", opacity: 1 }}
           exit={{ height: 0, opacity: 0 }}
-          className="px-6 pb-5"
+          transition={{ duration: 0.4 }}
+          className="px-6 pb-5 overflow-hidden"
         >
           <ul className="space-y-2 text-gray-600">
             {section.points.map((point, i) => (
               <li key={i} className="flex items-start gap-2">
                 <span className="text-blue-600 mt-1">✓</span>
-                {point}
+                <span>{point}</span>
               </li>
             ))}
           </ul>
@@ -39,18 +41,20 @@ const AccordionSection = ({ section, isOpen, onClick }) => (
   </div>
 );
 
-// Service Card with dynamic entrance
+// Service Card
 const ServiceCard = ({ service, active, setActive, index }) => {
   const Icon = service.icon;
   const [openSection, setOpenSection] = useState(null);
-
-  // Animation controls
   const controls = useAnimation();
   const [ref, inView] = useInView({ threshold: 0.2 });
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (inView) {
-      controls.start({ x: 0, opacity: 1, transition: { duration: 0.8 } });
+      controls.start({
+        x: 0,
+        opacity: 1,
+        transition: { duration: 0.8 },
+      });
     }
   }, [controls, inView]);
 
@@ -62,31 +66,32 @@ const ServiceCard = ({ service, active, setActive, index }) => {
   return (
     <motion.div
       ref={ref}
-      initial={{ x: index % 2 === 0 ? -200 : 200, opacity: 0 }}
+      initial={{ x: index % 2 === 0 ? -120 : 120, opacity: 0 }}
       animate={controls}
-      whileHover={{ scale: 1.03, boxShadow: "0px 10px 20px rgba(0,0,0,0.15)" }}
-      className="bg-white  overflow-hidden cursor-pointer"
+      whileHover={{ scale: 1.02 }}
+      className="bg-white rounded-2xl shadow-md overflow-hidden w-full"
     >
-      {/* CARD HEADER */}
+      {/* HEADER */}
       <div className="p-8 flex items-start gap-5">
-        <div className="w-16 h-16 flex items-center justify-center rounded-full bg-blue-100 text-blue-600 text-2xl">
+        <div className="w-16 h-16 flex items-center justify-center rounded-full bg-blue-100 text-blue-600 text-2xl shrink-0">
           <Icon />
         </div>
 
         <div className="flex-1">
           <h3 className="text-2xl font-bold text-gray-800">{service.title}</h3>
+
           <p className="text-gray-600 mt-2">{service.shortDesc}</p>
 
           <button
             onClick={toggleCard}
-            className="mt- text-black font-italic px-5 py-2 rounded-sm hover:bg-blue-200 transition text-sm"
+            className="mt-4 text-blue-700 font-semibold hover:underline text-sm"
           >
             {active === service.id ? "Close" : "Read More"}
           </button>
         </div>
       </div>
 
-      {/* DROPDOWN CONTENT */}
+      {/* DROPDOWN */}
       <AnimatePresence>
         {active === service.id && (
           <motion.div
@@ -94,16 +99,15 @@ const ServiceCard = ({ service, active, setActive, index }) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            transition={{ duration: 0.4 }}
             className="px-8 pb-8 space-y-4 bg-gray-50"
           >
-            {service.sections.map((section, index) => (
+            {service.sections.map((section, idx) => (
               <AccordionSection
-                key={index}
+                key={idx}
                 section={section}
-                isOpen={openSection === index}
-                onClick={() =>
-                  setOpenSection(openSection === index ? null : index)
-                }
+                isOpen={openSection === idx}
+                onClick={() => setOpenSection(openSection === idx ? null : idx)}
               />
             ))}
           </motion.div>
@@ -117,20 +121,22 @@ export default function ServicesPage() {
   const [activeService, setActiveService] = useState(null);
 
   return (
-    <>
+    <div className="overflow-x-hidden scroll-smooth">
       {/* HERO */}
-      <section className="relative w-full h-[55vh] min-h-[420px] flex items-center justify-center">
+      <section className="relative w-full h-[55vh] min-h-[420px] flex items-center justify-center overflow-hidden">
         <img
           src={heroImage}
           alt="Our Professional Services"
           className="absolute inset-0 w-full h-full object-cover"
         />
+
         <div className="absolute inset-0 bg-gradient-to-r from-blue-950/80 to-blue-900/40"></div>
 
         <div className="relative text-center px-6 max-w-3xl text-white">
           <h1 className="text-4xl md:text-5xl font-serif font-bold">
             Our Service Catalogue
           </h1>
+
           <p className="mt-6 text-lg md:text-xl text-gray-200">
             Explore our comprehensive professional offerings designed to
             strengthen governance, compliance, and performance.
@@ -139,8 +145,8 @@ export default function ServicesPage() {
       </section>
 
       {/* SERVICES */}
-      <div className="py-20 bg-gray-50 min-h-screen">
-        <div className="container mx-auto px-4 md:px-6 space-y-12">
+      <section className="py-20 bg-gray-50 min-h-screen">
+        <div className="max-w-6xl mx-auto px-4 md:px-6 space-y-12">
           {services.map((service, index) => (
             <ServiceCard
               key={service.id}
@@ -151,7 +157,7 @@ export default function ServicesPage() {
             />
           ))}
         </div>
-      </div>
-    </>
+      </section>
+    </div>
   );
 }

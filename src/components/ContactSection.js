@@ -37,7 +37,7 @@ export default function ContactSection() {
     setStatus("Sending message...");
 
     try {
-      const response = await fetch("https://formspree.io/f/mnjbayyk", {
+      const response = await fetch("https://formspree.io/f/xkovqblr", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

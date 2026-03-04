@@ -57,7 +57,7 @@ She has served on corporate and institutional boards, including First City Monum
   },
   {
     id: "Dare-osoneye",
-    name: "Dare Osoneye (BSc, MSc, CIPM, SHRM-CP, ACIPM)",
+    name: "Dare Osoneye (BSc, MSc, SHRM-CP, ACIPM)",
     role: "Head, Human Resources Consulting",
     shortBio:
       "HR consulting expert specializing in recruitment, outsourcing, and training.",

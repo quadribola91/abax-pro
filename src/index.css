@@ -21,3 +21,11 @@ body {
 .animate-spin-slow {
   animation: spin-slow 18s linear infinite;
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
+}

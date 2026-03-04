@@ -7,14 +7,17 @@ export default function Navbar() {
   const [openDropdown, setOpenDropdown] = useState(null);
   const [scrolled, setScrolled] = useState(false);
 
+  // Detect scroll
   useEffect(() => {
-    const onScroll = () => {
-      setScrolled(window.scrollY > 40);
-    };
-
+    const onScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  // Lock body scroll when mobile open
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen ? "hidden" : "auto";
+  }, [mobileOpen]);
 
   const toggleDropdown = (key) => {
     setOpenDropdown((prev) => (prev === key ? null : key));
@@ -26,23 +29,25 @@ export default function Navbar() {
   };
 
   return (
-    <header className="fixed w-full z-50 bg-transparent transition-all duration-500">
-      <div className="container mx-auto px-6 py-4 flex items-center justify-between">
+    <header
+      className={`fixed w-full z-50 transition-all duration-500 ${
+        scrolled ? "bg-white shadow-md" : "bg-transparent"
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         {/* LOGO */}
         <Link to="/" className="z-50">
           <img
             src={logo}
             alt="logo"
-            className={`h-16 transition-all duration-500 ${
-              scrolled ? "scale-110 brightness-110 drop-shadow-md" : "scale-100"
-            }`}
+            className="h-14 md:h-16 transition-transform duration-300 hover:scale-105"
           />
         </Link>
 
         {/* DESKTOP NAV */}
         <nav
-          className={`hidden md:flex items-center gap-10 transition-all duration-300 ${
-            scrolled ? "text-black font-semibold" : "text-white font-medium"
+          className={`hidden md:flex items-center gap-10 transition-colors duration-300 ${
+            scrolled ? "text-gray-800 font-semibold" : "text-white font-medium"
           }`}
         >
           <NavLink to="/" className="hover:text-blue-600 transition">
@@ -58,23 +63,26 @@ export default function Navbar() {
                 viewBox="0 0 20 20"
                 fill="currentColor"
               >
-                <path d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" />
+                <path d="M5.23 7.21L10 10.94l4.77-4.73 1.06 1.06-5.3 5.3-5.3-5.3z" />
               </svg>
             </button>
 
-            <div className="absolute left-0 mt-3 w-52 bg-white shadow-xl rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 text-black">
-              <Link to="/about" className="block px-4 py-2 hover:bg-gray-50">
+            <div className="absolute left-0 mt-3 w-56 bg-white shadow-xl rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 text-gray-700">
+              <Link
+                to="/about"
+                className="block px-4 py-3 hover:bg-gray-50 border-b"
+              >
                 About Us
               </Link>
-              <Link to="/team" className="block px-4 py-2 hover:bg-gray-50">
+              <Link to="/team" className="block px-4 py-3 hover:bg-gray-50">
                 Our Team
               </Link>
             </div>
           </div>
 
-          <Link to="/servicepage" className="hover:text-blue-600 transition">
+          <NavLink to="/servicepage" className="hover:text-blue-600 transition">
             Services
-          </Link>
+          </NavLink>
 
           {/* BLOGS */}
           <div className="relative group">
@@ -85,15 +93,15 @@ export default function Navbar() {
                 viewBox="0 0 20 20"
                 fill="currentColor"
               >
-                <path d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" />
+                <path d="M5.23 7.21L10 10.94l4.77-4.73 1.06 1.06-5.3 5.3-5.3-5.3z" />
               </svg>
             </button>
 
-            <div className="absolute left-0 mt-3 w-56 bg-white shadow-xl rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 text-black">
-              <div className="block px-4 py-2 hover:bg-gray-50">
+            <div className="absolute left-0 mt-3 w-56 bg-white shadow-xl rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 text-gray-700">
+              <div className="block px-4 py-3 hover:bg-gray-50 border-b">
                 Publications & News
               </div>
-              <div className="block px-4 py-2 hover:bg-gray-50">
+              <div className="block px-4 py-3 hover:bg-gray-50">
                 Image Gallery
               </div>
             </div>
@@ -117,7 +125,7 @@ export default function Navbar() {
           <span
             className={`absolute w-8 h-0.5 transition-all duration-300 ${
               scrolled ? "bg-black" : "bg-white"
-            } ${mobileOpen ? "opacity-0" : "top-4"}`}
+            } ${mobileOpen ? "opacity-0 top-4" : "top-4"}`}
           />
           <span
             className={`absolute w-8 h-0.5 transition-all duration-300 ${
@@ -127,89 +135,105 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* MOBILE MENU */}
+      {/* MOBILE MENU OVERLAY */}
       <div
-        className={`fixed inset-0 bg-white flex flex-col items-center justify-center text-xl font-semibold transition-transform duration-500 ${
-          mobileOpen ? "translate-x-0" : "translate-x-full"
+        className={`fixed inset-0 bg-black/40 backdrop-blur-sm transition-opacity duration-500 ${
+          mobileOpen ? "opacity-100 visible" : "opacity-0 invisible"
         } md:hidden`}
+        onClick={closeMobileMenu}
+      />
+
+      {/* MOBILE MENU PANEL */}
+      <div
+        className={`fixed top-0 right-0 h-full w-80 bg-white shadow-2xl transform transition-transform duration-500 md:hidden ${
+          mobileOpen ? "translate-x-0" : "translate-x-full"
+        }`}
       >
-        {/* <img src={logo} alt="logo" className="h-20 mb-8" /> */}
-
-        <Link
-          to="/"
-          onClick={closeMobileMenu}
-          className="py-3 w-full text-center"
-        >
-          Home
-        </Link>
-
-        {/* ABOUT MOBILE */}
-        <div className="w-full text-center">
-          <button
-            onClick={() => toggleDropdown("about")}
-            className="w-full py-3"
+        <div className="flex flex-col mt-24 text-lg font-semibold text-gray-800">
+          <Link
+            onClick={closeMobileMenu}
+            to="/"
+            className="px-6 py-4 border-b hover:bg-gray-50"
           >
-            About
-          </button>
+            Home
+          </Link>
 
-          <div
-            className={`overflow-hidden transition-all duration-500 ${
-              openDropdown === "about" ? "max-h-40" : "max-h-0"
-            }`}
-          >
-            <Link
-              to="/about"
-              onClick={closeMobileMenu}
-              className="block py-2 w-full"
+          {/* ABOUT */}
+          <div className="border-b">
+            <button
+              onClick={() => toggleDropdown("about")}
+              className="w-full text-left px-6 py-4 flex justify-between items-center"
             >
-              About Us
-            </Link>
-            <Link
-              to="/team"
-              onClick={closeMobileMenu}
-              className="block py-2 w-full"
+              About
+              <span
+                className={`transition-transform ${openDropdown === "about" ? "rotate-180" : ""}`}
+              >
+                ⌄
+              </span>
+            </button>
+
+            <div
+              className={`overflow-hidden transition-all duration-500 ${openDropdown === "about" ? "max-h-40" : "max-h-0"}`}
             >
-              Our Team
-            </Link>
-          </div>
-        </div>
-
-        <Link
-          to="/servicepage"
-          onClick={closeMobileMenu}
-          className="py-3 w-full text-center"
-        >
-          Services
-        </Link>
-
-        {/* BLOGS MOBILE */}
-        <div className="w-full text-center">
-          <button
-            onClick={() => toggleDropdown("blogs")}
-            className="w-full py-3"
-          >
-            Blogs
-          </button>
-
-          <div
-            className={`overflow-hidden transition-all duration-500 ${
-              openDropdown === "blogs" ? "max-h-40" : "max-h-0"
-            }`}
-          >
-            <div className="block py-2 w-full text-center">
-              Publications & News
+              <Link
+                onClick={closeMobileMenu}
+                to="/about"
+                className="block px-10 py-3 border-t hover:bg-gray-50"
+              >
+                About Us
+              </Link>
+              <Link
+                onClick={closeMobileMenu}
+                to="/team"
+                className="block px-10 py-3 border-t hover:bg-gray-50"
+              >
+                Our Team
+              </Link>
             </div>
-            <div className="block py-2 w-full text-center">Image Gallery</div>
           </div>
-        </div>
 
-        <Link
-          to="/contact"
-          onClick={closeMobileMenu}
-          className="py-3 w-full text-center"
-        >
-          Contact
-        </Link>
+          <Link
+            onClick={closeMobileMenu}
+            to="/servicepage"
+            className="px-6 py-4 border-b hover:bg-gray-50"
+          >
+            Services
+          </Link>
+
+          {/* BLOGS */}
+          <div className="border-b">
+            <button
+              onClick={() => toggleDropdown("blogs")}
+              className="w-full text-left px-6 py-4 flex justify-between items-center"
+            >
+              Blogs
+              <span
+                className={`transition-transform ${openDropdown === "blogs" ? "rotate-180" : ""}`}
+              >
+                ⌄
+              </span>
+            </button>
+
+            <div
+              className={`overflow-hidden transition-all duration-500 ${openDropdown === "blogs" ? "max-h-40" : "max-h-0"}`}
+            >
+              <div className="px-10 py-3 border-t hover:bg-gray-50">
+                Publications & News
+              </div>
+              <div className="px-10 py-3 border-t hover:bg-gray-50">
+                Image Gallery
+              </div>
+            </div>
+          </div>
+
+          <Link
+            onClick={closeMobileMenu}
+            to="/contact"
+            className="px-6 py-4 border-b hover:bg-gray-50"
+          >
+            Contact
+          </Link>
+        </div>
       </div>
     </header>
   );
