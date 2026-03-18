@@ -72,6 +72,7 @@ export default function FooterSection() {
                   Services
                 </Link>
               </li>
+              <li>Blogs</li>{" "}
               <li>
                 <Link to="/team" className="hover:text-brandYellow transition">
                   Team

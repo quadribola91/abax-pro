@@ -9,6 +9,8 @@ import { Helmet, HelmetProvider } from "react-helmet-async";
 import ReactGA from "react-ga4";
 
 import Navbar from "./components/Navbar";
+import CookiePolicy from "./pages/CookiePolicy";
+import CookieBanner from "./components/CookieBanner";
 import FooterSection from "./components/FooterSection";
 import PageLoader from "./components/PageLoader";
 import ScrollToTop from "./components/ScrollToTop";
@@ -100,12 +102,14 @@ function AppContent() {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<ContactSection />} />
         <Route path="/team" element={<TeamPage />} />
+        <Route path="/cookie-policy" element={<CookiePolicy />} />
         <Route path="/servicepage" element={<ServicesPage />} />
       </Routes>
 
       <FooterSection />
       <ScrollToTopButton />
       <AbaxChatbot />
+      <CookieBanner />
     </>
   );
 }

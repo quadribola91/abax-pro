@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../assets/abax_no_bg.png";
+import { ChevronDownIcon } from "@heroicons/react/24/outline";
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -54,23 +55,54 @@ export default function Navbar() {
             Home
           </NavLink>
 
-          <NavLink to="/about" className="hover:text-blue-600 transition">
-            About
-          </NavLink>
+          {/* ABOUT DROPDOWN */}
+          <div className="relative group">
+            <button className="hover:text-blue-600 transition flex items-center gap-1">
+              About
+              <ChevronDownIcon className="w-4 h-4" />
+            </button>
+
+            <div className="absolute top-full left-0 mt-2 bg-white text-gray-800 shadow-lg rounded-md overflow-hidden opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300 min-w-[200px]">
+              <Link
+                to="/about"
+                className="block px-5 py-3 hover:bg-gray-100 whitespace-nowrap"
+              >
+                About Us
+              </Link>
+              <Link
+                to="/team"
+                className="block px-5 py-3 hover:bg-gray-100 whitespace-nowrap"
+              >
+                Our Team
+              </Link>
+            </div>
+          </div>
 
           <NavLink to="/servicepage" className="hover:text-blue-600 transition">
             Services
           </NavLink>
 
-          <NavLink to="/blogs" className="hover:text-blue-600 transition">
-            Blogs
-          </NavLink>
+          {/* BLOGS DROPDOWN (NOT CLICKABLE) */}
+          <div className="relative group">
+            <button className="hover:text-blue-600 transition flex items-center gap-1">
+              Blogs
+              <ChevronDownIcon className="w-4 h-4" />
+            </button>
+
+            <div className="absolute top-full left-0 mt-2 bg-white text-gray-800 shadow-lg rounded-md overflow-hidden opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300 min-w-[220px]">
+              <div className="px-5 py-3 hover:bg-gray-100 cursor-pointer whitespace-nowrap">
+                Publications & News
+              </div>
+              <div className="px-5 py-3 hover:bg-gray-100 cursor-pointer whitespace-nowrap">
+                Image Gallery
+              </div>
+            </div>
+          </div>
 
           <NavLink to="/contact" className="hover:text-blue-600 transition">
             Contact
           </NavLink>
         </nav>
-
         {/* MOBILE TOGGLE */}
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
