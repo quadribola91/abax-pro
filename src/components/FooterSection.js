@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaLinkedinIn } from "react-icons/fa";
 import footlogo from "../assets/ABAX logo_page-0001.jpg";
+import msiBadge from "../assets/certifications/MSIMember_Logo_PNG.png";
 
 export default function FooterSection() {
   const [email, setEmail] = useState("");
@@ -10,19 +11,19 @@ export default function FooterSection() {
   const handleSubscribe = (e) => {
     e.preventDefault();
     if (!email) return;
-    // Simulate subscription success
     setShowModal(true);
     setEmail("");
   };
 
   const closeModal = () => setShowModal(false);
 
-  const currentYear = new Date().getFullYear(); // Dynamic year
+  const currentYear = new Date().getFullYear();
 
   return (
     <footer className="bg-white text-black mt-20 font-sans relative">
       <div className="max-w-7xl mx-auto px-6 py-14">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
+        {/* Fixed grid layout */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
           {/* Logo + Description */}
           <div>
             <img
@@ -31,12 +32,11 @@ export default function FooterSection() {
               className="max-w-[170px] mb-5"
             />
 
-            <p className="text-black/80 leading-relaxed mb-6 font-sans">
+            <p className="text-black/80 leading-relaxed mb-6">
               Providing professional services to businesses and individuals with
               integrity, excellence, and a client-first approach.
             </p>
 
-            {/* Social */}
             <a
               href="https://www.linkedin.com/company/abax-professional-services"
               target="_blank"
@@ -49,11 +49,11 @@ export default function FooterSection() {
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-brandYellow text-lg font-semibold mb-5 font-sans">
+            <h3 className="text-brandYellow text-lg font-semibold mb-5">
               Quick Links
             </h3>
 
-            <ul className="space-y-3 text-black/90 font-sans">
+            <ul className="space-y-3 text-black/90">
               <li>
                 <Link to="/" className="hover:text-brandYellow transition">
                   Home
@@ -72,7 +72,7 @@ export default function FooterSection() {
                   Services
                 </Link>
               </li>
-              <li>Blogs</li>{" "}
+              <li>Blogs</li>
               <li>
                 <Link to="/team" className="hover:text-brandYellow transition">
                   Team
@@ -91,62 +91,57 @@ export default function FooterSection() {
 
           {/* Services */}
           <div>
-            <h3 className="text-brandYellow text-lg font-semibold mb-5 font-sans">
+            <h3 className="text-brandYellow text-lg font-semibold mb-5">
               Our Services
             </h3>
 
-            <ul className="space-y-3 text-black/90 font-sans">
+            <ul className="space-y-3 text-black/90">
               <li>Audit & Assurance</li>
               <li>Accountancy & Financial Reporting</li>
               <li>Tax Advisory & Compliance</li>
               <li>Advisory Services</li>
             </ul>
           </div>
+
+          {/* Contact */}
           <div>
-            <h3 className="text-brandYellow text-lg font-semibold mb-5 font-sans">
+            <h3 className="text-brandYellow text-lg font-semibold mb-5">
               Contact Us
             </h3>
 
-            <ul className="space-y-3 text-black/90 font-sans">
-              <li>Our location: No. 2, Ibeju Lekki Street, Ikoyi, Lagos</li>
-              <li>Telephone: +234-911-010-8791</li>
+            <ul className="space-y-3 text-black/90">
+              <li>No. 2, Ibeju Lekki Street, Ikoyi, Lagos</li>
+              <li>+234-911-010-8791</li>
             </ul>
           </div>
-          {/* Newsletter */}
+
+          {/* Certifications (NEW SECTION) */}
           <div>
-            <h3 className="text-brandYellow text-lg font-semibold mb-5 font-sans">
-              Subscribe to Newsletter
+            <h3 className="text-brandYellow text-lg font-semibold mb-5">
+              Certifications
             </h3>
 
-            <form
-              onSubmit={handleSubscribe}
-              className="flex flex-col space-y-3"
-            >
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="px-4 py-2 rounded-lg text-gray-900"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
+            <div className="flex flex-wrap items-center gap-4">
+              <img
+                src={msiBadge}
+                alt="MSI Certified Partner"
+                className="h-12 object-contain"
               />
-              <button
-                type="submit"
-                className="bg-blue-200 text-[#0B3A6E] px-4 py-2 rounded-lg font-semibold hover:bg-yellow-400 transition"
-              >
-                Subscribe
-              </button>
-            </form>
+            </div>
+
+            <p className="text-sm text-black/70 mt-3">
+              Verified professional certification and regulatory compliance.
+            </p>
           </div>
         </div>
 
         {/* Divider */}
-        <div className="border-t border-white/20 mt-10 pt-6 text-center text-black/70 text-sm font-sans">
+        <div className="border-t border-gray-200 mt-10 pt-6 text-center text-black/70 text-sm">
           © {currentYear} Abax Professional Services. All Rights Reserved.
         </div>
       </div>
 
-      {/* Confirmation Modal */}
+      {/* Modal */}
       {showModal && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
           <div className="bg-white rounded-xl p-8 max-w-sm w-full text-center shadow-lg">

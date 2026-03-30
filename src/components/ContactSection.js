@@ -37,7 +37,7 @@ export default function ContactSection() {
     setStatus("Sending message...");
 
     try {
-      const response = await fetch("https://formspree.io/f/xkovqblr", {
+      const response = await fetch("https://test.abaxps.com/api/contact.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

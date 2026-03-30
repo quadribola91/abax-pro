@@ -9,6 +9,7 @@ import img3 from "../assets/Mr FusiAkinkungbe.jpg";
 import img4 from "../assets/Babafunke .jpg";
 import img5 from "../assets/Anthony Ebele.jpg";
 import img6 from "../assets/Dare Osoneye.JPG";
+import CallToAction from "./CallToAction";
 
 /* ---------------- DATA ---------------- */
 const principal = {
@@ -65,95 +66,96 @@ export default function TeamPage() {
   const [activeMember, setActiveMember] = useState(null);
 
   return (
-    <div className="bg-gray-50 min-h-screen overflow-hidden font-sans">
-      {/* NAVBAR placeholder */}
-      {/* Ensure your actual Navbar component uses absolute and transparent top */}
-      {/* <Navbar /> */}
+    <>
+      <div className="bg-gray-50 min-h-screen overflow-hidden font-sans">
+        {/* NAVBAR placeholder */}
+        {/* Ensure your actual Navbar component uses absolute and transparent top */}
+        {/* <Navbar /> */}
 
-      {/* HERO */}
-      <section className="relative min-h-[55vh] flex items-center justify-center text-center text-white overflow-hidden">
-        <img
-          src={heroImg}
-          alt="Team Background"
-          className="absolute inset-0 w-full h-full object-cover object-top"
-        />
-        <div className="absolute inset-0 bg-blue-900/30"></div>
+        {/* HERO */}
+        <section className="relative min-h-[55vh] flex items-center justify-center text-center text-white overflow-hidden">
+          <img
+            src={heroImg}
+            alt="Team Background"
+            className="absolute inset-0 w-full h-full object-cover object-top"
+          />
+          <div className="absolute inset-0 bg-blue-900/30"></div>
 
-        <div className="relative z-10 px-6 max-w-4xl">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
-            Our People
-          </h1>
-          <p className="text-lg md:text-xl text-blue-100">
-            Meet the team behind Abax Professional Services
-          </p>
-        </div>
-      </section>
-
-      {/* TOGGLE BUTTONS */}
-      <div className="flex justify-center gap-6 py-10">
-        <button
-          onClick={() => setView("principal")}
-          className={`px-6 py-2 rounded-full font-semibold transition ${
-            view === "principal"
-              ? "bg-blue-700 text-white"
-              : "bg-white shadow hover:bg-gray-100"
-          }`}
-        >
-          Principal Consultant
-        </button>
-        <button
-          onClick={() => setView("team")}
-          className={`px-6 py-2 rounded-full font-semibold transition ${
-            view === "team"
-              ? "bg-blue-700 text-white"
-              : "bg-white shadow hover:bg-gray-100"
-          }`}
-        >
-          Team Members
-        </button>
-      </div>
-
-      {/* PRINCIPAL VIEW */}
-      {view === "principal" && (
-        <section className="max-w-6xl mx-auto px-6 pb-20">
-          <div className="grid md:grid-cols-2 gap-12 items-center bg-white p-8 shadow-xl rounded-xl">
-            <img
-              src={principal.image}
-              alt={principal.name}
-              className="rounded-xl w-full object-cover object-top"
-            />
-            <div>
-              <h2 className="text-3xl font-bold text-gray-800">
-                {principal.name}
-              </h2>
-              <p className="text-blue-700 font-semibold mt-2 mb-6">
-                {principal.designation}
-              </p>
-              <p className="text-gray-700 leading-relaxed whitespace-pre-line">
-                {principal.bio}
-              </p>
-            </div>
+          <div className="relative z-10 px-6 max-w-4xl">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
+              Our People
+            </h1>
+            <p className="text-lg md:text-xl text-blue-100">
+              Meet the team behind Abax Professional Services
+            </p>
           </div>
         </section>
-      )}
 
-      {/* TEAM GRID */}
-      {view === "team" && (
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 pb-24">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {teamMembers.map((m, i) => {
-              const isSenior = m.designation.includes("Senior Consultant");
-              const isLead =
-                m.designation.includes("Team Lead") ||
-                m.designation.includes("Head");
+        {/* TOGGLE BUTTONS */}
+        <div className="flex justify-center gap-6 py-10">
+          <button
+            onClick={() => setView("principal")}
+            className={`px-6 py-2 rounded-full font-semibold transition ${
+              view === "principal"
+                ? "bg-blue-700 text-white"
+                : "bg-white shadow hover:bg-gray-100"
+            }`}
+          >
+            Principal Consultant
+          </button>
+          <button
+            onClick={() => setView("team")}
+            className={`px-6 py-2 rounded-full font-semibold transition ${
+              view === "team"
+                ? "bg-blue-700 text-white"
+                : "bg-white shadow hover:bg-gray-100"
+            }`}
+          >
+            Team Members
+          </button>
+        </div>
 
-              return (
-                <motion.div
-                  key={i}
-                  whileHover={{ y: -6 }}
-                  transition={{ type: "spring", stiffness: 200 }}
-                  onClick={() => setActiveMember(m)}
-                  className={`
+        {/* PRINCIPAL VIEW */}
+        {view === "principal" && (
+          <section className="max-w-6xl mx-auto px-6 pb-20">
+            <div className="grid md:grid-cols-2 gap-12 items-center bg-white p-8 shadow-xl rounded-xl">
+              <img
+                src={principal.image}
+                alt={principal.name}
+                className="rounded-xl w-full object-cover object-top"
+              />
+              <div>
+                <h2 className="text-3xl font-bold text-gray-800">
+                  {principal.name}
+                </h2>
+                <p className="text-blue-700 font-semibold mt-2 mb-6">
+                  {principal.designation}
+                </p>
+                <p className="text-gray-700 leading-relaxed whitespace-pre-line">
+                  {principal.bio}
+                </p>
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* TEAM GRID */}
+        {view === "team" && (
+          <section className="max-w-7xl mx-auto px-4 sm:px-6 pb-24">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+              {teamMembers.map((m, i) => {
+                const isSenior = m.designation.includes("Senior Consultant");
+                const isLead =
+                  m.designation.includes("Team Lead") ||
+                  m.designation.includes("Head");
+
+                return (
+                  <motion.div
+                    key={i}
+                    whileHover={{ y: -6 }}
+                    transition={{ type: "spring", stiffness: 200 }}
+                    onClick={() => setActiveMember(m)}
+                    className={`
               cursor-pointer group rounded-xl transition-all duration-500
               border
               ${
@@ -165,12 +167,12 @@ export default function TeamPage() {
               }
               hover:border-blue-400
             `}
-                >
-                  {/* CARD CONTENT */}
-                  <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 p-4 sm:p-6 text-center sm:text-left">
-                    {/* IMAGE */}
-                    <div
-                      className={`
+                  >
+                    {/* CARD CONTENT */}
+                    <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 p-4 sm:p-6 text-center sm:text-left">
+                      {/* IMAGE */}
+                      <div
+                        className={`
                   w-24 h-24 sm:w-20 sm:h-20
                   flex-shrink-0 overflow-hidden rounded-full
                   transition-all duration-500
@@ -182,24 +184,24 @@ export default function TeamPage() {
                         : "ring-2 ring-transparent"
                   }
                 `}
-                    >
-                      {m.image ? (
-                        <img
-                          src={m.image}
-                          alt={m.name}
-                          className="w-full h-full object-cover object-top group-hover:scale-110 transition duration-500"
-                        />
-                      ) : (
-                        <div className="w-full h-full bg-gray-200 flex items-center justify-center text-gray-500 text-xs">
-                          No Image
-                        </div>
-                      )}
-                    </div>
+                      >
+                        {m.image ? (
+                          <img
+                            src={m.image}
+                            alt={m.name}
+                            className="w-full h-full object-cover object-top group-hover:scale-110 transition duration-500"
+                          />
+                        ) : (
+                          <div className="w-full h-full bg-gray-200 flex items-center justify-center text-gray-500 text-xs">
+                            No Image
+                          </div>
+                        )}
+                      </div>
 
-                    {/* TEXT */}
-                    <div className="flex-1 min-w-0">
-                      <h3
-                        className={`
+                      {/* TEXT */}
+                      <div className="flex-1 min-w-0">
+                        <h3
+                          className={`
                     transition break-words
                     ${
                       isSenior
@@ -209,12 +211,12 @@ export default function TeamPage() {
                           : "text-lg font-medium text-gray-700"
                     }
                   `}
-                      >
-                        {m.name}
-                      </h3>
+                        >
+                          {m.name}
+                        </h3>
 
-                      <p
-                        className={`
+                        <p
+                          className={`
                     mt-1 break-words
                     ${
                       isSenior
@@ -224,59 +226,61 @@ export default function TeamPage() {
                           : "text-blue-600 font-medium"
                     }
                   `}
-                      >
-                        {m.designation}
-                      </p>
+                        >
+                          {m.designation}
+                        </p>
 
-                      <p className="text-gray-400 text-xs mt-2 italic opacity-0 sm:group-hover:opacity-100 transition">
-                        Tap to view profile →
-                      </p>
+                        <p className="text-gray-400 text-xs mt-2 italic opacity-0 sm:group-hover:opacity-100 transition">
+                          Tap to view profile →
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </div>
-        </section>
-      )}
-
-      {/* SIDE PANEL PROFILE */}
-      <AnimatePresence>
-        {activeMember && (
-          <motion.div
-            initial={{ x: "100%" }}
-            animate={{ x: 0 }}
-            exit={{ x: "100%" }}
-            transition={{ duration: 0.4 }}
-            className="fixed top-0 right-0 w-full md:w-[500px] h-full bg-white shadow-2xl z-50 overflow-y-auto p-8"
-          >
-            <button
-              className="text-xl font-bold mb-6"
-              onClick={() => setActiveMember(null)}
-            >
-              ✕
-            </button>
-
-            {activeMember.image && (
-              <div className="mb-6 flex justify-center">
-                <img
-                  src={activeMember.image}
-                  alt={activeMember.name}
-                  className="max-h-[400px] w-auto object-contain rounded-xl shadow-md"
-                />
-              </div>
-            )}
-
-            <h2 className="text-2xl font-bold">{activeMember.name}</h2>
-            <p className="text-blue-700 font-semibold mb-4">
-              {activeMember.designation}
-            </p>
-            <p className="text-gray-700 whitespace-pre-line leading-relaxed">
-              {activeMember.bio || "No additional information available."}
-            </p>
-          </motion.div>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </section>
         )}
-      </AnimatePresence>
-    </div>
+
+        {/* SIDE PANEL PROFILE */}
+        <AnimatePresence>
+          {activeMember && (
+            <motion.div
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ duration: 0.4 }}
+              className="fixed top-0 right-0 w-full md:w-[500px] h-full bg-white shadow-2xl z-50 overflow-y-auto p-8"
+            >
+              <button
+                className="text-xl font-bold mb-6"
+                onClick={() => setActiveMember(null)}
+              >
+                ✕
+              </button>
+
+              {activeMember.image && (
+                <div className="mb-6 flex justify-center">
+                  <img
+                    src={activeMember.image}
+                    alt={activeMember.name}
+                    className="max-h-[400px] w-auto object-contain rounded-xl shadow-md"
+                  />
+                </div>
+              )}
+
+              <h2 className="text-2xl font-bold">{activeMember.name}</h2>
+              <p className="text-blue-700 font-semibold mb-4">
+                {activeMember.designation}
+              </p>
+              <p className="text-gray-700 whitespace-pre-line leading-relaxed">
+                {activeMember.bio || "No additional information available."}
+              </p>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+      <CallToAction />
+    </>
   );
 }

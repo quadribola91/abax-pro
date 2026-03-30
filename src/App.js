@@ -9,6 +9,7 @@ import { Helmet, HelmetProvider } from "react-helmet-async";
 import ReactGA from "react-ga4";
 
 import Navbar from "./components/Navbar";
+import Certifications from "./pages/Certifications";
 import CookiePolicy from "./pages/CookiePolicy";
 import CookieBanner from "./components/CookieBanner";
 import FooterSection from "./components/FooterSection";
@@ -102,6 +103,7 @@ function AppContent() {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<ContactSection />} />
         <Route path="/team" element={<TeamPage />} />
+        <Route path="/certifications" element={<Certifications />} />
         <Route path="/cookie-policy" element={<CookiePolicy />} />
         <Route path="/servicepage" element={<ServicesPage />} />
       </Routes>

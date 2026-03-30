@@ -16,11 +16,11 @@ export default function Home() {
       </SectionWrapper>
 
       <SectionWrapper>
-        <VisionMissionSection />
+        <ServicesSection />
       </SectionWrapper>
 
       <SectionWrapper>
-        <ServicesSection />
+        <VisionMissionSection />
       </SectionWrapper>
 
       <SectionWrapper>

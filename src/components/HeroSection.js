@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
-import img1 from "../assets/landing.jpg";
-import img2 from "../assets/splash5.jpg";
-import img3 from "../assets/landing1.jpg";
+import img1 from "../assets/Abaxps1.webp";
+import img2 from "../assets/Abaxps2.webp";
+import img3 from "../assets/Abaxps3.webp";
 
 /* Move slides outside component (prevents dependency warnings) */
 const slides = [

@@ -4,10 +4,11 @@ import { motion, AnimatePresence, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import services from "../components/ServicesData";
 import heroImage from "../assets/splash5.jpg";
+import CallToAction from "./CallToAction";
 
 // Accordion Section
 const AccordionSection = ({ section, isOpen, onClick }) => (
-  <div className="border rounded-xl overflow-hidden bg-white">
+  <div className="border rounded-xl bg-white">
     <button
       onClick={onClick}
       className="w-full flex justify-between items-center px-5 py-4 text-left font-semibold text-gray-800 hover:bg-gray-50"
@@ -21,11 +22,13 @@ const AccordionSection = ({ section, isOpen, onClick }) => (
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          initial={{ height: 0, opacity: 0 }}
-          animate={{ height: "auto", opacity: 1 }}
-          exit={{ height: 0, opacity: 0 }}
-          transition={{ duration: 0.4 }}
-          className="px-6 pb-5 overflow-hidden"
+          layout
+          initial={{ scaleY: 0, opacity: 0 }}
+          animate={{ scaleY: 1, opacity: 1 }}
+          exit={{ scaleY: 0, opacity: 0 }}
+          style={{ originY: 0 }}
+          transition={{ duration: 0.3 }}
+          className="px-6 pb-5"
         >
           <ul className="space-y-2 text-gray-600">
             {section.points.map((point, i) => (
@@ -69,7 +72,7 @@ const ServiceCard = ({ service, active, setActive, index }) => {
       initial={{ x: index % 2 === 0 ? -120 : 120, opacity: 0 }}
       animate={controls}
       whileHover={{ scale: 1.02 }}
-      className="bg-white rounded-2xl shadow-md overflow-hidden w-full"
+      className="bg-white rounded-2xl shadow-md w-full"
     >
       {/* HEADER */}
       <div className="p-8 flex items-start gap-5">
@@ -99,7 +102,7 @@ const ServiceCard = ({ service, active, setActive, index }) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.4 }}
+            transition={{ duration: 0.3 }}
             className="px-8 pb-8 space-y-4 bg-gray-50"
           >
             {service.sections.map((section, idx) => (
@@ -121,43 +124,46 @@ export default function ServicesPage() {
   const [activeService, setActiveService] = useState(null);
 
   return (
-    <div className="overflow-x-hidden scroll-smooth">
-      {/* HERO */}
-      <section className="relative w-full h-[55vh] min-h-[420px] flex items-center justify-center overflow-hidden">
-        <img
-          src={heroImage}
-          alt="Our Professional Services"
-          className="absolute inset-0 w-full h-full object-cover"
-        />
+    <>
+      <div className="overflow-x-hidden">
+        {/* HERO */}
+        <section className="relative w-full h-[55vh] min-h-[420px] flex items-center justify-center overflow-hidden">
+          <img
+            src={heroImage}
+            alt="Our Professional Services"
+            className="absolute inset-0 w-full h-full object-cover"
+          />
 
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-950/80 to-blue-900/40"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-950/80 to-blue-900/40"></div>
 
-        <div className="relative text-center px-6 max-w-3xl text-white">
-          <h1 className="text-4xl md:text-5xl font-serif font-bold">
-            Our Service Catalogue
-          </h1>
+          <div className="relative text-center px-6 max-w-3xl text-white">
+            <h1 className="text-4xl md:text-5xl font-serif font-bold">
+              Our Service Catalogue
+            </h1>
 
-          <p className="mt-6 text-lg md:text-xl text-gray-200">
-            Explore our comprehensive professional offerings designed to
-            strengthen governance, compliance, and performance.
-          </p>
-        </div>
-      </section>
+            <p className="mt-6 text-lg md:text-xl text-gray-200">
+              Explore our comprehensive professional offerings designed to
+              strengthen governance, compliance, and performance.
+            </p>
+          </div>
+        </section>
 
-      {/* SERVICES */}
-      <section className="py-20 bg-gray-50 min-h-screen">
-        <div className="max-w-6xl mx-auto px-4 md:px-6 space-y-12">
-          {services.map((service, index) => (
-            <ServiceCard
-              key={service.id}
-              service={service}
-              active={activeService}
-              setActive={setActiveService}
-              index={index}
-            />
-          ))}
-        </div>
-      </section>
-    </div>
+        {/* SERVICES */}
+        <section className="py-20 bg-gray-50 min-h-screen">
+          <div className="max-w-6xl mx-auto px-4 md:px-6 space-y-12">
+            {services.map((service, index) => (
+              <ServiceCard
+                key={service.id}
+                service={service}
+                active={activeService}
+                setActive={setActiveService}
+                index={index}
+              />
+            ))}
+          </div>
+        </section>
+      </div>
+      <CallToAction />
+    </>
   );
 }
