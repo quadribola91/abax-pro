@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import services from "../components/ServicesData";
-import heroImage from "../assets/splash5.jpg";
+import heroImage from "../assets/Abaxps9.webp";
 import CallToAction from "./CallToAction";
 
 // Accordion Section

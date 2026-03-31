@@ -131,7 +131,7 @@ export default function TeamSection() {
         >
           <Link to="team" className="inline-block">
             <span className="inline-block px-8 py-3 bg-blue-700 text-white font-semibold rounded-lg shadow hover:bg-blue-800 hover:shadow-lg transition">
-              View Full Team
+              Meet The Team
             </span>
           </Link>
         </motion.div>

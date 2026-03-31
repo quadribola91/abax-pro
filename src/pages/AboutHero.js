@@ -1,15 +1,16 @@
 import React from "react";
 import CoreValues from "./CoreValues";
 import CallToAction from "./CallToAction";
-import aboutBg from "../assets/landing.jpg";
+import aboutBg from "../assets/Abaxps8.webp";
 import StoryPurposeSection from "./StoryPurposeSection";
 import WhyUs from "../components/WhyUs";
+import Certifications from "./Certifications";
 
 export default function AboutHero() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative min-h-[60vh] md:min-h-[95vh] flex items-center justify-center text-center text-white overflow-hidden font-sans">
+      <section className="relative w-full h-[55vh] min-h-[420px] flex items-center justify-center text-center text-white overflow-hidden font-sans">
         {/* Background Image */}
         <div className="absolute inset-0">
           <img
@@ -39,6 +40,7 @@ export default function AboutHero() {
       <StoryPurposeSection />
       <WhyUs />
       <CoreValues />
+      <Certifications />
       <CallToAction />
     </>
   );

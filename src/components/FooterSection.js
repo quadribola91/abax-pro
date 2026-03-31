@@ -77,6 +77,11 @@ export default function FooterSection() {
                 <Link to="/team" className="hover:text-brandYellow transition">
                   Team
                 </Link>
+              </li>{" "}
+              <li>
+                <Link to="/FAQs" className="hover:text-brandYellow transition">
+                  FAQs
+                </Link>
               </li>
               <li>
                 <Link

@@ -2,8 +2,8 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-import heroImg from "../assets/landing.jpg";
-import OlapejuImage from "../assets/Madam Sofowora.jpg";
+import heroImg from "../assets/Abaxps7.webp";
+import OlapejuImage from "../assets/Madam Sofowora.webp";
 import AyoImage from "../assets/MsAlamutu.jpg";
 import img3 from "../assets/Mr FusiAkinkungbe.jpg";
 import img4 from "../assets/Babafunke .jpg";

@@ -23,20 +23,16 @@ import About from "./pages/About";
 import ContactSection from "./components/ContactSection";
 import TeamPage from "./pages/TeamPage";
 import ServicesPage from "./pages/ServicesPage";
+import FAQsPage from "./pages/FAQsPage";
 
-/* -------------------------
-   INNER APP (Uses Router)
--------------------------- */
 function AppContent() {
   const location = useLocation();
   const [loading, setLoading] = useState(false);
 
-  // 🔹 Initialize GA once
   useEffect(() => {
     ReactGA.initialize("G-33ZY1HZJLR");
   }, []);
 
-  // 🔹 Track pageviews + handle loader
   useEffect(() => {
     setLoading(true);
 
@@ -52,33 +48,39 @@ function AppContent() {
     return () => clearTimeout(timer);
   }, [location]);
 
-  // Map each route to its SEO metadata
   const seoMap = {
     "/": {
       title: "AbaxPS - Home",
-      description: "AbaxPS provides top-notch services for your business.",
+      description:
+        "Abax Professional Services: Accounting, Audit, Tax and HR Consulting.",
     },
     "/about": {
       title: "About AbaxPS",
-      description: "Learn more about AbaxPS and our mission.",
+      description:
+        "Learn more about Abax Professional Services and our expertise.",
     },
     "/contact": {
       title: "Contact AbaxPS",
-      description: "Get in touch with AbaxPS for your queries.",
+      description: "Contact Abax Professional Services today.",
     },
     "/team": {
-      title: "AbaxPS Team",
-      description: "Meet the talented team behind AbaxPS.",
+      title: "Our Team - AbaxPS",
+      description: "Meet the team behind Abax Professional Services.",
     },
     "/servicepage": {
       title: "Our Services - AbaxPS",
-      description: "Discover the range of services offered by AbaxPS.",
+      description: "Explore accounting, auditing, tax and HR services.",
+    },
+    "/faqs": {
+      title: "FAQs - AbaxPS",
+      description:
+        "Frequently asked questions about Abax Professional Services.",
     },
   };
 
   const currentSeo = seoMap[location.pathname] || {
     title: "AbaxPS",
-    description: "AbaxPS business services website",
+    description: "Abax Professional Services Website",
   };
 
   return (
@@ -106,6 +108,7 @@ function AppContent() {
         <Route path="/certifications" element={<Certifications />} />
         <Route path="/cookie-policy" element={<CookiePolicy />} />
         <Route path="/servicepage" element={<ServicesPage />} />
+        <Route path="/faqs" element={<FAQsPage />} />
       </Routes>
 
       <FooterSection />
@@ -116,9 +119,6 @@ function AppContent() {
   );
 }
 
-/* -------------------------
-   ROOT APP
--------------------------- */
 function App() {
   return (
     <HelmetProvider>

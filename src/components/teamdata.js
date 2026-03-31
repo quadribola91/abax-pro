@@ -1,4 +1,4 @@
-import img1 from "../assets/Madam Sofowora.jpg";
+import img1 from "../assets/Madam Sofowora.webp";
 import img2 from "../assets/Ms Alamutu.jpg";
 import img3 from "../assets/Mr FusiAkinkungbe.jpg";
 import img4 from "../assets/Mr Anthony Ebele .JPG";

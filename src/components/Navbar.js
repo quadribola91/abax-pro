@@ -75,6 +75,12 @@ export default function Navbar() {
               >
                 Our Team
               </Link>
+              <Link
+                to="/faqs"
+                className="block px-5 py-3 hover:bg-gray-100 whitespace-nowrap"
+              >
+                FAQs
+              </Link>
             </div>
           </div>
 
@@ -176,6 +182,13 @@ export default function Navbar() {
               className="block py-3 border-t"
             >
               Our Team
+            </Link>
+            <Link
+              to="/faqs"
+              onClick={closeMobileMenu}
+              className="block py-3 border-t"
+            >
+              FAQs
             </Link>
           </div>
         </div>

@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import purposeImage from "../assets/DSC_8104 (1).JPG"; // <-- replace with your image
+import purposeImage from "../assets/Abaxps6.webp"; // <-- replace with your image
 
 export default function StoryPurposeSection() {
   return (
