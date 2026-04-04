@@ -83,7 +83,7 @@ export default function ServicesSection() {
           viewport={{ once: true }}
           className="w-full"
         >
-          <h2 className="text-blue-700 text-2xl sm:text-3xl md:text-4xl lg:text-4xl font-serif font-bold leading-tight">
+          <h2 className="text-blue-700 text-4xl font-serif font-bold leading-tight">
             Professional Services
           </h2>
           <p className="text-gray-600 font-medium max-w-xl mb-8 sm:mb-10 text-sm sm:text-base lg:text-lg">

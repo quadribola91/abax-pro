@@ -24,8 +24,8 @@ export default function TeamSection() {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-4xl sm:text-5xl font-bold text-blue-800 mb-4">
-            Our Leadership Team
+          <h2 className="text-4xl font-bold text-blue-800 mb-4">
+            Leadership Team
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto text-base sm:text-lg">
             Meet the professionals driving excellence and strategic growth.

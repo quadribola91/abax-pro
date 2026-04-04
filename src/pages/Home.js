@@ -7,12 +7,17 @@ import AboutSection from "../components/AboutSection";
 import HeroSection from "../components/HeroSection";
 import TeamSection from "../components/TeamSection";
 import ContactSection from "../components/ContactSection";
+import WhyUs from "../components/WhyUs";
 
 export default function Home() {
   return (
     <main className="overflow-x-hidden bg-white">
       <SectionWrapper>
         <HeroSection />
+      </SectionWrapper>
+
+      <SectionWrapper>
+        <WhyUs />
       </SectionWrapper>
 
       <SectionWrapper>

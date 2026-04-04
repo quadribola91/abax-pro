@@ -66,7 +66,7 @@ export default function VisionMissionSection() {
           className={`text-center mb-20 transition-all duration-1000
           ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-blue-800">
+          <h2 className="text-4xl font-bold text-blue-800">
             Our Vision & Mission
           </h2>
           <p className="text-gray-500 font-medium mt-4">
