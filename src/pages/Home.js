@@ -8,6 +8,7 @@ import HeroSection from "../components/HeroSection";
 import TeamSection from "../components/TeamSection";
 import ContactSection from "../components/ContactSection";
 import WhyUs from "../components/WhyUs";
+import Certifications from "./Certifications";
 
 export default function Home() {
   return (
@@ -34,6 +35,10 @@ export default function Home() {
 
       <SectionWrapper>
         <TeamSection />
+      </SectionWrapper>
+
+      <SectionWrapper>
+        <Certifications />
       </SectionWrapper>
 
       <SectionWrapper>

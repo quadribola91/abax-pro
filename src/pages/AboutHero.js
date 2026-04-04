@@ -3,8 +3,8 @@ import CoreValues from "./CoreValues";
 import CallToAction from "./CallToAction";
 import aboutBg from "../assets/Abaxps8.webp";
 import StoryPurposeSection from "./StoryPurposeSection";
-import WhyUs from "../components/WhyUs";
-import Certifications from "./Certifications";
+// import WhyUs from "../components/WhyUs";
+// import Certifications from "./Certifications";
 
 export default function AboutHero() {
   return (
@@ -38,9 +38,8 @@ export default function AboutHero() {
 
       {/* Other Sections */}
       <StoryPurposeSection />
-      <WhyUs />
+      {/* <WhyUs /> */}
       <CoreValues />
-      <Certifications />
       <CallToAction />
     </>
   );
